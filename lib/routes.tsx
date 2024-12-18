@@ -1,7 +1,7 @@
-import { TagManager } from "@common/components/TagManager";
+import { TagGroupManager } from "@common/components/TagGroupManager";
 
 export const commonRoutes = {
     admin: [
-        {path: "/tags", component: TagManager},
+        {path: "/tags", component: TagGroupManager},
     ]
 }
