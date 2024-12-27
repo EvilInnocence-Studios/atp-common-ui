@@ -1,1 +1,14 @@
 @use "@styles/globals.module.scss";
+
+.synonymManager {
+    .newSynonymForm {
+        margin-bottom: globals.$padding;
+    }
+    .synonymList {
+        display: flex;
+        gap: globals.$padding;
+        > div {
+            min-width: 378px;
+        }
+    }
+}

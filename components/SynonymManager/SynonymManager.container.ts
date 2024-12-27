@@ -13,12 +13,14 @@ const injectSynonymManagerProps = createInjector(({}:ISynonymManagerInputProps):
 
     const refresh = () => {
         loader.start();
-        services().synonym.search().then(setSynonyms);
+        services().synonym.search()
+            .then(setSynonyms)
+            .finally(loader.stop);
     }
 
     useEffect(refresh, []);
     
-    return {synonyms: partition(s => s.canonical)(synonyms), isLoading: loader.isLoading};
+    return {synonyms: partition<ISynonym>(s => s.canonical)(synonyms), isLoading: loader.isLoading};
 });
 
 const connect = inject<ISynonymManagerInputProps, SynonymManagerProps>(mergeProps(
