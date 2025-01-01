@@ -1,13 +1,13 @@
 import { ISynonym } from "@common-shared/synonym/types";
 import { services } from "@core/lib/api";
 import { useEffect } from "react";
-import {useSharedState} from 'unstateless';
-import {memoizePromise} from 'ts-functional';
+import { memoize } from 'ts-functional';
+import { useSharedState } from 'unstateless';
 
-export const synonymReplace = (str:string, synonyms:ISynonym[]) => synonyms.reduce(
+export const synonymReplace = memoize((str:string | null, synonyms:ISynonym[]) => !str ? "" : synonyms.reduce(
     (replaced:string, synonym:ISynonym) => replaced.replaceAll(synonym.synonym, synonym.canonical),
     str
-);
+), {});
 
 export const useSynonymsRaw = useSharedState<ISynonym[]>("synonyms", []);
 

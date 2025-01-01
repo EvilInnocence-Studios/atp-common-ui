@@ -1,8 +1,7 @@
-import { ISynonym } from "@common-shared/synonym/types";
 import { onInputChange } from "@core/lib/onInputChange";
 import { faPlus, faRightLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Card, Input, Space, Spin, Tag } from "antd";
+import { Input, Space, Spin } from "antd";
 import { SynonymCard } from "../SynonymCard/SynonymCard.container";
 import { SynonymManagerProps } from "./SynonymManager.d";
 import styles from './SynonymManager.module.scss';
