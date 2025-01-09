@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { IBanner } from "@common-shared/banner/types";
 import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
+import { flash } from "@core/lib/flash";
+import { getError } from "@core/lib/util";
 
 const injectBannerManagerProps = createInjector(({}:IBannerManagerInputProps):IBannerManagerProps => {
     const [banners, setBanners] = useState<IBanner[]>([]);
