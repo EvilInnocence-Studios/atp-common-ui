@@ -23,7 +23,7 @@ export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString
                 <DatePicker value={banner.activeTo ? dayjs(banner.activeTo) : undefined} onChange={onDateChange(updateString("activeTo"))}/>
             </Label>
             <Label label="Button Text"><Editable value={banner.buttonText || ""} onChange={updateString("buttonText")}/></Label>
-            <Label label="Link"><Editable value={banner.link} onChange={updateString("url")}/></Label>
+            <Label label="Link"><Editable value={banner.link} onChange={updateString("link")}/></Label>
             <Radio.Group block optionType="button" buttonStyle="solid" value={banner.buttonLocation} onChange={(e) => updateString("buttonLocation")(e.target.value)}>
                 <Radio value="left">Left</Radio>
                 <Radio value="center">Center</Radio>
