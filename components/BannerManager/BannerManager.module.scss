@@ -1,0 +1,7 @@
+@use "@styles/globals.module.scss";
+
+.bannerManager {
+    .bannerList {
+        margin-top: globals.$padding;
+    }
+}
