@@ -1,12 +1,12 @@
-import { Alert, Button, Input, Space, Spin, Tag } from "antd";
-import {TagManagerProps} from "./TagManager.d";
-import styles from './TagManager.module.scss';
-import { onInputChange } from "@core/lib/onInputChange";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { Editable } from "@core/components/Editable";
 import { DeleteBtn } from "@core/components/DeleteBtn";
+import { Editable } from "@core/components/Editable";
+import { onInputChange } from "@core/lib/onInputChange";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
+import { Alert, Button, Input, Space, Spin } from "antd";
+import { TagManagerProps } from "./TagManager.d";
+import styles from './TagManager.module.scss';
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");

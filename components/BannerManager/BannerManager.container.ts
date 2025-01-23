@@ -1,12 +1,10 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {BannerManagerComponent} from "./BannerManager.component";
-import {IBannerManagerInputProps, BannerManagerProps, IBannerManagerProps} from "./BannerManager.d";
-import { useEffect, useState } from "react";
 import { IBanner } from "@common-shared/banner/types";
-import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
-import { flash } from "@core/lib/flash";
-import { getError } from "@core/lib/util";
+import { useLoader } from "@core/lib/useLoader";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { BannerManagerComponent } from "./BannerManager.component";
+import { BannerManagerProps, IBannerManagerInputProps, IBannerManagerProps } from "./BannerManager.d";
 
 const injectBannerManagerProps = createInjector(({}:IBannerManagerInputProps):IBannerManagerProps => {
     const [banners, setBanners] = useState<IBanner[]>([]);
@@ -14,7 +12,7 @@ const injectBannerManagerProps = createInjector(({}:IBannerManagerInputProps):IB
 
     const refresh = () => {
         loader.start();
-        services().banner.search().then(setBanners).finally(loader.stop);
+        services().banner.search({}).then(setBanners).finally(loader.stop);
     }
 
     useEffect(refresh, []);
