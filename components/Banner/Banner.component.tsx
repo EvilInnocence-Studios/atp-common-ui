@@ -6,22 +6,28 @@ import clsx from "clsx";
 import { Link } from "react-router";
 
 export const BannerComponent = ({banner}:BannerProps) => 
-    <Link to={banner.link}>
-        <div className={styles.banner}>
+    <div className={styles.banner}>
+        <Link to={banner.link}>
             <div className={styles.info}>
                 <h1>{banner.title}</h1>
                 <p>{banner.description}</p>
             </div>
-            {!!banner.buttonText && <div className={clsx([styles.button, banner.buttonLocation && styles[banner.buttonLocation]])}>
+        </Link>
+        {!!banner.buttonText && <div className={clsx([styles.button, banner.buttonLocation && styles[banner.buttonLocation]])}>
+            <Link to={banner.buttonLink || ""}>
                 <Button type="primary" size="large">
                     {banner.buttonText}
                 </Button>
-            </div>}
-            {!!banner.buttonTextAlt && <div className={clsx([styles.button, banner.buttonLocationAlt && styles[banner.buttonLocationAlt]])}>
+            </Link>
+        </div>}
+        {!!banner.buttonTextAlt && <div className={clsx([styles.button, banner.buttonLocationAlt && styles[banner.buttonLocationAlt]])}>
+            <Link to={banner.buttonLinkAlt || ""}>
                 <Button type="primary" size="large">
                     {banner.buttonTextAlt}
                 </Button>
-            </div>}
+            </Link>
+        </div>}
+        <Link to={banner.link}>
             <BannerImage bannerId={banner.id} />
-        </div>
-    </Link>;
+        </Link>
+    </div>;
