@@ -5,7 +5,7 @@
     border-radius: globals.$border-radius;
     padding: globals.$padding;
     .updateButtons {
-        float: right;
+        text-align: right;
         margin-bottom: globals.$padding;
     }
     :global(.label) {
