@@ -18,9 +18,11 @@
         position: absolute;
         top: 25%;
         left: 25%;
+        z-index: 999;
     }
     .button {
         position: absolute;
+        z-index: 999;
         bottom: 16px;
         &.left {
             left: 16px;
