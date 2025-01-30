@@ -2,4 +2,7 @@
 
 .bannerImage {
     width: 100%;
+    &.isLoading {
+        opacity: 0.05;
+    }
 }
