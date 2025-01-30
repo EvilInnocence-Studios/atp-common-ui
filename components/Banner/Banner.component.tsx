@@ -17,6 +17,11 @@ export const BannerComponent = ({banner}:BannerProps) =>
                     {banner.buttonText}
                 </Button>
             </div>}
+            {!!banner.buttonTextAlt && <div className={clsx([styles.button, banner.buttonLocationAlt && styles[banner.buttonLocationAlt]])}>
+                <Button type="primary" size="large">
+                    {banner.buttonTextAlt}
+                </Button>
+            </div>}
             <BannerImage bannerId={banner.id} />
         </div>
     </Link>;
