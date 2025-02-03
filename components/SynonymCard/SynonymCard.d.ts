@@ -11,7 +11,7 @@ export declare interface ISynonymCardInputProps {
     canonical: string;
     synonyms: ISynonym[];
     add: (canonical: string, synonym: string) => () => void;
-    remove: (ids:number[]) => () => void;
+    remove: (ids:string[]) => () => void;
 }
 
 export type SynonymCardProps = ISynonymCardInputProps & ISynonymCardProps;

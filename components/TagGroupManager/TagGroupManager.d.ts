@@ -6,8 +6,8 @@ export declare interface ITagGroupManagerProps {
     name: string;
     setName: Setter<string>;
     create: () => void;
-    update: (id: number) => (name:string) => void;
-    remove: (id: number) => () => void;
+    update: (id:string) => (name:string) => void;
+    remove: (id:string) => () => void;
 }
 
 // What gets passed into the component from the parent as attributes

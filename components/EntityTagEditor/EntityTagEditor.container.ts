@@ -31,7 +31,7 @@ const injectEntityTagEditorProps = createInjector(({search, create, remove}:IEnt
             .finally(loader.stop);
     }, []);
 
-    const onAddTag = (tagId:number) => {
+    const onAddTag = (tagId:string) => {
         loader.start();
         create(tagId)
             .then(() => setEntityTags([...entityTags, allTags.flatMap(t => t.tags).find(t => t.id === tagId)!]))
@@ -39,7 +39,7 @@ const injectEntityTagEditorProps = createInjector(({search, create, remove}:IEnt
             .finally(loader.stop);
     }
 
-    const onRemoveTag = (tagId:number) => {
+    const onRemoveTag = (tagId:string) => {
         loader.start();
         remove(tagId)
             .then(() => setEntityTags(entityTags.filter(t => t.id !== tagId)))

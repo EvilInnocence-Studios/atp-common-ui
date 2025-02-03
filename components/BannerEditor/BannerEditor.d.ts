@@ -7,7 +7,7 @@ export declare interface IBannerEditorProps extends IUpdater<IBanner> {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IBannerEditorInputProps {
-    bannerId: number;
+    bannerId:string;
 }
 
 export type BannerEditorProps = IBannerEditorInputProps & IBannerEditorProps;

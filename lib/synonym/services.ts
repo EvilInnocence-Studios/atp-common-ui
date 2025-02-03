@@ -6,7 +6,7 @@ export const synonymServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
     synonym: {
         create: (synonym: NewSynonym):Promise<ISynonym> => post('synonym', synonym).then(getResults<ISynonym>),
         search: ():Promise<ISynonym[]> => get('synonym').then(getResults<ISynonym[]>),
-        update: (id: number, data: Partial<ISynonym>) => patch(`synonym/${id}`, data),
-        remove: (id: number) => remove(`synonym/${id}`),
+        update: (id:string, data: Partial<ISynonym>) => patch(`synonym/${id}`, data),
+        remove: (id:string) => remove(`synonym/${id}`),
     }
 });

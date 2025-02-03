@@ -12,8 +12,8 @@ export const bannerServices = ({get, post, /*put,*/ patch, remove}: IMethods) =>
                 .catch(handleError);
         },                        
         search: (query:{}):Promise<IBanner[]> => get('banner', query).then(getResults<IBanner[]>),
-        get: (id: number):Promise<IBanner> => get(`banner/${id}`).then(getResults<IBanner>),
-        update: (id: number, data: Partial<IBanner>) => patch(`banner/${id}`, data),
-        remove: (id: number) => remove(`banner/${id}`),
+        get: (id:string):Promise<IBanner> => get(`banner/${id}`).then(getResults<IBanner>),
+        update: (id:string, data: Partial<IBanner>) => patch(`banner/${id}`, data),
+        remove: (id:string) => remove(`banner/${id}`),
     }
 });

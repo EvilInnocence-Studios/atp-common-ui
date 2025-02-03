@@ -24,7 +24,7 @@ const injectSynonymManagerProps = createInjector(({}:ISynonymManagerInputProps):
             .finally(loader.stop);
     }
 
-    const remove = (ids:number[]) => () => {
+    const remove = (ids:string[]) => () => {
         console.log(ids);
         loader.start();
         Promise.all(ids.map(services().synonym.remove))

@@ -15,7 +15,7 @@ const injectTagManagerProps = createInjector(({group}:ITagManagerInputProps):ITa
 
     const tag = services().tagGroup.tag;
 
-    const update = (id:number) => (name:string) => {
+    const update = (id:string) => (name:string) => {
         const oldTags = tags;
         setTags(tags.map(t => t.id === id ? {...t, name} : t));
         loader.start();
@@ -25,7 +25,7 @@ const injectTagManagerProps = createInjector(({group}:ITagManagerInputProps):ITa
             .finally(loader.stop);
     }
 
-    const remove = (id:number) => () => {
+    const remove = (id:string) => () => {
         const oldTags = tags;
         setTags(tags.filter(t => t.id !== id));
         loader.start();
