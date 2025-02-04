@@ -17,8 +17,6 @@ export const useTagGroups = () => {
                 loadGroups(),
                 loadTags(),
             ]).then(([groups, tags]) => {
-                console.log(groups);
-                console.log(tags);
                 setGroups(groups.map(group => ({
                     group,
                     tags: tags.filter(tag => tag.groupId === group.id),
