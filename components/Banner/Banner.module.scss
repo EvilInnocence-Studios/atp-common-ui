@@ -21,9 +21,10 @@
         z-index: 999;
     }
     .button {
+        @include globals.splashButton;
         position: absolute;
         z-index: 999;
-        bottom: 16px;
+        bottom: 32px;
         &.left {
             left: 16px;
         }
