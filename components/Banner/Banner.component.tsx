@@ -1,9 +1,8 @@
-import { Button } from "antd";
-import { BannerImage } from "../BannerImage";
-import {BannerProps} from "./Banner.d";
-import styles from './Banner.module.scss';
 import clsx from "clsx";
 import { Link } from "react-router";
+import { BannerImage } from "../BannerImage";
+import { BannerProps } from "./Banner.d";
+import styles from './Banner.module.scss';
 
 export const BannerComponent = ({banner}:BannerProps) => 
     <div className={styles.banner}>
@@ -15,16 +14,12 @@ export const BannerComponent = ({banner}:BannerProps) =>
         </Link>
         {!!banner.buttonText && <div className={clsx([styles.button, banner.buttonLocation && styles[banner.buttonLocation]])}>
             <Link to={banner.buttonLink || ""}>
-                <Button type="primary" size="large">
-                    {banner.buttonText}
-                </Button>
+                {banner.buttonText}
             </Link>
         </div>}
         {!!banner.buttonTextAlt && <div className={clsx([styles.button, banner.buttonLocationAlt && styles[banner.buttonLocationAlt]])}>
             <Link to={banner.buttonLinkAlt || ""}>
-                <Button type="primary" size="large">
-                    {banner.buttonTextAlt}
-                </Button>
+                {banner.buttonTextAlt}
             </Link>
         </div>}
         <Link to={banner.link}>
