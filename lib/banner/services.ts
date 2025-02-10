@@ -4,10 +4,10 @@ import { getResults, handleError } from "@core/lib/util";
 
 export const bannerServices = ({get, post, /*put,*/ patch, remove}: IMethods) => ({
     banner: {
-        create: (file:File) => {
+        create: (file:File, overwrite: boolean) => {
             const formData = new FormData();
             formData.append('file', file);
-            return post(`banner`, formData)
+            return post(overwrite ? `banner/replace` : `banner`, formData)
                 .then(getResults<IBanner>)
                 .catch(handleError);
         },                        

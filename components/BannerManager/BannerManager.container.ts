@@ -8,6 +8,7 @@ import { BannerManagerProps, IBannerManagerInputProps, IBannerManagerProps } fro
 
 const injectBannerManagerProps = createInjector(({}:IBannerManagerInputProps):IBannerManagerProps => {
     const [banners, setBanners] = useState<IBanner[]>([]);
+    const [overwrite, setOverwrite] = useState(false);
     const loader = useLoader();
 
     const refresh = () => {
@@ -19,12 +20,12 @@ const injectBannerManagerProps = createInjector(({}:IBannerManagerInputProps):IB
 
     const upload = (file: File) => {
         loader.start();
-        services().banner.create(file)
+        services().banner.create(file, overwrite)
             .then(refresh)
             .finally(loader.stop);
     }
     
-    return {banners, isLoading: loader.isLoading, upload};
+    return {banners, isLoading: loader.isLoading, upload, overwrite, setOverwrite, refresh};
 });
 
 const connect = inject<IBannerManagerInputProps, BannerManagerProps>(mergeProps(

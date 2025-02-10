@@ -3,5 +3,8 @@
 .bannerManager {
     .bannerList {
         margin-top: globals.$padding;
+        > * {
+            margin-top: globals.$padding;
+        }
     }
 }

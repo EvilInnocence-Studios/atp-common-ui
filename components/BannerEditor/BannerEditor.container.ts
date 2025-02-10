@@ -4,8 +4,9 @@ import {IBannerEditorInputProps, BannerEditorProps, IBannerEditorProps} from "./
 import { useUpdater } from "@core/lib/useUpdater";
 import { IBanner } from "@common-shared/banner/types";
 import { services } from "@core/lib/api";
+import { flash } from "@core/lib/flash";
 
-const injectBannerEditorProps = createInjector(({bannerId}:IBannerEditorInputProps):IBannerEditorProps => {
+const injectBannerEditorProps = createInjector(({bannerId, onDelete}:IBannerEditorInputProps):IBannerEditorProps => {
     const updater = useUpdater<IBanner>(
         "banner",
         bannerId,
@@ -14,8 +15,15 @@ const injectBannerEditorProps = createInjector(({bannerId}:IBannerEditorInputPro
         services().banner.update,
         "manual"
     );
+
+    const remove = () => {
+        services().banner.remove(bannerId).then(() => {
+            flash.success("Banner removed");
+            onDelete();
+        });
+    }
     
-    return {banner:updater.history.entity, ...updater};
+    return {banner:updater.history.entity, ...updater, remove};
 });
 
 const connect = inject<IBannerEditorInputProps, BannerEditorProps>(mergeProps(

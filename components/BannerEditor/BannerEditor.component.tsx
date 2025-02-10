@@ -6,13 +6,14 @@ import { BannerImage } from "../BannerImage";
 import { Label } from "@core/components/Label";
 import dayjs from "dayjs";
 import { onDateChange } from "@core/lib/onInputChange";
+import { DeleteBtn } from "@core/components/DeleteBtn";
 
-export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString, UpdateButtons}:BannerEditorProps) =>
+export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString, UpdateButtons, remove}:BannerEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.bannerEditor}>
             <div className={styles.updateButtons}><UpdateButtons /></div>
             <BannerImage bannerId={bannerId} />
-            <Tabs>
+            <Tabs tabBarExtraContent={<DeleteBtn entityType="banner" onClick={remove} />}>
                 <Tabs.TabPane key="1" tab="Details">
                     <Label label="Name"><Editable value={banner.name} onChange={updateString("name")}/></Label>
                     <Label label="Title"><Editable value={banner.title} onChange={updateString("title")}/></Label>
