@@ -1,14 +1,14 @@
-import { DatePicker, Radio, Spin, Tabs } from "antd";
-import {BannerEditorProps} from "./BannerEditor.d";
-import styles from './BannerEditor.module.scss';
-import { Editable } from "@core/components/Editable";
-import { BannerImage } from "../BannerImage";
-import { Label } from "@core/components/Label";
-import dayjs from "dayjs";
-import { onDateChange } from "@core/lib/onInputChange";
 import { DeleteBtn } from "@core/components/DeleteBtn";
+import { Editable } from "@core/components/Editable";
+import { Label } from "@core/components/Label";
+import { onDateChange } from "@core/lib/onInputChange";
+import { DatePicker, InputNumber, Radio, Spin, Tabs } from "antd";
+import dayjs from "dayjs";
+import { BannerImage } from "../BannerImage";
+import { BannerEditorProps } from "./BannerEditor.d";
+import styles from './BannerEditor.module.scss';
 
-export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString, UpdateButtons, remove}:BannerEditorProps) =>
+export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString, updateNumber, UpdateButtons, remove}:BannerEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.bannerEditor}>
             <div className={styles.updateButtons}><UpdateButtons /></div>
@@ -20,6 +20,7 @@ export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString
                     <Label label="Tag"><Editable value={banner.tag} onChange={updateString("tag")}/></Label>
                     <Label label="Description"><Editable value={banner.description} onChange={updateString("description")}/></Label>
                     <Label label="Image Link"><Editable value={banner.link} onChange={updateString("link")}/></Label>
+                    <Label label="Order"><InputNumber value={banner.order} onChange={updateNumber("order")} /></Label>
                 </Tabs.TabPane>
                 <Tabs.TabPane key="2" tab="Button 1">
                     <Label label="Text"><Editable value={banner.buttonText || ""} onChange={updateString("buttonText")}/></Label>

@@ -1,6 +1,6 @@
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Checkbox, Col, Input, Row, Spin, Upload } from "antd";
+import { Checkbox, Col, Row, Spin, Upload } from "antd";
 import { BannerEditor } from "../BannerEditor";
 import { BannerManagerProps } from "./BannerManager.d";
 import styles from './BannerManager.module.scss';
