@@ -1,6 +1,6 @@
 import { faAdd, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Alert, Button, Card, Col, Input, Row, Spin } from "antd";
+import { Alert, Button, Card, Checkbox, Col, Collapse, Input, Row, Spin } from "antd";
 import { TagGroupManagerProps } from "./TagGroupManager.d";
 import styles from "./TagGroupManager.module.scss";
 import { onInputChange } from "@core/lib/onInputChange";
@@ -32,19 +32,22 @@ export const TagGroupManagerComponent = ({groups, isLoading, name, setName, crea
             </Col>
             <Col xs={12}>
                 <CanView yes>
-                    {groups.map(g =>
-                        <Card size="small"
-                            key={g.id}
-                            className={styles.tagGroupCard}
-                            title={<>
-                                <CanEdit yes><Editable value={g.name} onChange={update(g.id)} /></CanEdit>
-                                <CanEdit no>{g.name}</CanEdit>
-                            </>}
-                            extra={<CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(g.id)} /></CanDelete>}
-                        >
-                            <TagManager group={g} />
-                        </Card>
-                    )}
+                    <Collapse accordion>
+                        {groups.map(g =>
+                            <Collapse.Panel
+                                key={g.id}
+                                className={styles.tagGroupCard}
+                                header={<>
+                                    <CanEdit yes><Editable value={g.name} onChange={update(g.id, "name")} /></CanEdit>
+                                    <CanEdit no>{g.name}</CanEdit>
+                                </>}
+                                extra={<CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(g.id)} /></CanDelete>}
+                            >
+                                <Checkbox checked={g.filterable} onChange={e => update(g.id, "filterable")(e.target.checked)}>Filterable?</Checkbox>
+                                <TagManager group={g} />
+                            </Collapse.Panel>
+                        )}
+                    </Collapse>
                 </CanView>
                 <CanView no>
                     <Alert type="warning" message="You don't have permission to view tags." />

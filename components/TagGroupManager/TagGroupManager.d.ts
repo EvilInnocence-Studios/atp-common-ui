@@ -6,7 +6,7 @@ export declare interface ITagGroupManagerProps {
     name: string;
     setName: Setter<string>;
     create: () => void;
-    update: (id:string) => (name:string) => void;
+    update: (id:string, field:string) => (value:any) => void;
     remove: (id:string) => () => void;
 }
 
