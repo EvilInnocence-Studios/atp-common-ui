@@ -8,7 +8,7 @@ import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading, toggles}:TagFacetsProps) =>
     <div className={styles.tagGroupList}>
         <Spin spinning={isLoading}>
-            {groups.map(({group, tags}) => <Fragment key={group.id}>
+            {groups.filter(g => g.group.filterable).map(({group, tags}) => <Fragment key={group.id}>
                 <h3>
                     {group.name}
                     {tags.length > 6 && <>
