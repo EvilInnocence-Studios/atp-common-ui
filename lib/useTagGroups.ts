@@ -19,7 +19,7 @@ export const useTagGroups = () => {
             ]).then(([groups, tags]) => {
                 setGroups(groups.map(group => ({
                     group,
-                    tags: tags.filter(tag => tag.groupId === group.id),
+                    tags: tags.filter(tag => tag.groupId === group.id && tag.filterable),
                 })));
             });
         });
