@@ -2,6 +2,7 @@
 
 .tag {
     display: inline-block;
+    position: relative;
     padding: globals.$padding-xs 0 globals.$padding-xs globals.$padding-sm;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
@@ -14,6 +15,6 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     input {
-        width: 128px;
+        width: calc(100% - 64px);
     }
 }

@@ -8,6 +8,7 @@ import { Editable } from "@core/components/Editable";
 import { TagManager } from "../TagManager";
 import { DeleteBtn } from "@core/components/DeleteBtn";
 import { hasPermission } from "@uac/components/HasPermission";
+import { stopProp } from "@core/lib/util";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -38,12 +39,16 @@ export const TagGroupManagerComponent = ({groups, isLoading, name, setName, crea
                                 key={g.id}
                                 className={styles.tagGroupCard}
                                 header={<>
+                                    <Checkbox
+                                        checked={g.filterable}
+                                        onChange={e => update(g.id, "filterable")(e.target.checked)}
+                                        {...stopProp}
+                                    />
                                     <CanEdit yes><Editable value={g.name} onChange={update(g.id, "name")} /></CanEdit>
                                     <CanEdit no>{g.name}</CanEdit>
                                 </>}
                                 extra={<CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(g.id)} /></CanDelete>}
                             >
-                                <Checkbox checked={g.filterable} onChange={e => update(g.id, "filterable")(e.target.checked)}>Filterable?</Checkbox>
                                 <TagManager group={g} />
                             </Collapse.Panel>
                         )}

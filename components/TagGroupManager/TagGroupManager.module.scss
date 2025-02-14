@@ -1,5 +1,15 @@
 @use "@styles/globals.module.scss";
 
 .tagGroupCard {
-    margin-bottom: globals.$padding;
+    :global(.ant-collapse-header) {
+        padding-bottom: 0 !important;
+    }
+    :global(.ant-collapse-header-text) {
+        label {
+            overflow: hidden;
+        }
+        input {
+            width: 256px !important;
+        }
+    }
 }

@@ -15,11 +15,11 @@ const injectTagManagerProps = createInjector(({group}:ITagManagerInputProps):ITa
 
     const tag = services().tagGroup.tag;
 
-    const update = (id:string) => (name:string) => {
+    const update = (id:string, field:keyof ITag) => (value:any) => {
         const oldTags = tags;
-        setTags(tags.map(t => t.id === id ? {...t, name} : t));
+        setTags(tags.map(t => t.id === id ? {...t, [field]: value} : t));
         loader.start();
-        tag.update(group.id, id, {name})
+        tag.update(group.id, id, {[field]: value})
             .then(flash.success("Tag updated"))
             .catch(all(() => setTags(oldTags), flash.error("Failed to update tag")))
             .finally(loader.stop);

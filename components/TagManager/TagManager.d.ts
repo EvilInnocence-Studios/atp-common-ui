@@ -6,7 +6,7 @@ export declare interface ITagManagerProps {
     name: string;
     setName: Setter<string>;
     create: () => void;
-    update: (id:string) => (name:string) => void;
+    update: (id:string, field:keyof ITag) => (value:any) => void;
     remove: (id:string) => () => void;
 }
 
