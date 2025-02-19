@@ -1,44 +1,42 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {TagGroupManagerComponent} from "./TagGroupManager.component";
-import {ITagGroupManagerInputProps, TagGroupManagerProps, ITagGroupManagerProps} from "./TagGroupManager.d";
-import { useEffect, useState } from "react";
 import { ITagGroup } from "@common-shared/tag/types";
-import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
-import { all } from "ts-functional";
+import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo, clear } from "@core/lib/util";
+import { useEffect, useState } from "react";
+import { all } from "ts-functional";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { TagGroupManagerComponent } from "./TagGroupManager.component";
+import { ITagGroupManagerInputProps, ITagGroupManagerProps, TagGroupManagerProps } from "./TagGroupManager.d";
 
 const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps):ITagGroupManagerProps => {
     const [groups, setGroups] = useState<ITagGroup[]>([]);
-    const loader =  useLoader();
+    const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
+    const loader =  useLoaderAsync();
 
     const group = services().tagGroup;
 
     const update = (id:string, field:string) => (value:any) => {
         const oldGroups = groups;
         setGroups(groups.map(g => g.id === id ? {...g, [field]: value} : g));
-        loader.start();
-        group.update(id, {[field]: value})
+        loader(() => group.update(id, {[field]: value})
             .then(flash.success("Tag group updated"))
             .catch(all(() => setGroups(oldGroups), flash.error("Failed to update tag group")))
-            .finally(loader.stop);
+        );
     }
 
     const remove = (id:string) => () => {
         const oldGroups = groups;
         setGroups(groups.filter(g => g.id !== id));
-        loader.start();
-        group.remove(id)
+        loader(() => group.remove(id)
             .then(flash.success("Tag group removed"))
             .catch(all(() => setGroups(oldGroups), flash.error("Failed to remove tag group")))
-            .finally(loader.stop);
+        );
     }
 
     const [name, setName] = useState('');
     const create = () => {
-        loader.start();
-        group.create({name, filterable: true,})
+        loader(() => group.create({name, filterable: true, order: 0})
             .then(appendTo(groups))
             .then(all(
                 refresh,
@@ -46,19 +44,28 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
                 clear(setName),
             ))
             .catch(flash.error("Failed to create tag group"))
-            .finally(loader.stop);
+        );
     }
 
     const refresh = () => {
-        loader.start();
-        group.search()
+        loader(() => group.search()
             .then(setGroups)
             .catch(flash.error("Failed to load tag groups"))
-            .finally(loader.stop);
+        );
     };
     useEffect(refresh, []);
 
-    return {groups, isLoading: loader.isLoading, name, setName, create, update, remove};
+    const sortGroups = (e:{active:{id:any}, over:{id:any} | null}) => {
+        const {active, over} = e;
+        const [groupId, _oldIndex] = active.id.split(':');
+        const newIndex = over ? over.id.split(':')[1] : groups.length - 1;
+        loader(() => services().tagGroup.sort(groupId, newIndex)
+            .then(refresh)
+            .catch(flash.error("Failed to sort tags"))
+        );
+    }
+
+    return {groups, isLoading: loader.isLoading, name, setName, create, update, remove, selectedGroup, setSelectedGroup, sortGroups};
 });
 
 const connect = inject<ITagGroupManagerInputProps, TagGroupManagerProps>(mergeProps(

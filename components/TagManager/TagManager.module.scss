@@ -15,10 +15,13 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
     .tagHandle {
-        display: inline-block;
-        width: 16px;
+        position: absolute;
+        padding: 12px 16px;
+        top: 0;
+        left: 0;
     }
+    > label {margin-left: 24px;}
     input {
-        width: calc(100% - 80px);
+        width: calc(100% - 96px);
     }
 }
