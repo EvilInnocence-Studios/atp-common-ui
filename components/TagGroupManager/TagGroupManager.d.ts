@@ -5,9 +5,12 @@ export declare interface ITagGroupManagerProps {
     isLoading: boolean;
     name: string;
     setName: Setter<string>;
+    selectedGroup: string | null;
+    setSelectedGroup: Setter<string>;
     create: () => void;
     update: (id:string, field:string) => (value:any) => void;
     remove: (id:string) => () => void;
+    sortGroups: (e:{active:{id:any}, over:{id:any} | null}) => void;
 }
 
 // What gets passed into the component from the parent as attributes

@@ -50,7 +50,7 @@ export const TagManagerComponent = ({tags, isLoading, name, setName, create, upd
                 </SortableContext>
             </DndContext>
             <CanCreate yes>
-                <Space.Compact>
+                <Space.Compact style={{width: "100%"}}>
                     <Input
                         value={name}
                         onChange={onInputChange(setName)}
