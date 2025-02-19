@@ -4,6 +4,8 @@ import { TagFacetsProps } from "./TagFacets.d";
 import styles from './TagFacets.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { prop, sort } from "ts-functional";
+import { ITag } from "@common-shared/tag/types";
 
 export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading, toggles}:TagFacetsProps) =>
     <div className={styles.tagGroupList}>
@@ -21,7 +23,7 @@ export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag
                 </>}
                 </h3>
                 <div className={styles.tagList} key={group.id}>
-                    {tags.slice(0, toggles.isset(group.name) ? 9999 : 6).map(tag =>
+                    {tags.slice(0, toggles.isset(group.name) ? 9999 : 6).sort(sort.by(prop<ITag, "order">("order")).asc).map(tag =>
                         <Tag
                             key={tag.id}
                             color={selectedTagIds.includes(`${tag.id}`) ? 'blue' : undefined}
