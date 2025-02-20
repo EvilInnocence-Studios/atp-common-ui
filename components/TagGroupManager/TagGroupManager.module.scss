@@ -1,8 +1,6 @@
 @use "@styles/globals.module.scss";
 
 .tagGroupList {
-    list-style-type: none;
-    padding: 0;
     margin: 0 0 globals.$padding 0;
     .tagGroup {
         width: 100%;
