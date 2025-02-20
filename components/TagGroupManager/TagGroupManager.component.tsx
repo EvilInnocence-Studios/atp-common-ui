@@ -45,7 +45,6 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
             {...stopProp}
         />
         <CanEdit yes><Editable value={group.name} onChange={update(group.id, "name")} /></CanEdit>
-        ({group.order})
         <CanEdit no>{group.name}</CanEdit>
         <Button type="link" onClick={() => setSelectedGroup(group.id)}>tags <FontAwesomeIcon icon={faArrowRight} /></Button>
         <CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(group.id)} /></CanDelete>
