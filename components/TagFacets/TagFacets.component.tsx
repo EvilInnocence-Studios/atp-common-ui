@@ -1,11 +1,11 @@
+import { ITag } from "@common-shared/tag/types";
+import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Spin, Tag } from "antd";
 import { Fragment } from "react/jsx-runtime";
+import { prop, sort } from "ts-functional";
 import { TagFacetsProps } from "./TagFacets.d";
 import styles from './TagFacets.module.scss';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { prop, sort } from "ts-functional";
-import { ITag, ITagGroup } from "@common-shared/tag/types";
 
 export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading, toggles}:TagFacetsProps) =>
     <div className={styles.tagGroupList}>
