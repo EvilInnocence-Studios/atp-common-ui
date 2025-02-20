@@ -30,7 +30,7 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
         transition
       } : undefined;
-    return <li
+    return <div
         className={clsx([styles.tagGroup, selectedGroup === group.id && styles.selected])}
         style={style}
         ref={setNodeRef}
@@ -48,7 +48,7 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
         <CanEdit no>{group.name}</CanEdit>
         <Button type="link" onClick={() => setSelectedGroup(group.id)}>tags <FontAwesomeIcon icon={faArrowRight} /></Button>
         <CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(group.id)} /></CanDelete>
-    </li>;
+    </div>;
 }
 
 export const TagGroupManagerComponent = ({groups, isLoading, name, setName, create, sortGroups, ...handlers}:TagGroupManagerProps) =>
@@ -58,14 +58,14 @@ export const TagGroupManagerComponent = ({groups, isLoading, name, setName, crea
         <Row gutter={8}>
             <Col xs={6}>
                 <DndContext onDragEnd={sortGroups}>
-                    <SortableContext items={groups.map(groupId)} strategy={verticalListSortingStrategy}>
-                        <ul className={styles.tagGroupList}>
+                    <div className={styles.tagGroupList}>
+                        <SortableContext items={groups.map(groupId)} strategy={verticalListSortingStrategy}>
                             {groups
                                 .sort(sort.by(prop<ITagGroup, "order">("order")).asc)
                                 .map((group, i) => <Group key={group.id} className={styles.tagGroup} group={group} {...handlers} index={i}/>)
                             }
-                        </ul>
-                    </SortableContext>
+                        </SortableContext>
+                    </div>
                 </DndContext>
                 <CanCreate yes>
                     <Card size="small"
