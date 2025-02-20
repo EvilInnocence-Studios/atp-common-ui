@@ -5,12 +5,12 @@ import styles from './TagFacets.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { prop, sort } from "ts-functional";
-import { ITag } from "@common-shared/tag/types";
+import { ITag, ITagGroup } from "@common-shared/tag/types";
 
 export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading, toggles}:TagFacetsProps) =>
     <div className={styles.tagGroupList}>
         <Spin spinning={isLoading}>
-            {groups.filter(g => g.group.filterable).map(({group, tags}) => <Fragment key={group.id}>
+            {groups.filter(g => g.group.filterable).sort((a, b) => a.group.order - b.group.order).map(({group, tags}) => <Fragment key={group.id}>
                 <h3>
                     {group.name}
                     {tags.length > 6 && <>
