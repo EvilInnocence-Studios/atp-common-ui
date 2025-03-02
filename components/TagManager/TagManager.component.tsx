@@ -1,16 +1,17 @@
+import { ITag } from "@common-shared/tag/types";
 import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
 import { onCheckboxChange, onInputChange } from "@core/lib/onInputChange";
 import { stopProp } from "@core/lib/util";
 import { DndContext } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { faAdd, faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faCopy, faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
 import { Alert, Button, Checkbox, Input, Space, Spin } from "antd";
+import { Link } from "react-router";
 import { TagManagerProps } from "./TagManager.d";
 import styles from './TagManager.module.scss';
-import { ITag } from "@common-shared/tag/types";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -34,6 +35,8 @@ const TagItem = ({tag, update, remove, index}:any) => {
                 <FontAwesomeIcon icon={faGripLinesVertical} />
             </span>
             <Checkbox checked={tag.filterable} {...stopProp} onChange={onCheckboxChange(update(tag.id, "filterable"))}/>
+            &nbsp;
+            <Link to={`/queue/${tag.name}`}><FontAwesomeIcon icon={faCopy} title="Create Queue" /></Link>
             <Editable value={tag.name} onChange={update(tag.id, "name")} />
         </CanEdit>
         <CanEdit no>{tag.name}</CanEdit>
