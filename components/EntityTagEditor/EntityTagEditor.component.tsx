@@ -1,14 +1,18 @@
-import { Spin, Tag } from "antd";
+import { Spin, Switch, Tag } from "antd";
 import {EntityTagEditorProps} from "./EntityTagEditor.d";
 import styles from './EntityTagEditor.module.scss';
 
-export const EntityTagEditorComponent = ({allTags, entityTags, onAddTag, onRemoveTag, isLoading}:EntityTagEditorProps) =>
+export const EntityTagEditorComponent = ({allTags, entityTags, onAddTag, onRemoveTag, isLoading, showHiddenTags, setShowHiddenTags}:EntityTagEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.entityTagManager}>
+            <div className={styles.controls}>
+                Hidden tags&nbsp;
+                <Switch title="Hidden tags" checkedChildren="Shown" unCheckedChildren="Hidden" defaultChecked={showHiddenTags} onChange={setShowHiddenTags} />
+            </div>
             <div className={styles.tags}>
-                {allTags.map(({group, tags}) => <div className={styles.tagGroup}>
+                {allTags.filter(({group}) => showHiddenTags || group.filterable).map(({group, tags}) => <div className={styles.tagGroup}>
                     <h5>{group.name}</h5>
-                    {tags.map(tag =>
+                    {tags.filter(tag => showHiddenTags || tag.filterable).map(tag =>
                         <Tag
                             className={styles.tag}
                             key={tag.id}

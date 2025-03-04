@@ -1,6 +1,9 @@
 @use "@styles/globals.module.scss";
 
 .entityTagManager {
+    .controls {
+        text-align: right;
+    }
     .tagGroup {
         .tag {
             display: inline-block;

@@ -9,6 +9,8 @@ export declare interface IEntityTagEditorProps {
     onAddTag: (tagId:string) => void;
     onRemoveTag: (tagId:string) => void;
     isLoading: boolean;
+    showHiddenTags: boolean;
+    setShowHiddenTags: (show:boolean) => void;
 }
 
 // What gets passed into the component from the parent as attributes
