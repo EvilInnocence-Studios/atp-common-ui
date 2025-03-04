@@ -41,7 +41,7 @@ const TagItem = ({tag, update, remove, index, moveToTop}:any) => {
             <span className={styles.icon}>
                 <Checkbox title="Visible" checked={tag.filterable} {...stopProp} onChange={onCheckboxChange(update(tag.id, "filterable"))}/>
             </span>
-            <Link className={styles.icon} to={`/queue/${tag.name}`}><FontAwesomeIcon icon={faListCheck} title="Create Queue" /></Link>
+            <Link className={styles.icon} to={`/queue/${tag.groupId}/${tag.id}`}><FontAwesomeIcon icon={faListCheck} title="Create Queue" /></Link>
             <FontAwesomeIcon className={styles.icon} icon={faCopy} title="Copy id" onClick={(() => {
                 navigator.clipboard.writeText(tag.id);
                 flash.success(`Tag id ${tag.id} copied to clipboard`)();
