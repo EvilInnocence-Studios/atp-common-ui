@@ -4,7 +4,6 @@ import { IGroupToggle, IToggle } from "@core/lib/useToggle";
 export declare interface ITagFacetsProps {
     groups: Array<{group: ITagGroup, tags: ITag[]}>;
     isLoading: boolean;
-    toggles: IGroupToggle;
 }
 
 // What gets passed into the component from the parent as attributes
