@@ -5,13 +5,14 @@ import { onCheckboxChange, onInputChange } from "@core/lib/onInputChange";
 import { stopProp } from "@core/lib/util";
 import { DndContext } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { faAdd, faCopy, faGripLinesVertical } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faCopy, faForwardStep, faGripVertical, faListCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
 import { Alert, Button, Checkbox, Input, Space, Spin } from "antd";
 import { Link } from "react-router";
 import { TagManagerProps } from "./TagManager.d";
 import styles from './TagManager.module.scss';
+import { flash } from "@core/lib/flash";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -20,7 +21,7 @@ const CanDelete = hasPermission("tag.delete");
 
 const tagId = (tag:ITag,  index:number) => `${tag.id}:${index}`;
 
-const TagItem = ({tag, update, remove, index}:any) => {
+const TagItem = ({tag, update, remove, index, moveToTop}:any) => {
     const {attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition} = useSortable({
         id: tagId(tag, index),
       });
@@ -31,12 +32,20 @@ const TagItem = ({tag, update, remove, index}:any) => {
 
     return <div className={styles.tag} key={tag.id} style={style} ref={setNodeRef} {...attributes}>
         <CanEdit yes>
-            <span className={styles.tagHandle} ref={setActivatorNodeRef} {...listeners}>
-                <FontAwesomeIcon icon={faGripLinesVertical} />
+            <span className={styles.icon} ref={setActivatorNodeRef} {...listeners}>
+                <FontAwesomeIcon icon={faGripVertical} />
             </span>
-            <Checkbox checked={tag.filterable} {...stopProp} onChange={onCheckboxChange(update(tag.id, "filterable"))}/>
-            &nbsp;
-            <Link to={`/queue/${tag.name}`}><FontAwesomeIcon icon={faCopy} title="Create Queue" /></Link>
+            <span className={styles.icon}>
+                <FontAwesomeIcon title="Move to top" icon={faForwardStep} rotation={270} onClick={moveToTop(tag.id)} />
+            </span>
+            <span className={styles.icon}>
+                <Checkbox title="Visible" checked={tag.filterable} {...stopProp} onChange={onCheckboxChange(update(tag.id, "filterable"))}/>
+            </span>
+            <Link className={styles.icon} to={`/queue/${tag.name}`}><FontAwesomeIcon icon={faListCheck} title="Create Queue" /></Link>
+            <FontAwesomeIcon className={styles.icon} icon={faCopy} title="Copy id" onClick={(() => {
+                navigator.clipboard.writeText(tag.id);
+                flash.success(`Tag id ${tag.id} copied to clipboard`)();
+            })} />
             <Editable value={tag.name} onChange={update(tag.id, "name")} />
         </CanEdit>
         <CanEdit no>{tag.name}</CanEdit>
@@ -44,12 +53,12 @@ const TagItem = ({tag, update, remove, index}:any) => {
     </div>;
 }
 
-export const TagManagerComponent = ({tags, isLoading, name, setName, create, update, remove, sort}:TagManagerProps) =>
+export const TagManagerComponent = ({tags, isLoading, name, setName, create, update, remove, sort, moveToTop}:TagManagerProps) =>
     <Spin spinning={isLoading}>
         <CanView yes>
             <DndContext onDragEnd={sort}>
                 <SortableContext items={tags.map(tagId)} strategy={verticalListSortingStrategy}>
-                    {tags.map((tag, i) => <TagItem key={tag.id} tag={tag} index={i} update={update} remove={remove} />)}
+                    {tags.map((tag, i) => <TagItem key={tag.id} tag={tag} index={i} update={update} remove={remove} moveToTop={moveToTop} />)}
                 </SortableContext>
             </DndContext>
             <CanCreate yes>

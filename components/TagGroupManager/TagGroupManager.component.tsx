@@ -5,7 +5,7 @@ import { onCheckboxChange, onInputChange } from "@core/lib/onInputChange";
 import { stopProp } from "@core/lib/util";
 import { DndContext } from "@dnd-kit/core";
 import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { faAdd, faArrowRight, faGripLinesVertical, faTag } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faArrowRight, faGripVertical, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
 import { Alert, Button, Card, Checkbox, Col, Input, Row, Spin } from "antd";
@@ -37,7 +37,7 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
         {...attributes}
     >
         <span className={styles.tagHandle} ref={setActivatorNodeRef} {...listeners}>
-            <FontAwesomeIcon icon={faGripLinesVertical} />
+            <FontAwesomeIcon icon={faGripVertical} />
         </span>
         <Checkbox
             checked={group.filterable}

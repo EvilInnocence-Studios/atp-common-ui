@@ -9,6 +9,7 @@ export declare interface ITagManagerProps {
     update: (id:string, field:keyof ITag) => (value:any) => void;
     remove: (id:string) => () => void;
     sort: (e:{active:{id:any}, over:{id:any} | null}) => void;
+    moveToTop: (id:string) => () => void;
 }
 
 // What gets passed into the component from the parent as attributes

@@ -1,7 +1,8 @@
 @use "@styles/globals.module.scss";
 
 .tag {
-    display: block;
+    display: flex;
+    flex-wrap: none;
     position: relative;
     padding: globals.$padding-xs 0 globals.$padding-xs globals.$padding-sm;
     margin-right: 0.5rem;
@@ -14,14 +15,13 @@
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-    .tagHandle {
-        position: absolute;
-        padding: 12px 16px;
-        top: 0;
-        left: 0;
+    .icon {
+        padding-top: 4px;
+        margin-right: 8px;
     }
-    > label {margin-left: 24px;}
-    input {
-        width: calc(100% - 105px);
+
+    > :nth-child(2) {
+        padding-right: 8px;
+        border-right: solid 1px globals.$brand-border;
     }
 }

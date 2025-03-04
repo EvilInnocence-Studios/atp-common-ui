@@ -56,6 +56,13 @@ const injectTagManagerProps = createInjector(({group}:ITagManagerInputProps):ITa
         );
     }
 
+    const moveToTop = (id:string) => () => {
+        loader(() => services().tagGroup.tag.sort(group.id, id, 0)
+            .then(refresh)
+            .catch(flash.error("Failed to move tag to top"))
+        );
+    }
+
     const refresh = () => {
         loader(() => tag.search(group.id)
             .then(pipe(sort(sort.by<ITag>(prop("order")).asc), setTags))
@@ -64,7 +71,7 @@ const injectTagManagerProps = createInjector(({group}:ITagManagerInputProps):ITa
     };
     useEffect(refresh, [group.id]);
 
-    return {tags, isLoading: loader.isLoading, name, setName, create, update, remove, sort: sortTags};
+    return {tags, isLoading: loader.isLoading, name, setName, create, update, remove, sort: sortTags, moveToTop};
 });
 
 const connect = inject<ITagManagerInputProps, TagManagerProps>(mergeProps(
