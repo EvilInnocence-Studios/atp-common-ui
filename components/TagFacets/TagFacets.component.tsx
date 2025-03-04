@@ -1,38 +1,33 @@
 import { ITag } from "@common-shared/tag/types";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Spin, Tag } from "antd";
-import { Fragment } from "react/jsx-runtime";
-import { prop, sort } from "ts-functional";
+import { Checkbox, Collapse, Spin, Tag } from "antd";
+import { intersection, prop, sort } from "ts-functional";
 import { TagFacetsProps } from "./TagFacets.d";
 import styles from './TagFacets.module.scss';
 
-export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading, toggles}:TagFacetsProps) =>
+export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading}:TagFacetsProps) =>
     <div className={styles.tagGroupList}>
         <Spin spinning={isLoading}>
-            {groups.filter(g => g.group.filterable).sort((a, b) => a.group.order - b.group.order).map(({group, tags}) => <Fragment key={group.id}>
-                <h3>
-                    {group.name}
-                    {tags.length > 6 && <>
-                    {!toggles.isset(group.name) && <Button type="link" onClick={() => toggles.on(group.name)}>
-                        <FontAwesomeIcon icon={faArrowDown} /> Show more
-                    </Button>}
-                    {toggles.isset(group.name) && <Button type="link" onClick={() => toggles.off(group.name)}>
-                        <FontAwesomeIcon icon={faArrowUp} /> Show less
-                    </Button>}
-                </>}
-                </h3>
-                <div className={styles.tagList} key={group.id}>
-                    {tags.slice(0, toggles.isset(group.name) ? 9999 : 6).sort(sort.by(prop<ITag, "order">("order")).asc).map(tag =>
-                        <Tag
-                            key={tag.id}
-                            color={selectedTagIds.includes(`${tag.id}`) ? 'blue' : undefined}
-                            onClick={() => selectedTagIds.includes(`${tag.id}`) ? removeTag(`${tag.id}`) : selectTag(`${tag.id}`)}
-                        >
-                            {tag.name}
-                        </Tag>
-                    )}
-                </div>
-            </Fragment>)}
+            <Collapse>
+                {groups.filter(g => g.group.filterable).sort((a, b) => a.group.order - b.group.order).map(({group, tags}) =>
+                    <Collapse.Panel
+                        header={<>
+                            {group.name}
+                            {intersection(tags.map(prop("id")), selectedTagIds).length > 0 && <> &nbsp;<Tag>{intersection(tags.map(prop("id")), selectedTagIds).length} selected</Tag></>}
+                        </>}
+                        key={group.id}
+                    >
+                        <div className={styles.tagList} key={group.id}>
+                            {tags.sort(sort.by(prop<ITag, "order">("order")).asc).map(tag =>
+                                <Checkbox
+                                    key={tag.id}
+                                    className={styles.tagCheckbox}
+                                    checked={selectedTagIds.includes(`${tag.id}`)}
+                                    onChange={() => selectedTagIds.includes(`${tag.id}`) ? removeTag(`${tag.id}`) : selectTag(`${tag.id}`)}
+                                >{tag.name}</Checkbox>
+                            )}
+                        </div>
+                    </Collapse.Panel>
+                )}
+            </Collapse>
         </Spin>
     </div>;

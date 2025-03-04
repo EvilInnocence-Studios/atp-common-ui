@@ -2,14 +2,27 @@
 
 .tagGroupList {
     margin: globals.$padding-sm;
+    :global(.ant-collapse-content) {
+        max-height: 256px;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            width: 12px;
+        }
+        &::-webkit-scrollbar-track {
+            background: globals.$brand-bg;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: globals.$brand-primary;
+            border-radius: 4px;
+            border: 2px solid globals.$brand-bg;
+        }
+    }
     .tagList {
         display: flex;
         flex-wrap: wrap;
         gap: globals.$padding-xs;
         > * {
-            display: inline-block;
-            min-width: 128px;
-            text-align: center;
+            width: 100%;
         }
     }
     button {
