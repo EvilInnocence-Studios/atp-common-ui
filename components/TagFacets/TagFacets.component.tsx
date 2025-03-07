@@ -8,7 +8,7 @@ export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag
     <div className={styles.tagGroupList}>
         <Spin spinning={isLoading}>
             <Collapse>
-                {groups.filter(g => g.group.filterable).sort((a, b) => a.group.order - b.group.order).map(({group, tags}) =>
+                {groups.filter(g => g.group.visible).sort((a, b) => a.group.order - b.group.order).map(({group, tags}) =>
                     <Collapse.Panel
                         header={<>
                             {group.name}
