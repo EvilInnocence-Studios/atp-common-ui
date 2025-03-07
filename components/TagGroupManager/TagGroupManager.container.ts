@@ -36,7 +36,7 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
 
     const [name, setName] = useState('');
     const create = () => {
-        loader(() => group.create({name, filterable: true, order: 0})
+        loader(() => group.create({name, filterable: true, visible: true, order: 0})
             .then(appendTo(groups))
             .then(all(
                 refresh,
