@@ -5,7 +5,7 @@ import { getResults } from "@core/lib/util";
 export const tagGroupServices = ({get, post, /*put,*/ patch, remove}: IMethods) => ({
     tagGroup: {
         create: (tagGroup: NewTagGroup) => post('group', tagGroup).then(getResults<ITagGroup>),
-        search: (query:{}):Promise<ITagGroup[]> => get('group', query).then(getResults<ITagGroup[]>),
+        search: (query?:{}):Promise<ITagGroup[]> => get('group', query).then(getResults<ITagGroup[]>),
         update: (id:string, data: Partial<ITagGroup>) => patch(`group/${id}`, data),
         remove: (id:string) => remove(`group/${id}`),
         sort: (groupId:string, newIndex:number) => post(`group/sort`, {groupId, newIndex}),
