@@ -1,5 +1,9 @@
 @use "@styles/globals.module.scss";
 
+.cacheBtns {
+    float: right;
+}
+
 .tagGroupList {
     margin: 0 0 globals.$padding 0;
     .tagGroup {
