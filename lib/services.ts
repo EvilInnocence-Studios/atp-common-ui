@@ -7,4 +7,7 @@ export const commonServices = (methods:IMethods) => ({
     ...tagGroupServices(methods),
     ...synonymServices(methods),
     ...bannerServices(methods),
+    cache: {
+        clear: (cacheType:string) => methods.post(`cache/${cacheType}`),
+    }
 });

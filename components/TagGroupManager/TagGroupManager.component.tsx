@@ -8,12 +8,13 @@ import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-
 import { faAdd, faArrowRight, faGripVertical, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
-import { Alert, Button, Card, Checkbox, Col, Input, Row, Spin } from "antd";
+import { Alert, Button, Card, Checkbox, Col, Input, Row, Space, Spin } from "antd";
 import clsx from "clsx";
 import { prop, sort } from "ts-functional";
 import { TagManager } from "../TagManager";
 import { TagGroupManagerProps } from "./TagGroupManager.d";
 import styles from "./TagGroupManager.module.scss";
+import { ClearCacheButton } from "../ClearCacheButton";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -53,6 +54,10 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
 
 export const TagGroupManagerComponent = ({groups, isLoading, name, setName, create, sortGroups, ...handlers}:TagGroupManagerProps) =>
     <Spin spinning={isLoading}>
+        <Space.Compact className={styles.cacheBtns}>
+            <ClearCacheButton entity="tag group" cacheType="group" />
+            <ClearCacheButton entity="tag" cacheType="tag" />
+        </Space.Compact>
         <h1><FontAwesomeIcon icon={faTag} /> Tags</h1>
 
         <Row gutter={8}>
