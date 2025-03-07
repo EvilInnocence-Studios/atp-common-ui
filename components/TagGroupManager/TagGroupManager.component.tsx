@@ -41,8 +41,15 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
             <FontAwesomeIcon icon={faGripVertical} />
         </span>
         <Checkbox
+            title="Filterable"
             checked={group.filterable}
             onChange={onCheckboxChange(update(group.id, "filterable"))}
+            {...stopProp}
+        />
+        <Checkbox
+            title="Visible"
+            checked={group.visible}
+            onChange={onCheckboxChange(update(group.id, "visible"))}
             {...stopProp}
         />
         <CanEdit yes><Editable value={group.name} onChange={update(group.id, "name")} /></CanEdit>

@@ -13,19 +13,17 @@
         padding: globals.$padding-sm globals.$padding;
         margin-top: -1px;
         position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        > :first-child {
+            margin: 8px 8px 0 -8px;
+        }
+        > :nth-child(2) {
+            margin-right: 4px;
+        }
         &.selected {
             background-color: globals.$brand-bg-light;
         }
-        > span {
-            width: 24px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            padding: 16px 16px;
-        }
-        > label {width: 24px; margin-left: 24px;}
-        > input {width: calc(100% - 150px);}
-        > button:last-child {position: absolute; top: 8px; right: -8px;}
     }
 }
 
