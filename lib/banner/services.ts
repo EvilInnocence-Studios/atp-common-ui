@@ -14,6 +14,13 @@ export const bannerServices = ({get, post, /*put,*/ patch, remove}: IMethods) =>
         search: (query:{}):Promise<IBanner[]> => get('banner', query).then(getResults<IBanner[]>),
         get: (id:string):Promise<IBanner> => get(`banner/${id}`).then(getResults<IBanner>),
         update: (id:string, data: Partial<IBanner>) => patch(`banner/${id}`, data),
+        replace: (id:string, file:File) => {
+            const formData = new FormData();
+            formData.append('file', file);
+            return post(`banner/${id}/replace`, formData)
+                .then(getResults<IBanner>)
+                .catch(handleError);
+        },
         remove: (id:string) => remove(`banner/${id}`),
     }
 });
