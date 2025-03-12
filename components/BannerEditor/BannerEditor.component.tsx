@@ -2,17 +2,22 @@ import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
 import { onDateChange } from "@core/lib/onInputChange";
-import { DatePicker, InputNumber, Radio, Spin, Tabs } from "antd";
+import { DatePicker, InputNumber, Radio, Spin, Tabs, Upload } from "antd";
 import dayjs from "dayjs";
 import { BannerImage } from "../BannerImage";
 import { BannerEditorProps } from "./BannerEditor.d";
 import styles from './BannerEditor.module.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 
-export const BannerEditorComponent = ({bannerId, banner, isLoading, updateString, updateNumber, UpdateButtons, remove}:BannerEditorProps) =>
+export const BannerEditorComponent = ({bannerId, banner, isLoading, upload, updateString, updateNumber, UpdateButtons, remove}:BannerEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.bannerEditor}>
             <div className={styles.updateButtons}><UpdateButtons /></div>
             <BannerImage bannerId={bannerId} />
+            <Upload.Dragger customRequest={({file}) => upload(file as File)} showUploadList={false}>
+                <FontAwesomeIcon icon={faRefresh} /> Replace image
+            </Upload.Dragger>
             <Tabs tabBarExtraContent={<DeleteBtn entityType="banner" onClick={remove} />}>
                 <Tabs.TabPane key="1" tab="Details">
                     <Label label="Name"><Editable value={banner.name} onChange={updateString("name")}/></Label>

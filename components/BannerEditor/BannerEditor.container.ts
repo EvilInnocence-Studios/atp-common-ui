@@ -5,8 +5,11 @@ import { useUpdater } from "@core/lib/useUpdater";
 import { IBanner } from "@common-shared/banner/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { useLoaderAsync } from "@core/lib/useLoader";
 
 const injectBannerEditorProps = createInjector(({bannerId, onDelete}:IBannerEditorInputProps):IBannerEditorProps => {
+    const loader = useLoaderAsync();
+
     const updater = useUpdater<IBanner>(
         "banner",
         bannerId,
@@ -22,8 +25,22 @@ const injectBannerEditorProps = createInjector(({bannerId, onDelete}:IBannerEdit
             onDelete();
         });
     }
+
+    const upload = (file: File) => {
+        loader(() => services().banner.replace(updater.history.entity.id, file)
+            .then(updater.refresh)
+            .then(flash.success("Banner replaced"))
+        );
+    }
+
     
-    return {banner:updater.history.entity, ...updater, remove};
+    return {
+        banner:updater.history.entity,
+        ...updater,
+        isLoading: updater.isLoading || loader.isLoading,
+        remove,
+        upload,
+    };
 });
 
 const connect = inject<IBannerEditorInputProps, BannerEditorProps>(mergeProps(
