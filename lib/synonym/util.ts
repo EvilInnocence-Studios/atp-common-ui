@@ -5,8 +5,8 @@ import { memoize } from 'ts-functional';
 import { useSharedState } from 'unstateless';
 
 export const synonymReplace = memoize((str:string | null, synonyms:ISynonym[]) => !str ? "" : synonyms.reduce(
-    (replaced:string, synonym:ISynonym) => replaced.replaceAll(synonym.synonym, synonym.canonical),
-    str
+    (replaced:string, synonym:ISynonym) => replaced.replaceAll(synonym.synonym.toLocaleLowerCase(), synonym.canonical),
+    str.toLocaleLowerCase()
 ), {});
 
 export const useSynonymsRaw = useSharedState<ISynonym[]>("synonyms", []);
