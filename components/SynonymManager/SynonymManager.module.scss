@@ -6,6 +6,7 @@
     }
     .synonymList {
         display: flex;
+        flex-wrap: wrap;
         gap: globals.$padding;
         > div {
             min-width: 378px;
