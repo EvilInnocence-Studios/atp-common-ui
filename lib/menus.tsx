@@ -9,6 +9,10 @@ export const commonMenus:Index<ItemType<MenuItemType>[]> = {
         label: "Common",
         icon: <FontAwesomeIcon icon={faGear} />,
         children: [{
+            key: "settings",
+            label: "Settings",
+            icon: <FontAwesomeIcon icon={faGear} />,
+        }, {
             key: "tags",
             label: "Tags",
             icon: <FontAwesomeIcon icon={faTag} />,
