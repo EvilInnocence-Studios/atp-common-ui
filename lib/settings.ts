@@ -23,18 +23,18 @@ export const commonSettings:ISettingContainer = {
             }
         },
         "Analytics": {
-            google: {
+            googleTrackingId: {
                 displayName: "Google Analytics Tracking ID",
                 type: "string",
                 defaultValue: "",
             },
-            track: {
+            trackingUrl: {
                 displayName: "Custom Analytics Tracking URL",
                 type: "string",
                 defaultValue: "",
                 description: "The full URL for the custom analytics tracking endpoint.",
             },
-            debug: {
+            analyticsDebug: {
                 displayName: "Debug Mode",
                 type: "boolean",
                 defaultValue: false,
@@ -42,7 +42,7 @@ export const commonSettings:ISettingContainer = {
             }
         },
         "Email": {
-            support: {
+            supportEmail: {
                 displayName: "Support Email",
                 type: "string",
                 defaultValue: "",
@@ -52,22 +52,22 @@ export const commonSettings:ISettingContainer = {
     },
     "Social": {
         "Handles": {
-            facebook: {
+            facebookPage: {
                 displayName: "Facebook Page URL",
                 type: "string",
                 defaultValue: "",
             },
-            twitter: {
+            twitterHandle: {
                 displayName: "Twitter Handle",
                 type: "string",
                 defaultValue: "",
             },
-            blueSky: {
+            blueSkyHandle: {
                 displayName: "BlueSky Handle",
                 type: "string",
                 defaultValue: "",
             },
-            instagram: {
+            instagramHandle: {
                 displayName: "Instagram Handle",
                 type: "string",
                 defaultValue: "",
@@ -76,7 +76,7 @@ export const commonSettings:ISettingContainer = {
     },
     "Ecommerce": {
         "Paypal": {
-            clientId: {
+            paypalClientId: {
                 displayName: "Paypal Client ID",
                 type: "string",
                 defaultValue: "",

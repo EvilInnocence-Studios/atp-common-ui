@@ -24,7 +24,7 @@ export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps
                     >
                         {Object.values(objMap((setting:ISettingDescriptor, settingName:string) => {
                             const { displayName, type, defaultValue, description, options } = setting;
-                            return <div className={styles.setting} key={settingName}>
+                            return <div className={styles.setting} key={settingName} title={settingName}>
                                 {["string", "integer", "decimal"].includes(type) && <Label label={displayName}><Editable
                                     placeholder={defaultValue}
                                     value={settings[settingName]?.value}
