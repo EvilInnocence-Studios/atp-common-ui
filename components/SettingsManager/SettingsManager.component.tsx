@@ -8,6 +8,7 @@ import { objMap } from "ts-functional";
 import { SettingsManagerProps } from "./SettingsManager.d";
 import styles from './SettingsManager.module.scss';
 import { Label } from "@core/components/Label";
+import { onCheckboxChange } from "@core/lib/onInputChange";
 
 export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps) =>
     <div className={styles.settingsManager}>
@@ -33,6 +34,8 @@ export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps
                                 {type === "boolean" && <Checkbox
                                     title={displayName}
                                     checked={settings[settingName]?.value === "true"}
+                                    onChange={onCheckboxChange(update(settingName), "true", "false")}
+                                    value={settings[settingName]?.value === "true" ? "false" : "true"}
                                 />}
                                 {type === "select" && <>
                                     <label>{displayName}</label>

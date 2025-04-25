@@ -43,13 +43,13 @@ const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:a
         <Checkbox
             title="Filterable"
             checked={group.filterable}
-            onChange={onCheckboxChange(update(group.id, "filterable"))}
+            onChange={onCheckboxChange(update(group.id, "filterable"), true, false)}
             {...stopProp}
         />
         <Checkbox
             title="Visible"
             checked={group.visible}
-            onChange={onCheckboxChange(update(group.id, "visible"))}
+            onChange={onCheckboxChange(update(group.id, "visible"), true, false)}
             {...stopProp}
         />
         <CanEdit yes><Editable value={group.name} onChange={update(group.id, "name")} /></CanEdit>
