@@ -56,6 +56,16 @@ export const commonSettings:ISettingContainer = {
             }
         },
     },
+    "Content": {
+        "Banners": {
+            bannerImageFolder: {
+                displayName: "Banner Image Folder",
+                type: "string",
+                defaultValue: "",
+                description: "The folder where banner images are stored.",
+            }
+        }
+    },
     "Social": {
         "Handles": {
             facebookPage: {
