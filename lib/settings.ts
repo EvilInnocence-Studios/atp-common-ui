@@ -20,6 +20,12 @@ export const commonSettings:ISettingContainer = {
                 type: "string",
                 defaultValue: "Public",
                 description: "The name of the public app as it appears in the public app.",
+            },
+            imageHost: {
+                displayName: "Image Host URL",
+                type: "string",
+                defaultValue: "",
+                description: "The base URL for the image host. This is used to serve images from a CDN or external storage.",
             }
         },
         "Analytics": {

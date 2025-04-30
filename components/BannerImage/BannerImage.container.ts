@@ -5,9 +5,11 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { BannerImageComponent } from "./BannerImage.component";
 import { BannerImageProps, IBannerImageInputProps, IBannerImageProps } from "./BannerImage.d";
+import { useSetting } from "@common/lib/setting/services";
 
 const injectBannerImageProps = createInjector(({bannerId}:IBannerImageInputProps):IBannerImageProps => {
     const [banner, setBanner] = useState<IBanner | null>(null);
+    const imgHost = useSetting("imageHost");
     const loader = useLoaderAsync();
 
     useEffect(() => {
@@ -19,7 +21,7 @@ const injectBannerImageProps = createInjector(({bannerId}:IBannerImageInputProps
         }
     }, [bannerId]);
 
-    return {banner, isLoading: loader.isLoading};
+    return {banner, isLoading: loader.isLoading, imgHost};
 });
 
 const connect = inject<IBannerImageInputProps, BannerImageProps>(mergeProps(
