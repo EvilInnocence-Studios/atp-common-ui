@@ -4,6 +4,7 @@ export declare interface IBannerImageProps {
     banner: IBanner | null;
     isLoading: boolean;
     imgHost: string;
+    imgFolder: string;
 }
 
 // What gets passed into the component from the parent as attributes

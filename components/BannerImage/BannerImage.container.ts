@@ -10,6 +10,7 @@ import { useSetting } from "@common/lib/setting/services";
 const injectBannerImageProps = createInjector(({bannerId}:IBannerImageInputProps):IBannerImageProps => {
     const [banner, setBanner] = useState<IBanner | null>(null);
     const imgHost = useSetting("imageHost");
+    const imgFolder = useSetting("bannerImageFolder");
     const loader = useLoaderAsync();
 
     useEffect(() => {
@@ -21,7 +22,7 @@ const injectBannerImageProps = createInjector(({bannerId}:IBannerImageInputProps
         }
     }, [bannerId]);
 
-    return {banner, isLoading: loader.isLoading, imgHost};
+    return {banner, isLoading: loader.isLoading, imgHost, imgFolder};
 });
 
 const connect = inject<IBannerImageInputProps, BannerImageProps>(mergeProps(
