@@ -3,6 +3,7 @@ import { bannerServices } from "./banner/services";
 import { synonymServices } from "./synonym/services";
 import { tagGroupServices } from "./tag/services";
 import { settingServices } from "./setting/services";
+import { getResults } from "@core/lib/util";
 
 export const commonServices = (methods:IMethods) => ({
     ...tagGroupServices(methods),
@@ -11,5 +12,6 @@ export const commonServices = (methods:IMethods) => ({
     ...settingServices(methods),
     cache: {
         clear: (cacheType:string) => methods.post(`cache/${cacheType}`),
-    }
+    },
+    errorReport: (message:string, data:any) => methods.post("errorReport", {...data, message}).then(getResults),
 });
