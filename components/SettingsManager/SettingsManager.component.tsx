@@ -38,10 +38,11 @@ export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps
                                     value={settings[settingName]?.value === "true" ? "false" : "true"}
                                 />}
                                 {type === "select" && <>
-                                    <label>{displayName}</label>
-                                    <Select value={settings[settingName]?.value} onChange={update(settingName)}>
-                                        {options?.map(option => <Select.Option key={option.value} value={option.value}>{option.label}</Select.Option>)}
-                                    </Select>
+                                    <Label label={displayName}>
+                                        <Select value={settings[settingName]?.value} onChange={update(settingName)}>
+                                            {options?.map(option => <Select.Option key={option.value} value={option.value}>{option.label}</Select.Option>)}
+                                        </Select>
+                                    </Label>
                                 </>}
                                 {description && <p>{description}</p>}
                             </div>;
