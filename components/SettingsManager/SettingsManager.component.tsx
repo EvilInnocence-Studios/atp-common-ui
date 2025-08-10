@@ -9,6 +9,7 @@ import { SettingsManagerProps } from "./SettingsManager.d";
 import styles from './SettingsManager.module.scss';
 import { Label } from "@core/components/Label";
 import { onCheckboxChange } from "@core/lib/onInputChange";
+import { AsyncSelect } from "@core/components/AsyncSelect";
 
 export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps) =>
     <div className={styles.settingsManager}>
@@ -37,11 +38,9 @@ export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps
                                     onChange={onCheckboxChange(update(settingName), "true", "false")}
                                     value={settings[settingName]?.value === "true" ? "false" : "true"}
                                 />}
-                                {type === "select" && <>
+                                {type === "select" && !!options && <>
                                     <Label label={displayName}>
-                                        <Select value={settings[settingName]?.value} onChange={update(settingName)}>
-                                            {options?.map(option => <Select.Option key={option.value} value={option.value}>{option.label}</Select.Option>)}
-                                        </Select>
+                                        <AsyncSelect value={settings[settingName]?.value} onChange={update(settingName)} getOptions={options} />
                                     </Label>
                                 </>}
                                 {description && <p>{description}</p>}
