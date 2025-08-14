@@ -97,6 +97,11 @@ export const commonSettings:ISettingContainer = {
                 type: "string",
                 defaultValue: "",
             },
+            paypalClientSecret: {
+                displayName: "Paypal Client Secret",
+                type: "string",
+                defaultValue: "",
+            }
         },
     },
 }
