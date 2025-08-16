@@ -1,15 +1,15 @@
 import { ISettingDescriptor, ISettingsModule, ISettingsScreen } from "@common/lib/setting/types";
 import { config } from "@config";
+import { AsyncSelect } from "@core/components/AsyncSelect";
 import { Editable } from "@core/components/Editable";
+import { Label } from "@core/components/Label";
+import { onCheckboxChange } from "@core/lib/onInputChange";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Checkbox, Select, Tabs } from "antd";
+import { Checkbox, Tabs } from "antd";
 import { objMap } from "ts-functional";
 import { SettingsManagerProps } from "./SettingsManager.d";
 import styles from './SettingsManager.module.scss';
-import { Label } from "@core/components/Label";
-import { onCheckboxChange } from "@core/lib/onInputChange";
-import { AsyncSelect } from "@core/components/AsyncSelect";
 
 export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps) =>
     <div className={styles.settingsManager}>
