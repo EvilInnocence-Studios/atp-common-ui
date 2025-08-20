@@ -12,8 +12,8 @@ export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram}:Soc
             <Setting id="siteName" />
         </Link>
         <br />
-        <a href={`https://www.facebook.com/${facebook}`} target="_blank"><FontAwesomeIcon icon={faFacebook} /></a>
-        <a href={`https://twitter.com/${twitter}`} target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>
-        <a href={`https://bsky.app/profile/${blueSky}`} target="_blank"><FontAwesomeIcon icon={faBluesky} /></a>
-        <a href={`https://www.instagram.com/${instagram}`} target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>
+        {facebook  && <a href={`https://www.facebook.com/${facebook}`}   target="_blank"><FontAwesomeIcon icon={faFacebook}  /></a>}
+        {twitter   && <a href={`https://twitter.com/${twitter}`}         target="_blank"><FontAwesomeIcon icon={faTwitter}   /></a>}
+        {blueSky   && <a href={`https://bsky.app/profile/${blueSky}`}    target="_blank"><FontAwesomeIcon icon={faBluesky}   /></a>}
+        {instagram && <a href={`https://www.instagram.com/${instagram}`} target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>}
     </div>;
