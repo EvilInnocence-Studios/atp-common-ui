@@ -2,13 +2,14 @@ import { faBluesky, faFacebook, faInstagram, faTwitter } from "@fortawesome/free
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import { Link } from "react-router";
+import { Setting } from "../Setting";
 import { SocialLinksProps } from "./SocialLinks.d";
 import styles from './SocialLinks.module.scss';
 
 export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram}:SocialLinksProps) =>
     <div className={clsx([styles.socialLinks])}>
         <Link to="/">
-            EvilInnocence
+            <Setting id="siteName" />
         </Link>
         <br />
         <a href={`https://www.facebook.com/${facebook}`} target="_blank"><FontAwesomeIcon icon={faFacebook} /></a>

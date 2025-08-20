@@ -3,6 +3,7 @@ export declare interface ISocialLinksProps {
     twitter: string;
     blueSky: string;
     instagram: string;
+    siteName: string;
 }
 
 // What gets passed into the component from the parent as attributes
