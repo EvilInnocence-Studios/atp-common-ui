@@ -1,4 +1,4 @@
-import { ILink } from "@common-shared/link/types";
+import { ILink, ILinkList } from "@common-shared/link/types";
 import { services } from "@core/lib/api";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
@@ -11,8 +11,11 @@ const injectLinkListProps = createInjector(({id}:ILinkListInputProps):ILinkListP
     const loader =  useLoaderAsync();
 
     useEffect(() => {
-        loader(() => services().linkList.link.search(id).then(setLinks));
-    }, [id]);
+        loader(async () => {
+            const lists = await services().linkList.search();
+            const list = lists.find(l => l.key === id) as ILinkList;
+            await services().linkList.link.search(list.id).then(setLinks);
+    });}, [id]);
     
     return {links, isLoading: loader.isLoading};
 });
