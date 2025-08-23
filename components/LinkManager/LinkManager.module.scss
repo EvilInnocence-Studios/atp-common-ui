@@ -1,0 +1,27 @@
+@use "@styles/globals.module.scss";
+
+.link {
+    display: flex;
+    flex-wrap: none;
+    position: relative;
+    padding: globals.$padding-xs 0 globals.$padding-xs globals.$padding-sm;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: solid 1px globals.$brand-border;
+    border-radius: 0.5rem;
+    background-color: globals.$brand-bg-light;
+    color: globals.$brand-primary;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    .icon {
+        padding-top: 4px;
+        margin-right: 8px;
+    }
+
+    > :nth-child(2) {
+        padding-right: 8px;
+        border-right: solid 1px globals.$brand-border;
+    }
+}

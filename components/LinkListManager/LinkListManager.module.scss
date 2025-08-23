@@ -1,0 +1,44 @@
+@use "@styles/globals.module.scss";
+
+.cacheBtns {
+    float: right;
+}
+
+.linkList {
+    list-style-type: none;
+    padding: 0;
+    li {
+        padding: 0.5rem 0;
+        margin: 0;
+        border-bottom: 1px solid globals.$brand-border;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        > * {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        &.selected {
+            background-color: globals.$brand-bg-light;
+        }
+    }
+}
+
+.linkListCard {
+    :global(.ant-collapse-header) {
+        padding-bottom: 0 !important;
+    }
+    :global(.ant-collapse-header-text) {
+        label {
+            overflow: hidden;
+        }
+        input {
+            width: 256px !important;
+        }
+    }
+}

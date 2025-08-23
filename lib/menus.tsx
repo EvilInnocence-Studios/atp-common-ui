@@ -1,4 +1,4 @@
-import { faGear, faImage, faPencil, faRightLeft, faTag } from "@fortawesome/free-solid-svg-icons";
+import { faGear, faImage, faLink, faPencil, faRightLeft, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
 import { Index } from "ts-functional/dist/types";
@@ -20,6 +20,10 @@ export const commonMenus:Index<ItemType<MenuItemType>[]> = {
             key: "synonyms",
             label: "Synonyms",
             icon: <FontAwesomeIcon icon={faRightLeft} />
+        },{
+            key: "links",
+            label: "Links",
+            icon: <FontAwesomeIcon icon={faLink} />
         }]
     }, {
         key: "Content",
