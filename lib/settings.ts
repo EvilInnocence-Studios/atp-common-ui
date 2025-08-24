@@ -108,6 +108,12 @@ export const commonSettings:ISettingContainer = {
                 defaultValue: "",
                 description: "The action URL for the Mailchimp form. This is the URL to which the form submits data.",
             },
+            mailchimpPopupScript: {
+                displayName: "Mailchimp Popup Script URL",
+                type: "string",
+                defaultValue: "",
+                description: "The URL for the Mailchimp popup script. This is used to load the Mailchimp popup form.",
+            }
         }
     },
     "Ecommerce": {
