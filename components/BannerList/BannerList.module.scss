@@ -1,0 +1,9 @@
+@use "@styles/globals.module.scss";
+
+.hero {
+    margin-bottom: globals.$padding-sm;
+    aspect-ratio: 2/1;
+    > div {
+        position: absolute;
+    }
+}
