@@ -26,6 +26,6 @@ const valuesByOrder = (elements:Index<JSX.Element>) => Object.keys(elements).sor
 
 const mapBanners = (lg:number) => pipe(groupBanners, objMap(renderBanners(lg)), valuesByOrder);
 
-export const BannerListComponent = ({banners, columns, isLoading}:BannerListProps) =><Spin spinning={isLoading}>
+export const BannerListComponent = ({banners, columns, isLoading}:BannerListProps) => <Spin spinning={isLoading}>
     {mapBanners(24 / columns)(banners)}
 </Spin>;
