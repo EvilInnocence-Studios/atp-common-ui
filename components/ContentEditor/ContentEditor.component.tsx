@@ -7,8 +7,9 @@ import { Label } from "@core/components/Label";
 import dayjs from "dayjs";
 import { onDateChange } from "@core/lib/onInputChange";
 
-export const ContentEditorComponent = ({content, updateString, updateToggle, UpdateButtons}:ContentEditorProps) =>
+export const ContentEditorComponent = ({type, content, updateString, updateToggle, UpdateButtons}:ContentEditorProps) =>
     <div className={styles.contentEditor}>
+        <h1>Edit {type.charAt(0).toUpperCase() + type.slice(1)}</h1>
         <div className={styles.updateButtons}>
             <UpdateButtons />
         </div>
@@ -25,7 +26,7 @@ export const ContentEditorComponent = ({content, updateString, updateToggle, Upd
                 <Editable value={content.slug || ""} onChange={updateString("slug")} />
             </Label>
         </h3>
-        <Card title="Content" className={styles.contentCard} size="small">
+        <Card title={type.charAt(0).toUpperCase() + type.slice(1)} className={styles.contentCard} size="small">
             <MarkdownEditor value={content.content || ""} onChange={updateString("content")} />
         </Card>
     </div>;

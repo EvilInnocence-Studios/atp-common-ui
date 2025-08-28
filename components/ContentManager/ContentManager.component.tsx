@@ -10,17 +10,17 @@ import styles from './ContentManager.module.scss';
 export const ContentManagerComponent = ({id, type, pages, isLoading, create, refresh}:ContentManagerProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.contentManager}>
-            <h2>
-                {type.charAt(0).toUpperCase() + type.slice(1)}s
-                &nbsp;
-                <Button onClick={create} type="primary" >
-                    <FontAwesomeIcon icon={faPlus} /> Create New {type.charAt(0).toUpperCase() + type.slice(1)}
-                </Button>
-            </h2>
             {!isLoading && pages.length === 0 && <p>No {type}s found.</p>}
             {!isLoading && pages.length > 0 &&
                 <Row gutter={16}>
                     <Col xs={6}>
+                        <h2>
+                            {type.charAt(0).toUpperCase() + type.slice(1)}s
+                            &nbsp;
+                            <Button onClick={create} type="primary" >
+                                <FontAwesomeIcon icon={faPlus} /> Create New {type.charAt(0).toUpperCase() + type.slice(1)}
+                            </Button>
+                        </h2>
                         <ul className={styles.pageList}>
                             {pages.map(page =>
                                 <li key={page.id}>
@@ -35,6 +35,7 @@ export const ContentManagerComponent = ({id, type, pages, isLoading, create, ref
                     </Col>
                     <Col xs={18}>
                         {id && <ContentEditor
+                            type={type}
                             content={pages.find(p => p.id === id) as IContent}
                             onUpdate={() => refresh}
                         />}
