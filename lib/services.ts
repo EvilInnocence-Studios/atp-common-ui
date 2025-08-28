@@ -5,6 +5,7 @@ import { tagGroupServices } from "./tag/services";
 import { settingServices } from "./setting/services";
 import { getResults } from "@core/lib/util";
 import { linkServices } from "./link/services";
+import { contentServices } from "./content/services";
 
 export const commonServices = (methods:IMethods) => ({
     ...tagGroupServices(methods),
@@ -12,6 +13,7 @@ export const commonServices = (methods:IMethods) => ({
     ...bannerServices(methods),
     ...settingServices(methods),
     ...linkServices(methods),
+    ...contentServices(methods),
     cache: {
         clear: (cacheType:string) => methods.post(`cache/${cacheType}`),
     },

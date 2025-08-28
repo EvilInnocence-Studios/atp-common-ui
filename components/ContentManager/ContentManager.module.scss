@@ -1,0 +1,26 @@
+@use "@styles/globals.module.scss";
+
+.contentManager {
+    .pageList {
+        list-style-type: none;
+        padding: 0;
+        border: solid globals.$brand-border;
+        border-radius: globals.$border-radius;
+        li {
+            border-bottom: solid globals.$brand-border;
+            padding: 0;
+            &:last-child {
+                border-bottom: none;
+            }
+            a {
+                display: block;
+                padding: globals.$padding-sm;
+                color: globals.$brand-text;
+                text-decoration: none;
+                &:hover {
+                    background-color: globals.$brand-bg-light;
+                }
+            }
+        }
+    }
+}
