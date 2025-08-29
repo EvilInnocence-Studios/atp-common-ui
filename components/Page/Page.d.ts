@@ -9,6 +9,7 @@ export declare interface IPageProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IPageInputProps {
     slug: string;
+    disable404?: boolean;
 }
 
 export type PageProps = IPageInputProps & IPageProps;
