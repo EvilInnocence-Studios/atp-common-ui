@@ -1,12 +1,11 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {MediaEditorComponent} from "./MediaEditor.component";
-import {IMediaEditorInputProps, MediaEditorProps, IMediaEditorProps} from "./MediaEditor.d";
-import { useLoaderAsync } from "@core/lib/useLoader";
-import { useUpdater } from "@core/lib/useUpdater";
 import { IMedia } from "@common-shared/media/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
-import { useFullImageUrl } from "../MediaImage/MediaImage.container";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { useUpdater } from "@core/lib/useUpdater";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { MediaEditorComponent } from "./MediaEditor.component";
+import { IMediaEditorInputProps, IMediaEditorProps, MediaEditorProps } from "./MediaEditor.d";
 
 const injectMediaEditorProps = createInjector(({imageId, onDelete}:IMediaEditorInputProps):IMediaEditorProps => {
     const loader = useLoaderAsync();
