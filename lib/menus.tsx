@@ -41,6 +41,10 @@ export const commonMenus:Index<ItemType<MenuItemType>[]> = {
             key: "banners",
             label: "Banners",
             icon: <FontAwesomeIcon icon={faImage} />,
+        },{
+            key: "media",
+            label: "Media",
+            icon: <FontAwesomeIcon icon={faImage} />
         }]
     }],
 };

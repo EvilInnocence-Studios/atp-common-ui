@@ -1,0 +1,14 @@
+@use "@styles/globals.module.scss";
+
+.mediaEditor {
+    border: solid 2px globals.$brand-border;
+    border-radius: globals.$border-radius;
+    padding: globals.$padding;
+    .updateButtons {
+        text-align: right;
+        margin-bottom: globals.$padding;
+    }
+    :global(.label) {
+        margin-top: globals.$padding-sm;
+    }
+}

@@ -1,0 +1,10 @@
+@use "@styles/globals.module.scss";
+
+.mediaManager {
+    .mediaList {
+        margin-top: globals.$padding;
+        > * {
+            margin-top: globals.$padding;
+        }
+    }
+}

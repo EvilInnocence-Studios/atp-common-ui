@@ -63,8 +63,16 @@ export const commonSettings:ISettingContainer = {
                 type: "string",
                 defaultValue: "",
                 description: "The folder where banner images are stored.",
-            }
-        }
+            },
+        },
+        "Media": {
+            mediaImageFolder: {
+                displayName: "Media Image Folder",
+                type: "string",
+                defaultValue: "",
+                description: "The folder where media images are stored.",
+            },
+        },
     },
     "Social": {
         "Handles": {
