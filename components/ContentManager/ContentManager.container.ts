@@ -1,14 +1,20 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ContentManagerComponent} from "./ContentManager.component";
-import {IContentManagerInputProps, ContentManagerProps, IContentManagerProps} from "./ContentManager.d";
-import { useEffect, useState } from "react";
 import { IContent } from "@common-shared/content/types";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ContentManagerComponent } from "./ContentManager.component";
+import { ContentManagerProps, IContentManagerInputProps, IContentManagerProps } from "./ContentManager.d";
 
 const injectContentManagerProps = createInjector(({type}:IContentManagerInputProps):IContentManagerProps => {
     const [pages, setPages] = useState<IContent[]>([]);
     const loader = useLoaderAsync();
+    const navigate = useNavigate();
+
+    const goToContent = (content:IContent) => {
+        navigate(`/${content.type}s/${content.id}`, {});
+    }
 
     const refresh = () => {
         loader(() => services().content.search({ type })
@@ -25,7 +31,7 @@ const injectContentManagerProps = createInjector(({type}:IContentManagerInputPro
             slug: `new-${type}-${Date.now()}`,
             content: `This is a new ${type}.`,
             enabled: false,
-        }).then(refresh))
+        }).then(goToContent));
     }
     
     return {pages, isLoading: loader.isLoading, create, refresh};
