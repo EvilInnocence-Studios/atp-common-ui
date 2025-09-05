@@ -31,6 +31,7 @@ const injectMediaManagerProps = createInjector(({}:IMediaManagerInputProps):IMed
         isLoading: loader.isLoading,
         upload,
         overwrite, setOverwrite,
+        query, setQuery,
         refresh,
     };
 });
