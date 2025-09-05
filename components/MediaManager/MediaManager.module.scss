@@ -1,6 +1,13 @@
 @use "@styles/globals.module.scss";
 
 .mediaManager {
+    .searchRow {
+        :global(.ant-input-group-wrapper) {
+            display: block;
+            max-width: 368px;
+            margin: globals.$padding auto;
+        }
+    }
     .mediaList {
         margin-top: globals.$padding;
         > * {

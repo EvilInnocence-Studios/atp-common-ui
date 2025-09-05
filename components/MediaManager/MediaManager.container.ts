@@ -9,6 +9,7 @@ import { IMediaManagerInputProps, IMediaManagerProps, MediaManagerProps } from "
 const injectMediaManagerProps = createInjector(({}:IMediaManagerInputProps):IMediaManagerProps => {
     const [images, setImages] = useState<IMedia[]>([]);
     const [overwrite, setOverwrite] = useState(false);
+    const [query, setQuery] = useState('');
 
     const loader = useLoaderAsync();
 
@@ -22,7 +23,16 @@ const injectMediaManagerProps = createInjector(({}:IMediaManagerInputProps):IMed
         loader(() => services().media.create(file, overwrite).then(refresh));
     }
 
-    return {images, isLoading: loader.isLoading, upload, overwrite, setOverwrite, refresh};
+    const filterColumns = ['url', 'altText', 'title', 'caption'];
+    const filteredImages = images.filter(i => filterColumns.some(c => i[c as keyof IMedia]?.toLowerCase().includes(query.toLowerCase())));
+
+    return {
+        images: filteredImages,
+        isLoading: loader.isLoading,
+        upload,
+        overwrite, setOverwrite,
+        refresh,
+    };
 });
 
 const connect = inject<IMediaManagerInputProps, MediaManagerProps>(mergeProps(

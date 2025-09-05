@@ -1,12 +1,13 @@
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Checkbox, Col, Row, Spin, Upload } from "antd";
+import { Checkbox, Col, Input, Row, Spin, Upload } from "antd";
 import { ClearCacheButton } from "../ClearCacheButton";
 import { MediaEditor } from "../MediaEditor";
 import { MediaManagerProps } from "./MediaManager.d";
 import styles from './MediaManager.module.scss';
+import { onInputChange } from "@core/lib/onInputChange";
 
-export const MediaManagerComponent = ({images, isLoading, upload, overwrite, setOverwrite, refresh}:MediaManagerProps) =>
+export const MediaManagerComponent = ({images, isLoading, upload, overwrite, setOverwrite, refresh, query, setQuery}:MediaManagerProps) =>
     <Spin spinning={isLoading}>
         <Row className={styles.mediaManager} gutter={16}>
             <Col xs={3}>
@@ -22,6 +23,11 @@ export const MediaManagerComponent = ({images, isLoading, upload, overwrite, set
                 </Upload.Dragger>
             </Col>
             <Col xs={24}>
+                <Row gutter={16} className={styles.searchRow}>
+                    <Col xs={24}>
+                        <Input.Search placeholder="Search..." value={query} onChange={onInputChange(setQuery)} />
+                    </Col>
+                </Row>
                 <Row gutter={16} className={styles.mediaList}>
                     {images.map(image => <Col key={image.id} xs={6}>
                         <MediaEditor imageId={image.id} onDelete={refresh} />

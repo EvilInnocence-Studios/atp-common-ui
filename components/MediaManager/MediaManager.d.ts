@@ -1,4 +1,5 @@
 import { IMedia } from "@common-shared/media/types";
+import { Setter } from "unstateless";
 
 export declare interface IMediaManagerProps {
     images: IMedia[];
@@ -6,6 +7,8 @@ export declare interface IMediaManagerProps {
     upload: (file: File) => void;
     overwrite: boolean;
     setOverwrite: Setter<boolean>;
+    query: string;
+    setQuery: Setter<string>;
     refresh: () => void;
 }
 
