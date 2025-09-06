@@ -11,7 +11,7 @@ export const useFullImageUrl = (folderSetting: string, fileName:string) => {
     const imgHost = useSetting("imageHost");
     const imgFolder = useSetting(folderSetting);
     return !!imgHost && !!imgFolder
-        ? `${imgHost}/${imgFolder}/${fileName}`
+        ? `${imgHost}/${imgFolder}/${encodeURIComponent(fileName)}`
         : "";
 }
 
