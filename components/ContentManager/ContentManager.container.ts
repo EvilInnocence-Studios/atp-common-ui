@@ -12,14 +12,15 @@ const injectContentManagerProps = createInjector(({type}:IContentManagerInputPro
     const loader = useLoaderAsync();
     const navigate = useNavigate();
 
-    const goToContent = (content:IContent) => {
-        navigate(`/${content.type}s/${content.id}`, {});
-    }
-
     const refresh = () => {
         loader(() => services().content.search({ type })
             .then(setPages)
         );
+    }
+
+    const goToContent = (content:IContent) => {
+        refresh();
+        navigate(`/${content.type}s/${content.id}`, {});
     }
 
     useEffect(refresh, []);

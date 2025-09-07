@@ -32,7 +32,7 @@ export const ContentManagerComponent = ({id, type, pages, isLoading, create, ref
                     </ul>
                 </Col>
                 <Col xs={18}>
-                    {id && pages.length > 0 && <ContentEditor
+                    {id && pages.length > 0 && pages.find(p => p.id === id) && <ContentEditor
                         type={type}
                         content={pages.find(p => p.id === id) as IContent}
                         onUpdate={() => refresh}
