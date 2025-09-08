@@ -1,6 +1,6 @@
 import { IBanner } from "@common-shared/banner/types";
 import { Fader } from "@core/components/Fader";
-import { Col, Spin } from "antd";
+import { Col } from "antd";
 import { objMap, pipe } from "ts-functional";
 import { Index } from "ts-functional/dist/types";
 import { Banner } from "../Banner/Banner.container";
