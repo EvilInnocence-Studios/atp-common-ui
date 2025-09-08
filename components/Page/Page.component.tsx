@@ -1,5 +1,7 @@
 import { Spin } from "antd";
-import Markdown from "marked-react";
+import Markdown from 'react-markdown';
+import remarkDirective from 'remark-directive';
+import remarkDirectiveSugar from 'remark-directive-sugar';
 import { Page } from "./Page.container";
 import { PageProps } from "./Page.d";
 import styles from './Page.module.scss';
@@ -13,6 +15,6 @@ export const PageComponent = ({page, isLoading, notFound, disable404}:PageProps)
         </div>}
         {!notFound && page && <div className={styles.page}>
             <h1>{page.title}</h1>
-            <Markdown>{page.content}</Markdown>
+            <Markdown remarkPlugins={[remarkDirective, remarkDirectiveSugar]}>{page.content}</Markdown>
         </div>}
     </Spin>;
