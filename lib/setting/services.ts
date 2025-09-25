@@ -43,3 +43,18 @@ export const useSetting = (key:string):string => {
 
     return settings[key];
 }
+
+export const useSettingGroup = (prefix:string):Index<string> => {
+    const [settings] = useSettingsRaw();
+
+    useEffect(() => {
+        services().setting.get("__dummy__");
+    }, []);
+
+    return Object.keys(settings)
+        .filter(k => k.startsWith(`${prefix}.`))
+        .reduce((obj, k) => {
+            obj[k.replace(`${prefix}.`, '')] = settings[k];
+            return obj;
+        }, {} as Index<string>);
+}

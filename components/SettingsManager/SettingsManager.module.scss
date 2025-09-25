@@ -2,4 +2,15 @@
 
 .setting {
     margin-bottom: globals.$padding;
+    .colorPicker {
+        :global(.ant-color-picker-trigger) {
+            display: inline-block;
+            margin-bottom: -12px !important;
+            width: 40px;
+            background-color: transparent !important;
+        }
+        input {
+            width: calc(100% - 40px);
+        }
+    }
 }

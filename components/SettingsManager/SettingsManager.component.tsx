@@ -6,7 +6,7 @@ import { Label } from "@core/components/Label";
 import { onCheckboxChange } from "@core/lib/onInputChange";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Checkbox, Tabs } from "antd";
+import { Checkbox, ColorPicker, Tabs } from "antd";
 import { objMap } from "ts-functional";
 import { SettingsManagerProps } from "./SettingsManager.d";
 import styles from './SettingsManager.module.scss';
@@ -32,6 +32,18 @@ export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps
                                     value={settings[settingName]?.value}
                                     onChange={update(settingName)}
                                 /></Label>}
+                                {type === "color" && <Label className={styles.colorPicker} label={displayName}>
+                                    <ColorPicker
+                                        value={settings[settingName]?.value || defaultValue}
+                                        onChange={color => update(settingName)(color.toHexString())}
+                                        placement="topRight"
+                                    />
+                                    <Editable
+                                        placeholder={defaultValue}
+                                        value={settings[settingName]?.value}
+                                        onChange={update(settingName)}
+                                    />
+                                </Label>}
                                 {type === "boolean" && <Checkbox
                                     title={displayName}
                                     checked={settings[settingName]?.value === "true"}

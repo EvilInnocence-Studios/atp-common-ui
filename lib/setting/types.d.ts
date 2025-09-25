@@ -17,7 +17,7 @@ export declare interface ISettingOption {
 
 export declare interface ISettingDescriptor {
     displayName: string;
-    type: "string" | "integer" | "decimal" | "boolean" | "select" | "text";
+    type: "string" | "integer" | "decimal" | "boolean" | "select" | "text" | "color";
     defaultValue?: any;
     description?: string;
     options?: () => Promise<ISettingOption[]>;
