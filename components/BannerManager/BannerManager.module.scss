@@ -2,9 +2,9 @@
 
 .bannerManager {
     .bannerList {
-        margin-top: globals.$padding;
+        margin-top: var(--padding);
         > * {
-            margin-top: globals.$padding;
+            margin-top: var(--padding);
         }
     }
 }

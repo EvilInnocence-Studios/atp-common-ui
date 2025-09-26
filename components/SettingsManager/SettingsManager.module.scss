@@ -1,7 +1,7 @@
 @use "@styles/globals.module.scss";
 
 .setting {
-    margin-bottom: globals.$padding;
+    margin-bottom: var(--padding);
     .colorPicker {
         :global(.ant-color-picker-trigger) {
             display: inline-block;

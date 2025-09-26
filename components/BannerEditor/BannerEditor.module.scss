@@ -3,12 +3,12 @@
 .bannerEditor {
     border: solid 2px var(--borderColor);
     border-radius: globals.$border-radius;
-    padding: globals.$padding;
+    padding: var(--padding);
     .updateButtons {
         text-align: right;
-        margin-bottom: globals.$padding;
+        margin-bottom: var(--padding);
     }
     :global(.label) {
-        margin-top: globals.$padding-sm;
+        margin-top: var(--paddingSmall);
     }
 }

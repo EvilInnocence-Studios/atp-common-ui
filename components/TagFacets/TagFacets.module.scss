@@ -1,7 +1,7 @@
 @use "@styles/globals.module.scss";
 
 .tagGroupList {
-    margin: globals.$padding-sm;
+    margin: var(--paddingSmall);
     :global(.ant-collapse-content) {
         max-height: 256px;
         overflow-y: auto;
@@ -20,7 +20,7 @@
     .tagList {
         display: flex;
         flex-wrap: wrap;
-        gap: globals.$padding-xs;
+        gap: var(--paddingXS);
         > * {
             width: 100%;
         }

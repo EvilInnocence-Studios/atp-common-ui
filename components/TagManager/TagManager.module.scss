@@ -4,7 +4,7 @@
     display: flex;
     flex-wrap: none;
     position: relative;
-    padding: globals.$padding-xs 0 globals.$padding-xs globals.$padding-sm;
+    padding: var(--paddingXS) 0 var(--paddingXS) var(--paddingSmall);
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     border: solid 1px var(--borderColor);
