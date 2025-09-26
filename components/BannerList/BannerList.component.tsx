@@ -6,6 +6,7 @@ import { Index } from "ts-functional/dist/types";
 import { Banner } from "../Banner/Banner.container";
 import { BannerListProps } from "./BannerList.d";
 import styles from './BannerList.module.scss';
+import clsx from "clsx";
 
 // Group banners by order value
 const groupBanners = (banners: IBanner[]):Index<IBanner[]> => banners.reduce(
@@ -16,7 +17,7 @@ const groupBanners = (banners: IBanner[]):Index<IBanner[]> => banners.reduce(
     {}
 );
 
-const renderBanners = (lg:number) => (banners:IBanner[], order:string) => <Col lg={lg} xs={24} key={order} className={styles.hero}>
+const renderBanners = (lg:number) => (banners:IBanner[], order:string) => <Col lg={lg} xs={24} key={order} className={clsx([styles.hero, "hero"])}>
     <Fader interval={5}>
         {banners.map(banner => <Banner key={banner.id} banner={banner} />)}
     </Fader>
