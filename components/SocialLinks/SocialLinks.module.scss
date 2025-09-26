@@ -8,7 +8,7 @@
         padding: 0;
         text-align: left;
     }
-    * {color: globals.$brand-primary;}
+    * {color: var(--primaryColor);}
     > * {
         margin: 0 globals.$padding-sm;
         padding: 0;

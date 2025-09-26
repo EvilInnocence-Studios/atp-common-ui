@@ -9,12 +9,12 @@
             width: 12px;
         }
         &::-webkit-scrollbar-track {
-            background: globals.$brand-bg;
+            background: var(--bgColor);
         }
         &::-webkit-scrollbar-thumb {
-            background-color: globals.$brand-primary;
+            background-color: var(--primaryColor);
             border-radius: 4px;
-            border: 2px solid globals.$brand-bg;
+            border: 2px solid var(--bgColor);
         }
     }
     .tagList {

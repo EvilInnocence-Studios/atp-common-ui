@@ -4,10 +4,10 @@
     .pageList {
         list-style-type: none;
         padding: 0;
-        border: solid globals.$brand-border;
+        border: solid var(--borderColor);
         border-radius: globals.$border-radius;
         li {
-            border-bottom: solid globals.$brand-border;
+            border-bottom: solid var(--borderColor);
             padding: 0;
             &:last-child {
                 border-bottom: none;
@@ -15,10 +15,10 @@
             a {
                 display: block;
                 padding: globals.$padding-sm;
-                color: globals.$brand-text;
+                color: var(--textColor);
                 text-decoration: none;
                 &:hover {
-                    background-color: globals.$brand-bg-light;
+                    background-color: var(--bgLightColor);
                 }
             }
         }
