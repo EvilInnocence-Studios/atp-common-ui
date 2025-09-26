@@ -3,6 +3,7 @@ import { analyticsSettings } from "./settings/analytics";
 import { contentSettings } from "./settings/content";
 import { ecommerceSettings } from "./settings/ecommerce";
 import { emailSettings } from "./settings/email";
+import { layoutSettings } from "./settings/layout";
 import { siteInfoSettings } from "./settings/siteInfo";
 import { socialSettings } from "./settings/social";
 import { themeSettings } from "./settings/theme";
@@ -24,5 +25,8 @@ export const commonSettings:ISettingContainer = {
     },
     "Theme": {
         ...themeSettings,
-    }    
+    },
+    "Layout": {
+        ...layoutSettings,
+    }
 }
