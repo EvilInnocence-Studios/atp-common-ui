@@ -2,7 +2,7 @@
 
 .bannerEditor {
     border: solid 2px var(--borderColor);
-    border-radius: globals.$border-radius;
+    border-radius: var(--borderRadius);
     padding: var(--padding);
     .updateButtons {
         text-align: right;
