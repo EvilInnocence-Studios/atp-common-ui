@@ -3,7 +3,7 @@
 .banner {
     position: relative;
     .info {
-        color: globals.$brand-bg;
+        color: var(--bgColor);
         h1{
             font-size: 48px;
             margin-bottom: 0;

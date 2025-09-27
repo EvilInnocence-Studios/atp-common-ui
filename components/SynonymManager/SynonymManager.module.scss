@@ -2,12 +2,12 @@
 
 .synonymManager {
     .newSynonymForm {
-        margin-bottom: globals.$padding;
+        margin-bottom: var(--padding);
     }
     .synonymList {
         display: flex;
         flex-wrap: wrap;
-        gap: globals.$padding;
+        gap: var(--padding);
         > div {
             min-width: 378px;
         }

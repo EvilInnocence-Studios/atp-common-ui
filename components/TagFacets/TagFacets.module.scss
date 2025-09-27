@@ -1,7 +1,7 @@
 @use "@styles/globals.module.scss";
 
 .tagGroupList {
-    margin: globals.$padding-sm;
+    margin: var(--paddingSmall);
     :global(.ant-collapse-content) {
         max-height: 256px;
         overflow-y: auto;
@@ -9,18 +9,18 @@
             width: 12px;
         }
         &::-webkit-scrollbar-track {
-            background: globals.$brand-bg;
+            background: var(--bgColor);
         }
         &::-webkit-scrollbar-thumb {
-            background-color: globals.$brand-primary;
+            background-color: var(--primaryColor);
             border-radius: 4px;
-            border: 2px solid globals.$brand-bg;
+            border: 2px solid var(--bgColor);
         }
     }
     .tagList {
         display: flex;
         flex-wrap: wrap;
-        gap: globals.$padding-xs;
+        gap: var(--paddingXS);
         > * {
             width: 100%;
         }

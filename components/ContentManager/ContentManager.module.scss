@@ -4,21 +4,21 @@
     .pageList {
         list-style-type: none;
         padding: 0;
-        border: solid globals.$brand-border;
-        border-radius: globals.$border-radius;
+        border: solid var(--borderColor);
+        border-radius: var(--borderRadius);
         li {
-            border-bottom: solid globals.$brand-border;
+            border-bottom: solid var(--borderColor);
             padding: 0;
             &:last-child {
                 border-bottom: none;
             }
             a {
                 display: block;
-                padding: globals.$padding-sm;
-                color: globals.$brand-text;
+                padding: var(--paddingSmall);
+                color: var(--textColor);
                 text-decoration: none;
                 &:hover {
-                    background-color: globals.$brand-bg-light;
+                    background-color: var(--bgLightColor);
                 }
             }
         }

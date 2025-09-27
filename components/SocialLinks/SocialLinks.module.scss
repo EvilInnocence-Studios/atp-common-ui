@@ -1,21 +1,21 @@
 @use "@styles/globals.module.scss";
 
 .socialLinks {
-    padding: 0 globals.$padding 0 56px;
+    padding: 0 var(--padding) 0 56px;
     font-size: x-large;
     font-weight: bold;
     @media (max-width: 1066px) {
         padding: 0;
         text-align: left;
     }
-    * {color: globals.$brand-primary;}
+    * {color: var(--primaryColor);}
     > * {
-        margin: 0 globals.$padding-sm;
+        margin: 0 var(--paddingSmall);
         padding: 0;
         display: inline-block;
     }
     > span {
         width: 256px;
-        padding: globals.$padding;
+        padding: var(--padding);
     }
 }

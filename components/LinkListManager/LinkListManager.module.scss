@@ -10,7 +10,7 @@
     li {
         padding: 0.5rem 0;
         margin: 0;
-        border-bottom: 1px solid globals.$brand-border;
+        border-bottom: 1px solid var(--borderColor);
         display: flex;
         align-items: center;
 
@@ -24,7 +24,7 @@
             align-items: center;
         }
         &.selected {
-            background-color: globals.$brand-bg-light;
+            background-color: var(--bgLightColor);
         }
     }
 }

@@ -1,14 +1,14 @@
 @use "@styles/globals.module.scss";
 
 .bannerEditor {
-    border: solid 2px globals.$brand-border;
-    border-radius: globals.$border-radius;
-    padding: globals.$padding;
+    border: solid 2px var(--borderColor);
+    border-radius: var(--borderRadius);
+    padding: var(--padding);
     .updateButtons {
         text-align: right;
-        margin-bottom: globals.$padding;
+        margin-bottom: var(--padding);
     }
     :global(.label) {
-        margin-top: globals.$padding-sm;
+        margin-top: var(--paddingSmall);
     }
 }

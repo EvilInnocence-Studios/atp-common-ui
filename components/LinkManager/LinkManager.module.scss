@@ -4,13 +4,13 @@
     display: flex;
     flex-wrap: none;
     position: relative;
-    padding: globals.$padding-xs 0 globals.$padding-xs globals.$padding-sm;
+    padding: var(--paddingXS) 0 var(--paddingXS) var(--paddingSmall);
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
-    border: solid 1px globals.$brand-border;
+    border: solid 1px var(--borderColor);
     border-radius: 0.5rem;
-    background-color: globals.$brand-bg-light;
-    color: globals.$brand-primary;
+    background-color: var(--bgLightColor);
+    color: var(--primaryColor);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
@@ -22,6 +22,6 @@
 
     > :nth-child(2) {
         padding-right: 8px;
-        border-right: solid 1px globals.$brand-border;
+        border-right: solid 1px var(--borderColor);
     }
 }

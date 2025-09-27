@@ -1,5 +1,5 @@
 @use "@styles/globals.module.scss";
 
 .selectedTagList {
-    margin: globals.$padding;
+    margin: var(--padding);
 }

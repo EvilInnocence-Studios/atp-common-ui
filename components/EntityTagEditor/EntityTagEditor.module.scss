@@ -7,7 +7,7 @@
     .tagGroup {
         .tag {
             display: inline-block;
-            margin: globals.$padding-xs;
+            margin: var(--paddingXS);
         }
     }
 }
