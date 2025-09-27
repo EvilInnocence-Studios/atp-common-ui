@@ -1,6 +1,5 @@
-import {BlueskyFeedProps} from "./BlueskyFeed.d";
-import styles from './BlueskyFeed.module.scss';
-import { BlueskyProfilePosts, BlueskyConfigProvider } from "bluesky-embed-react";
+import { BlueskyConfigProvider, BlueskyProfilePosts } from "bluesky-embed-react";
+import { BlueskyFeedProps } from "./BlueskyFeed.d";
 
 export const BlueskyFeedComponent = ({handle, theme}:BlueskyFeedProps) => <>
     {handle && <BlueskyConfigProvider
