@@ -1,7 +1,8 @@
 import { BlueskyConfigProvider, BlueskyProfilePosts } from "bluesky-embed-react";
 import { BlueskyFeedProps } from "./BlueskyFeed.d";
+import styles from "./BlueskyFeed.module.scss";
 
-export const BlueskyFeedComponent = ({handle, theme}:BlueskyFeedProps) => <>
+export const BlueskyFeedComponent = ({handle, theme, pageSize}:BlueskyFeedProps) => <>
     {handle && <BlueskyConfigProvider
         backgroundColor={theme.bgLightColor}
         borderColor={theme.borderColor}
@@ -9,6 +10,8 @@ export const BlueskyFeedComponent = ({handle, theme}:BlueskyFeedProps) => <>
         hideAvatars
         width="100%"
     >
-        <BlueskyProfilePosts userHandle={handle} />
+        <div className={styles.feed}>
+            <BlueskyProfilePosts userHandle={handle} pageSize={pageSize}/>
+        </div>
     </BlueskyConfigProvider>}
 </>;

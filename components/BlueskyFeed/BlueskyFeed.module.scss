@@ -1,1 +1,26 @@
 @use "@styles/globals.module.scss";
+
+.feed {
+    > div {
+        > div {
+            margin-bottom: var(--padding);
+            border: solid 1px var(--borderColor) !important;
+            border-radius: var(--borderRadius);
+            > div {
+                > div:first-child {
+                    display: block !important;
+                    > a {
+                        display: block !important;
+                        width: 100% ! important;
+                    }
+                    > span {
+                        display: block !important;
+                        width: 100% ! important;
+                        text-align: right;
+                        border-bottom: solid 1px var(--borderColor);
+                    }
+                }
+            }
+        }
+    }
+}
