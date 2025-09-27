@@ -38,6 +38,6 @@ export const useTheme = () => {
             }
         }
     }
-console.log("Theme", theme);
+
     return theme;
 }
