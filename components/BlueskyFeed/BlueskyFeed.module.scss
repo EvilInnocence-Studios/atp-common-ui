@@ -12,11 +12,11 @@
                     > a {
                         display: block !important;
                         width: 100% ! important;
+                        font-weight: bold !important;
                     }
                     > span {
                         display: block !important;
                         width: 100% ! important;
-                        text-align: right;
                         border-bottom: solid 1px var(--borderColor);
                     }
                 }

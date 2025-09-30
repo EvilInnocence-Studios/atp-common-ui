@@ -4,8 +4,8 @@ import { BannerImage } from "../BannerImage";
 import { BannerProps } from "./Banner.d";
 import styles from './Banner.module.scss';
 
-export const BannerComponent = ({banner}:BannerProps) => 
-    <div className={styles.banner}>
+export const BannerComponent = ({banner, className}:BannerProps) => 
+    <div className={clsx([styles.banner, className])}>
         <Link to={banner.link}>
             <div className={styles.info}>
                 <h1>{banner.title}</h1>

@@ -7,9 +7,15 @@ export const useTheme = () => {
 
     // Apply the theme variables to the document root
     useEffect(() => {
+        console.log(variables);
         Object.entries(variables).forEach(([key, value]) => {
             if (value) {
-                document.documentElement.style.setProperty(`--${key}`, value);
+                let computedValue = value;
+                while(computedValue.startsWith("var(")) {
+                    const varName = computedValue.slice(6, -1).trim();
+                    computedValue = variables[varName];
+                }
+                document.documentElement.style.setProperty(`--${key}`, computedValue);
             }
         });
     }, [variables]);
