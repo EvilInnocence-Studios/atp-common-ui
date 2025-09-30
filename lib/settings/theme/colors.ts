@@ -62,5 +62,23 @@ export const colorSettings:ISettingsModule = {
             defaultValue: "#00FF00",
             description: "The color used for values that have been changed.",
         },
+        "theme.headerMenuBg": {
+            displayName: "Header Menu Background Color",
+            type: "color",
+            defaultValue: "#000000",
+            description: "The background color of the header menu.",
+        },
+        "theme.contentBg": {
+            displayName: "Content Background Color",
+            type: "color",
+            defaultValue: "#121212",
+            description: "The background color of the main content area.",
+        },
+        "theme.pageBg": {
+            displayName: "Page Background Color",
+            type: "color",
+            defaultValue: "#1A1A1A",
+            description: "The background color of the entire page.",
+        }
     }
 }
