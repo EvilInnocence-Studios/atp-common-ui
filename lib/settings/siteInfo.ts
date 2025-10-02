@@ -1,7 +1,4 @@
-import { services } from "@core/lib/api";
 import { ISettingsModule } from "../setting/types";
-import { map } from "ts-functional";
-import { IMedia } from "@common-shared/media/types";
 
 export const siteInfoSettings:ISettingsModule = {
     "Site Info": {
