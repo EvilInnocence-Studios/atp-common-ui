@@ -79,6 +79,18 @@ export const colorSettings:ISettingsModule = {
             type: "color",
             defaultValue: "#1A1A1A",
             description: "The background color of the entire page.",
+        },
+        "theme.linkColor": {
+            displayName: "Link Color",
+            type: "color",
+            defaultValue: "#1E90FF",
+            description: "The color used for hyperlinks.",
+        },
+        "theme.altLinkColor": {
+            displayName: "Alternate Link Color",
+            type: "color",
+            defaultValue: "#FF4500",
+            description: "An alternate color used for hyperlinks.",
         }
     }
 }

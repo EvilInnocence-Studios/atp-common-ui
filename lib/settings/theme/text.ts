@@ -32,5 +32,17 @@ export const textSettings:ISettingsModule = {
             defaultValue: 22,
             description: "The size for extra large text.",
         },
+        "theme.defaultFont": {
+            displayName: "Default Font Family",
+            type: "string",
+            defaultValue: "Arial, sans-serif",
+            description: "The default font family used for text.",
+        },
+        "theme.headerFont": {
+            displayName: "Header Font Family",
+            type: "string",
+            defaultValue: "Helvetica, sans-serif",
+            description: "The font family used for headers.",
+        }
     }
 }

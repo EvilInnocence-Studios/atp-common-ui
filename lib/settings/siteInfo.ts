@@ -1,4 +1,7 @@
+import { services } from "@core/lib/api";
 import { ISettingsModule } from "../setting/types";
+import { map } from "ts-functional";
+import { IMedia } from "@common-shared/media/types";
 
 export const siteInfoSettings:ISettingsModule = {
     "Site Info": {
@@ -25,6 +28,18 @@ export const siteInfoSettings:ISettingsModule = {
             type: "string",
             defaultValue: "",
             description: "The base URL for the image host. This is used to serve images from a CDN or external storage.",
+        },
+        siteLogoUrl: {
+            displayName: "Site Logo URL",
+            type: "string",
+            defaultValue: "",
+            description: "The logo used for the site, shown in the header and emails.",
+        },
+        spinnerImageUrl: {
+            displayName: "Spinner Image URL",
+            type: "string",
+            defaultValue: "",
+            description: "The image used for loading spinners.",
         }
     },
 }
