@@ -21,7 +21,22 @@ export const socialSettings:ISettingsModule = {
             displayName: "Instagram Handle",
             type: "string",
             defaultValue: "",
-        }
+        },
+        patreonHandle: {
+            displayName: "Patreon Handle",
+            type: "string",
+            defaultValue: "",
+        },
+        youtubeChannel: {
+            displayName: "YouTube Channel URL",
+            type: "string",
+            defaultValue: "",
+        },
+        tikTokHandle: {
+            displayName: "TikTok Handle",
+            type: "string",
+            defaultValue: "",
+        },
     },
     "Mailchimp": {
         mailchimpFormHeader: {
