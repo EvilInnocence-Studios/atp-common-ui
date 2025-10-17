@@ -15,19 +15,21 @@ export const useFullImageUrl = (folderSetting: string, fileName:string) => {
         : "";
 }
 
-const injectMediaImageProps = createInjector(({imageId}:IMediaImageInputProps):IMediaImageProps => {
+const injectMediaImageProps = createInjector(({imageId, settingKey}:IMediaImageInputProps):IMediaImageProps => {
     const [image, setImage] = useState<IMedia | null>(null);
     const fullUrl = useFullImageUrl("mediaImageFolder", image?.url || "");
     const loader = useLoaderAsync();
+    const settingValue = useSetting(settingKey || null);
 
     useEffect(() => {
-        if(imageId) {
+        const id = imageId || settingValue;
+        if(id) {
             loader(async () =>
-                services().media.get(imageId)
+                services().media.get(id)
                     .then(setImage)
             );
         }
-    }, [imageId]);
+    }, [imageId, settingValue]);
 
     return {image, isLoading: loader.isLoading, fullUrl};
 });

@@ -34,14 +34,16 @@ export const settingServices = memoize(({ get, post, put, patch, remove }: IMeth
     },
 }), {});
 
-export const useSetting = (key:string):string => {
+export const useSetting = (key:string | null):string => {
     const [settings] = useSettingsRaw();
 
     useEffect(() => {
-        services().setting.get(key)
+        if(key) {
+            services().setting.get(key)
+        }
     }, []);
 
-    return settings[key];
+    return key ? settings[key] : "";
 }
 
 export const useSettingGroup = (prefix:string):Index<string> => {
