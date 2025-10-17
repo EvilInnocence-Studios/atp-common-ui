@@ -3,6 +3,9 @@ export declare interface ISocialLinksProps {
     twitter: string;
     blueSky: string;
     instagram: string;
+    patreon: string;
+    youtube: string;
+    tikTok: string;
 }
 
 // What gets passed into the component from the parent as attributes
