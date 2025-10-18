@@ -2,16 +2,14 @@ import { Spin } from "antd";
 import Markdown from 'react-markdown';
 import remarkDirective from 'remark-directive';
 import remarkDirectiveSugar from 'remark-directive-sugar';
-import { Page } from "./Page.container";
 import { PageProps } from "./Page.d";
 import styles from './Page.module.scss';
 
-export const PageComponent = ({page, isLoading, notFound, disable404}:PageProps) =>
+export const PageComponent = ({page, isLoading, notFound, notFoundPage}:PageProps) =>
     <Spin spinning={isLoading}>
-        {notFound && !disable404 && <Page slug="404" disable404 />}
-        {notFound && disable404 && <div className={styles.page}>
-            <h1>404: Page Not Found</h1>
-            <p>The page you are looking for does not exist.</p>
+        {notFound && <div className={styles.page}>
+            <h1>{notFoundPage.title}</h1>
+            <Markdown remarkPlugins={[remarkDirective, remarkDirectiveSugar]}>{notFoundPage.content}</Markdown>
         </div>}
         {!notFound && page && <div className={styles.page}>
             <h1>{page.title}</h1>

@@ -2,6 +2,7 @@ import { IContent } from "@common-shared/content/types";
 
 export declare interface IPageProps {
     page: IContent | null;
+    notFoundPage: Partial<IContent>;
     isLoading: boolean;
     notFound: boolean;
 }
@@ -9,7 +10,6 @@ export declare interface IPageProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IPageInputProps {
     slug: string;
-    disable404?: boolean;
 }
 
 export type PageProps = IPageInputProps & IPageProps;
