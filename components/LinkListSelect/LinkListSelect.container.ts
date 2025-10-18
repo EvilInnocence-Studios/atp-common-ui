@@ -9,7 +9,7 @@ const injectLinkListSelectProps = createInjector(({}:ILinkListSelectInputProps):
 
     useEffect(() => {
         services().linkList.search().then(lists => {
-            setLists(lists.map(list => ({value: list.id, label: list.name})));
+            setLists(lists.map(list => ({value: list.key, label: list.name})));
         });
     }, []);
     

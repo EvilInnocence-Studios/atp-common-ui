@@ -40,8 +40,8 @@ const LinkItem = ({link, update, remove, index, moveToTop}:any) => {
             <Editable value={link.url } onChange={update(link.id, "url" )} />
             <LinkListSelect
                 className={styles.listSelect}
-                listId={link.subMenuId}
-                onChange={update(link.id, "subMenuId")}
+                listId={link.subMenuKey}
+                onChange={update(link.id, "subMenuKey")}
             />
         </CanEdit>
         <CanEdit no>{link.text} [{link.url}]</CanEdit>
