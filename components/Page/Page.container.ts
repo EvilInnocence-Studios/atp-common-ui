@@ -5,6 +5,15 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { PageComponent } from "./Page.component";
 import { IPageInputProps, IPageProps, PageProps } from "./Page.d";
+import { memoizePromise } from "ts-functional";
+
+const getPage = memoizePromise(async (slug:string):Promise<IContent | null> => {
+    const pages = await services().content.search({type: 'page', slug});
+    if( pages.length && pages[0].type === 'page' && pages[0].enabled && pages[0].publishDate && new Date(pages[0].publishDate) <= new Date()) {
+        return pages[0];
+    }
+    return null;
+}, {});
 
 const injectPageProps = createInjector(({slug}:IPageInputProps):IPageProps => {
     const [page, setPage] = useState<IContent | null>(null);
@@ -15,25 +24,15 @@ const injectPageProps = createInjector(({slug}:IPageInputProps):IPageProps => {
     const loader = useLoaderAsync();
 
     useEffect(() => {
-        loader(() =>
-            services().content.search({type: 'page', slug})
-            .then(pages => {
-                setPage(pages.length && pages[0].type === 'page' && pages[0].enabled && pages[0].publishDate && new Date(pages[0].publishDate) <= new Date()
-                    ? pages[0]
-                    : null
-                );
-        }));
+        loader(() => getPage(slug).then(setPage));
     }, [slug]);
 
     useEffect(() => {
-        loader(() => 
-            services().content.search({type: 'page', slug: '404'})
-            .then(pages => {
-                if( pages.length && pages[0].type === 'page') {
-                    setNotFoundPage(pages[0]);
-                    return;
-                }
-        }));
+        loader(() => getPage('404').then((page => {
+            if( page ) {
+                setNotFoundPage(page);
+            }
+        })));
     }, []);
 
     return {page, isLoading: loader.isLoading, notFound: !loader.isLoading && !page, notFoundPage};
