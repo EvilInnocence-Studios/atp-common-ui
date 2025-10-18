@@ -10,6 +10,7 @@ import { hasPermission } from "@uac/components/HasPermission";
 import { Alert, Button, Input, Space, Spin } from "antd";
 import { LinkManagerProps } from "./LinkManager.d";
 import styles from './LinkManager.module.scss';
+import { LinkListSelect } from "../LinkListSelect";
 
 const CanView = hasPermission("links.view");
 const CanEdit = hasPermission("links.update");
@@ -37,6 +38,11 @@ const LinkItem = ({link, update, remove, index, moveToTop}:any) => {
             </span>
             <Editable value={link.text} onChange={update(link.id, "text")} />
             <Editable value={link.url } onChange={update(link.id, "url" )} />
+            <LinkListSelect
+                className={styles.listSelect}
+                listId={link.subMenuId}
+                onChange={update(link.id, "subMenuId")}
+            />
         </CanEdit>
         <CanEdit no>{link.text} [{link.url}]</CanEdit>
         <CanDelete yes><DeleteBtn entityType="link" onClick={remove(link.id)} /></CanDelete>
