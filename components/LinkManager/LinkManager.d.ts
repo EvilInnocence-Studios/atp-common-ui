@@ -10,8 +10,7 @@ export declare interface ILinkManagerProps {
     create: () => void;
     update: (id:string, field:keyof ILink) => (value:any) => void;
     remove: (id:string) => () => void;
-    sort: (e:{active:{id:any}, over:{id:any} | null}) => void;
-    moveToTop: (id:string) => () => void;
+    sort: (id:string, newIndex:number) => void;
 }
 
 // What gets passed into the component from the parent as attributes

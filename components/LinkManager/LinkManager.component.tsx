@@ -1,16 +1,16 @@
 import { ILink } from "@common-shared/link/types";
 import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
+import { SortableList } from "@core/components/SortableList";
 import { onInputChange } from "@core/lib/onInputChange";
-import { DndContext } from "@dnd-kit/core";
-import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { faAdd, faForwardStep, faGripVertical } from "@fortawesome/free-solid-svg-icons";
+import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
 import { Alert, Button, Input, Space, Spin } from "antd";
+import { prop } from "ts-functional";
+import { LinkListSelect } from "../LinkListSelect";
 import { LinkManagerProps } from "./LinkManager.d";
 import styles from './LinkManager.module.scss';
-import { LinkListSelect } from "../LinkListSelect";
 
 const CanView = hasPermission("links.view");
 const CanEdit = hasPermission("links.update");
@@ -19,31 +19,20 @@ const CanDelete = hasPermission("links.delete");
 
 const linkId = (link:ILink,  index:number) => `${link.id}:${index}`;
 
-const LinkItem = ({link, update, remove, index, moveToTop}:any) => {
-    const {attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition} = useSortable({
-        id: linkId(link, index),
-      });
-      const style = transform ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        transition
-      } : undefined;
+interface ILinkItemProps {
+    update: (id: string, field: keyof ILink) => (value: string | null) => void;
+    remove: (id: string) => () => void;
+}
 
-    return <div className={styles.link} key={link.id} style={style} ref={setNodeRef} {...attributes}>
-        <CanEdit yes>
-            <span className={styles.icon} ref={setActivatorNodeRef} {...listeners}>
-                <FontAwesomeIcon icon={faGripVertical} />
-            </span>
-            <span className={styles.icon}>
-                <FontAwesomeIcon title="Move to top" icon={faForwardStep} rotation={270} onClick={moveToTop(link.id)} />
-            </span>
-            <Editable value={link.text} onChange={update(link.id, "text")} />
-            <Editable value={link.url } onChange={update(link.id, "url" )} />
-            <LinkListSelect
-                className={styles.listSelect}
-                listId={link.subMenuKey}
-                onChange={update(link.id, "subMenuKey")}
-            />
-        </CanEdit>
+const LinkItem = ({item:link, update, remove}:{item:ILink} & ILinkItemProps) => {
+    return <div className={styles.link}>
+        <Editable value={link.text} onChange={update(link.id, "text")} />
+        <Editable value={link.url } onChange={update(link.id, "url" )} />
+        <LinkListSelect
+            className={styles.listSelect}
+            listId={link.subMenuKey}
+            onChange={update(link.id, "subMenuKey")}
+        />
         <CanEdit no>{link.text} [{link.url}]</CanEdit>
         <CanDelete yes><DeleteBtn entityType="link" onClick={remove(link.id)} /></CanDelete>
     </div>;
@@ -53,22 +42,18 @@ export const LinkManagerComponent = ({
     links, isLoading,
     text, setText,
     url, setUrl,
-    create, update, remove, sort, moveToTop,
+    create, update, remove, sort,
 }:LinkManagerProps) =>
     <Spin spinning={isLoading}>
         <CanView yes>
-            <DndContext onDragEnd={sort}>
-                <SortableContext items={links.map(linkId)} strategy={verticalListSortingStrategy}>
-                    {links.map((link, i) => <LinkItem
-                        key={link.id}
-                        link={link}
-                        index={i}
-                        update={update}
-                        remove={remove}
-                        moveToTop={moveToTop}
-                    />)}
-                </SortableContext>
-            </DndContext>
+            <SortableList<ILink, ILinkItemProps>
+                items={links}
+                getId={prop("id")}
+                getListId={linkId}
+                sort={sort}
+                ItemComponent={LinkItem}
+                itemProps={{update, remove}}
+            />
             <CanCreate yes>
                 <Space.Compact style={{width: "100%"}}>
                     <Input

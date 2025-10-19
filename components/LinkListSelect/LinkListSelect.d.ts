@@ -6,7 +6,7 @@ export declare interface ILinkListSelectProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface ILinkListSelectInputProps {
-    listId?: string;
+    listId?: string | null;
     onChange: (listId: string | null) => void;
     className?: string;
 }

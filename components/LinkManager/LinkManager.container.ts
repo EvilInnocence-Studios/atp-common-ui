@@ -48,20 +48,10 @@ const injectLinkManagerProps = createInjector(({list}:ILinkManagerInputProps):IL
         );
     }
 
-    const sortLinks = (e:{active:{id:any}, over:{id:any} | null}) => {
-        const {active, over} = e;
-        const [linkId, _oldIndex] = active.id.split(':');
-        const newIndex = over ? over.id.split(':')[1] : links.length - 1;
+    const sortLinks = (linkId: string, newIndex: number) => {
         loader(() => link.sort(list.id, linkId, newIndex)
             .then(refresh)
             .catch(flash.error("Failed to sort links"))
-        );
-    }
-
-    const moveToTop = (id:string) => () => {
-        loader(() => link.sort(list.id, id, 0)
-            .then(refresh)
-            .catch(flash.error("Failed to move link to top"))
         );
     }
 
@@ -76,7 +66,7 @@ const injectLinkManagerProps = createInjector(({list}:ILinkManagerInputProps):IL
     return {
         links, isLoading: loader.isLoading,
         text, setText, url, setUrl,
-        create, update, remove, sort: sortLinks, moveToTop,
+        create, update, remove, sort: sortLinks,
     };
 });
 
