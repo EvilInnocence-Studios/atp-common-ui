@@ -4,24 +4,13 @@
     display: flex;
     flex-wrap: none;
     position: relative;
-    padding: var(--paddingXS) 0 var(--paddingXS) var(--paddingSmall);
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: solid 1px var(--borderColor);
-    border-radius: 0.5rem;
+    width: 100%;
     background-color: var(--bgLightColor);
     color: var(--primaryColor);
     font-size: 1rem;
     font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
     .icon {
         padding-top: 4px;
         margin-right: 8px;
-    }
-
-    > :nth-child(2) {
-        padding-right: 8px;
-        border-right: solid 1px var(--borderColor);
     }
 }

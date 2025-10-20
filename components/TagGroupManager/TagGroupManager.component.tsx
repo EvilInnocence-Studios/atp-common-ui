@@ -1,21 +1,19 @@
 import { ITagGroup } from "@common-shared/tag/types";
 import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
+import { SortableList } from "@core/components/SortableList";
 import { onCheckboxChange, onInputChange } from "@core/lib/onInputChange";
 import { stopProp } from "@core/lib/util";
-import { DndContext } from "@dnd-kit/core";
-import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
-import { faAdd, faArrowRight, faGripVertical, faTag } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faArrowRight, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
 import { Alert, Button, Card, Checkbox, Col, Input, Row, Space, Spin } from "antd";
 import clsx from "clsx";
 import { prop, sort } from "ts-functional";
+import { ClearCacheButton } from "../ClearCacheButton";
 import { TagManager } from "../TagManager";
 import { TagGroupManagerProps } from "./TagGroupManager.d";
 import styles from "./TagGroupManager.module.scss";
-import { ClearCacheButton } from "../ClearCacheButton";
-import { SortableList } from "@core/components/SortableList";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
