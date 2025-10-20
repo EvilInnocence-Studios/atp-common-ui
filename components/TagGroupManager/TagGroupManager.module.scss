@@ -5,25 +5,19 @@
 }
 
 .tagGroupList {
-    margin: 0 0 var(--padding) 0;
+    margin: 0;
+    .selected {
+        background-color: var(--bgColorLight);
+    }
     .tagGroup {
         width: 100%;
-        padding: 0;
+        padding: 0 !important;
+        margin: 0;
         border: solid 1px var(--borderColor);
         padding: var(--paddingSmall) var(--padding);
-        margin-top: -1px;
         position: relative;
         display: flex;
         flex-wrap: nowrap;
-        > :first-child {
-            margin: 8px 8px 0 -8px;
-        }
-        > :nth-child(2) {
-            margin-right: 4px;
-        }
-        &.selected {
-            background-color: var(--bgLightColor);
-        }
     }
 }
 

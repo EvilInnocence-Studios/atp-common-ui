@@ -15,6 +15,7 @@ import { TagManager } from "../TagManager";
 import { TagGroupManagerProps } from "./TagGroupManager.d";
 import styles from "./TagGroupManager.module.scss";
 import { ClearCacheButton } from "../ClearCacheButton";
+import { SortableList } from "@core/components/SortableList";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -23,23 +24,10 @@ const CanCreate = hasPermission("tag.create");
 
 const groupId = (tag:ITagGroup,  index:number) => `${tag.id}:${index}`;
 
-const Group = ({group, update, remove, index, selectedGroup, setSelectedGroup}:any) => {
-    const {attributes, listeners, setNodeRef, setActivatorNodeRef, transform, transition} = useSortable({
-        id: groupId(group, index),
-      });
-      const style = transform ? {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        transition
-      } : undefined;
+const Group = ({item:group, update, remove, selectedGroup, setSelectedGroup}:any) => {
     return <div
         className={clsx([styles.tagGroup, selectedGroup === group.id && styles.selected])}
-        style={style}
-        ref={setNodeRef}
-        {...attributes}
     >
-        <span className={styles.tagHandle} ref={setActivatorNodeRef} {...listeners}>
-            <FontAwesomeIcon icon={faGripVertical} />
-        </span>
         <Checkbox
             title="Filterable"
             checked={group.filterable}
@@ -69,16 +57,17 @@ export const TagGroupManagerComponent = ({groups, isLoading, name, setName, crea
 
         <Row gutter={8}>
             <Col xs={6}>
-                <DndContext onDragEnd={sortGroups}>
-                    <div className={styles.tagGroupList}>
-                        <SortableContext items={groups.map(groupId)} strategy={verticalListSortingStrategy}>
-                            {groups
-                                .sort(sort.by(prop<ITagGroup, "order">("order")).asc)
-                                .map((group, i) => <Group key={group.id} className={styles.tagGroup} group={group} {...handlers} index={i}/>)
-                            }
-                        </SortableContext>
-                    </div>
-                </DndContext>
+                <SortableList<ITagGroup>
+                    className={styles.tagGroupList}
+                    isActive={(group) => handlers.selectedGroup === group.id}
+                    activeClassName={styles.selected}
+                    items={groups.sort(sort.by(prop<ITagGroup, "order">("order")).asc)}
+                    getId={prop<any, any>("id")}
+                    getListId={groupId}
+                    sort={sortGroups}
+                    ItemComponent={Group}
+                    itemProps={handlers}
+                />
                 <CanCreate yes>
                     <Card size="small"
                         className={styles.newTagGroupForm}

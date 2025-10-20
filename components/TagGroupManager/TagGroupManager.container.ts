@@ -55,10 +55,7 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
     };
     useEffect(refresh, []);
 
-    const sortGroups = (e:{active:{id:any}, over:{id:any} | null}) => {
-        const {active, over} = e;
-        const [groupId, _oldIndex] = active.id.split(':');
-        const newIndex = over ? over.id.split(':')[1] : groups.length - 1;
+    const sortGroups = (groupId: string, newIndex: number) => {
         loader(() => services().tagGroup.sort(groupId, newIndex)
             .then(refresh)
             .catch(flash.error("Failed to sort tags"))
