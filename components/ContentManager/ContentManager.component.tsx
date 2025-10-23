@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import { ContentEditor } from "../ContentEditor";
 import { ContentManagerProps } from "./ContentManager.d";
 import styles from './ContentManager.module.scss';
+import { ClearCacheButton } from "../ClearCacheButton";
 
 export const ContentManagerComponent = ({id, type, pages, isLoading, create, refresh}:ContentManagerProps) =>
     <Spin spinning={isLoading}>
@@ -18,6 +19,8 @@ export const ContentManagerComponent = ({id, type, pages, isLoading, create, ref
                         <Button onClick={create} type="primary" >
                             <FontAwesomeIcon icon={faPlus} /> Create New {type.charAt(0).toUpperCase() + type.slice(1)}
                         </Button>
+                        &nbsp;
+                        <ClearCacheButton entity="content" cacheType={`content`} />
                     </h2>
                     <ul className={styles.pageList}>
                         {pages.map(page =>

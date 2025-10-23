@@ -5,6 +5,7 @@ import { Input, Space, Spin } from "antd";
 import { SynonymCard } from "../SynonymCard/SynonymCard.container";
 import { SynonymManagerProps } from "./SynonymManager.d";
 import styles from './SynonymManager.module.scss';
+import { ClearCacheButton } from "../ClearCacheButton";
 
 export const SynonymManagerComponent = ({
     synonyms, isLoading,
@@ -15,6 +16,8 @@ export const SynonymManagerComponent = ({
     <Spin spinning={isLoading}>
         <div className={styles.synonymManager}>
             <h1><FontAwesomeIcon icon={faRightLeft} /> Synonyms</h1>
+            <ClearCacheButton entity="synonyms" cacheType="synonym" />
+            <br/><br/>
             <Space.Compact className={styles.newSynonymForm}>
                 <Input placeholder="Canonical" value={canonical} onChange={onInputChange(setCanonical)} />
                 <Input.Search

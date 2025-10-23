@@ -25,8 +25,7 @@ export const LinkListManagerComponent = ({
 }:LinkListManagerProps) =>
     <Spin spinning={isLoading}>
         <Space.Compact className={styles.cacheBtns}>
-            <ClearCacheButton entity="link lists" cacheType="linkList" />
-            <ClearCacheButton entity="links" cacheType="link" />
+            <ClearCacheButton entity="links" cacheType="linkList,link" />
         </Space.Compact>
         <h1><FontAwesomeIcon icon={faLink} /> Link Lists</h1>
 

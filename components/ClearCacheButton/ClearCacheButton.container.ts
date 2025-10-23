@@ -9,9 +9,13 @@ const injectClearCacheButtonProps = createInjector(({cacheType}:IClearCacheButto
     const loader = useLoaderAsync();
 
     const onClick = () => {
-        loader(() => 
-            services().cache.clear(cacheType)
-                .then(flash.success(`Cache '${cacheType}' cleared`))
+        loader(() => Promise.all(cacheType.split(",")
+            .map(ct => ct.trim())
+            .filter(ct => ct.length > 0)
+            .map(ct =>
+                services().cache.clear(ct)
+                    .then(flash.success(`Cache '${ct}' cleared`))
+            ))
         );
     }
     

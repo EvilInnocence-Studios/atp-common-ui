@@ -8,6 +8,6 @@ export const ClearCacheButtonComponent = ({entity, onClick, isLoading}:ClearCach
     <Button type="primary" className={styles.clearCacheButton} onClick={onClick}>
         <Spin spinning={isLoading}>
             <FontAwesomeIcon icon={faArrowsRotate} />&nbsp;
-            Clear {entity} Cache
+            Clear {entity} cache
         </Spin>
     </Button>

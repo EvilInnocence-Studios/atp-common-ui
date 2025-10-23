@@ -10,10 +10,13 @@ import { Checkbox, ColorPicker, Tabs } from "antd";
 import { objMap } from "ts-functional";
 import { SettingsManagerProps } from "./SettingsManager.d";
 import styles from './SettingsManager.module.scss';
+import { ClearCacheButton } from "../ClearCacheButton";
 
 export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps) =>
     <div className={styles.settingsManager}>
         <h1><FontAwesomeIcon icon={faGear} /> Settings</h1>
+        <ClearCacheButton entity="settings" cacheType="setting" />
+        <br/><br/>
         <Tabs tabPosition="left" defaultActiveKey="0">
             {Object.values(objMap((module:ISettingsModule, moduleName:string) => <Tabs.TabPane
                 key={moduleName}
