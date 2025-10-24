@@ -6,7 +6,7 @@ import { useSetting } from "@common/lib/setting/services";
 const injectCopyrightProps = createInjector(({}:ICopyrightInputProps):ICopyrightProps => {
     const copyright = useSetting("copyrightStatement");
 
-    return {copyright: copyright.replace("{year}", new Date().getFullYear().toString())};
+    return {copyright: (copyright || "").replace("{year}", new Date().getFullYear().toString())};
 });
 
 const connect = inject<ICopyrightInputProps, CopyrightProps>(mergeProps(
