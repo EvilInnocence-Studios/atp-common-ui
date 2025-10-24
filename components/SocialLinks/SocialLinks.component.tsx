@@ -11,12 +11,13 @@ export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, pat
         <Link to="/">
             <Setting id="siteName" />
         </Link>
-        <br />
-        {facebook  && <a href={`https://www.facebook.com/${facebook}`}   target="_blank"><FontAwesomeIcon icon={faFacebook}  /></a>}
-        {twitter   && <a href={`https://twitter.com/${twitter}`}         target="_blank"><FontAwesomeIcon icon={faTwitter}   /></a>}
-        {blueSky   && <a href={`https://bsky.app/profile/${blueSky}`}    target="_blank"><FontAwesomeIcon icon={faBluesky}   /></a>}
-        {instagram && <a href={`https://www.instagram.com/${instagram}`} target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>}
-        {patreon   && <a href={`https://www.patreon.com/${patreon}`}     target="_blank"><FontAwesomeIcon icon={faPatreon}   /></a>}
-        {youtube   && <a href={`https://www.youtube.com/${youtube}`}     target="_blank"><FontAwesomeIcon icon={faYoutube}   /></a>}
-        {tikTok    && <a href={`https://www.tiktok.com/${tikTok}`}       target="_blank"><FontAwesomeIcon icon={faTiktok}    /></a>}
+        <div className={styles.links}>
+            {facebook  && <a href={`https://www.facebook.com/${facebook}`}   target="_blank"><FontAwesomeIcon icon={faFacebook}  /></a>}
+            {twitter   && <a href={`https://twitter.com/${twitter}`}         target="_blank"><FontAwesomeIcon icon={faTwitter}   /></a>}
+            {blueSky   && <a href={`https://bsky.app/profile/${blueSky}`}    target="_blank"><FontAwesomeIcon icon={faBluesky}   /></a>}
+            {instagram && <a href={`https://www.instagram.com/${instagram}`} target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>}
+            {patreon   && <a href={`https://www.patreon.com/${patreon}`}     target="_blank"><FontAwesomeIcon icon={faPatreon}   /></a>}
+            {youtube   && <a href={`https://www.youtube.com/${youtube}`}     target="_blank"><FontAwesomeIcon icon={faYoutube}   /></a>}
+            {tikTok    && <a href={`https://www.tiktok.com/${tikTok}`}       target="_blank"><FontAwesomeIcon icon={faTiktok}    /></a>}
+        </div>
     </div>;
