@@ -6,6 +6,7 @@ export declare interface ISocialLinksProps {
     patreon: string;
     youtube: string;
     tikTok: string;
+    kofi: string;
 }
 
 // What gets passed into the component from the parent as attributes

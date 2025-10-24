@@ -37,6 +37,11 @@ export const socialSettings:ISettingsModule = {
             type: "string",
             defaultValue: "",
         },
+        kofiHandle: {
+            displayName: "Ko-fi Handle",
+            type: "string",
+            defaultValue: "",
+        },
     },
     "Mailchimp": {
         mailchimpFormHeader: {

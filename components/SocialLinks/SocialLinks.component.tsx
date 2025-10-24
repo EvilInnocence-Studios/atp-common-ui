@@ -6,7 +6,7 @@ import { Setting } from "../Setting";
 import { SocialLinksProps } from "./SocialLinks.d";
 import styles from './SocialLinks.module.scss';
 
-export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, patreon, youtube, tikTok}:SocialLinksProps) =>
+export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, patreon, youtube, tikTok, kofi}:SocialLinksProps) =>
     <div className={clsx([styles.socialLinks])}>
         <Link to="/">
             <Setting id="siteName" />
@@ -16,6 +16,7 @@ export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, pat
             {twitter   && <a href={`https://twitter.com/${twitter}`}         target="_blank"><FontAwesomeIcon icon={faTwitter}   /></a>}
             {blueSky   && <a href={`https://bsky.app/profile/${blueSky}`}    target="_blank"><FontAwesomeIcon icon={faBluesky}   /></a>}
             {instagram && <a href={`https://www.instagram.com/${instagram}`} target="_blank"><FontAwesomeIcon icon={faInstagram} /></a>}
+            {kofi      && <a href={`https://ko-fi.com/${kofi}`}              target="_blank"><img src="/kofi_symbol.png"         /></a>}
             {patreon   && <a href={`https://www.patreon.com/${patreon}`}     target="_blank"><FontAwesomeIcon icon={faPatreon}   /></a>}
             {youtube   && <a href={`https://www.youtube.com/${youtube}`}     target="_blank"><FontAwesomeIcon icon={faYoutube}   /></a>}
             {tikTok    && <a href={`https://www.tiktok.com/${tikTok}`}       target="_blank"><FontAwesomeIcon icon={faTiktok}    /></a>}

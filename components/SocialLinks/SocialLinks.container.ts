@@ -11,8 +11,9 @@ const injectSocialLinksProps = createInjector(({}:ISocialLinksInputProps):ISocia
     const patreon   = useSetting("patreonHandle"  );
     const youtube   = useSetting("youtubeChannel" );
     const tikTok    = useSetting("tikTokHandle"   );
+    const kofi      = useSetting("kofiHandle"     );
 
-    return {facebook, twitter, blueSky, instagram, patreon, youtube, tikTok};
+    return {facebook, twitter, blueSky, instagram, patreon, youtube, tikTok, kofi};
 });
 
 const connect = inject<ISocialLinksInputProps, SocialLinksProps>(mergeProps(
