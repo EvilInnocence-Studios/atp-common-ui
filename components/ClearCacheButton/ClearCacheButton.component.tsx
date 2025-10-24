@@ -1,13 +1,21 @@
-import { Button, Spin } from "antd";
-import {ClearCacheButtonProps} from "./ClearCacheButton.d";
-import styles from './ClearCacheButton.module.scss';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Dropdown, Spin } from "antd";
+import { ClearCacheButtonProps } from "./ClearCacheButton.d";
+import styles from './ClearCacheButton.module.scss';
 
-export const ClearCacheButtonComponent = ({entity, onClick, isLoading}:ClearCacheButtonProps) =>
-    <Button type="primary" className={styles.clearCacheButton} onClick={onClick}>
+export const ClearCacheButtonComponent = ({entity, onClick, isLoading, clearAll}:ClearCacheButtonProps) =>
+    <Dropdown.Button
+        menu={{
+            items: [{key: 'all', label: "Clear all caches"}],
+            onClick: clearAll,
+        }}
+        type="primary"
+        className={styles.clearCacheButton}
+        onClick={onClick}
+    >
         <Spin spinning={isLoading}>
             <FontAwesomeIcon icon={faArrowsRotate} />&nbsp;
             Clear {entity} cache
         </Spin>
-    </Button>
+    </Dropdown.Button>

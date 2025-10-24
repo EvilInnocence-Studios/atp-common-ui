@@ -18,8 +18,15 @@ const injectClearCacheButtonProps = createInjector(({cacheType}:IClearCacheButto
             ))
         );
     }
+
+    const clearAll = () => {
+        loader(() =>
+            services().cache.clear("all")
+                .then(flash.success(`All caches cleared`))
+        );
+    }
     
-    return {onClick, isLoading: loader.isLoading};
+    return {onClick, isLoading: loader.isLoading, clearAll};
 });
 
 const connect = inject<IClearCacheButtonInputProps, ClearCacheButtonProps>(mergeProps(

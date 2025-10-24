@@ -1,5 +1,6 @@
 export declare interface IClearCacheButtonProps {
     onClick: () => void;
+    clearAll: () => void;
     isLoading: boolean;
 }
 
