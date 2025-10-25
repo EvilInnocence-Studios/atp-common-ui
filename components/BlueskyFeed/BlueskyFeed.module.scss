@@ -1,24 +1,33 @@
 @use "@styles/globals.module.scss";
 
 .feed {
-    > div {
-        > div {
-            margin-bottom: var(--padding);
-            border: solid 1px var(--borderColor) !important;
-            border-radius: var(--borderRadius);
-            > div {
-                > div:first-child {
-                    display: block !important;
-                    > a {
-                        display: block !important;
-                        width: 100% ! important;
-                        font-weight: bold !important;
-                    }
-                    > span {
-                        display: block !important;
-                        width: 100% ! important;
-                        border-bottom: solid 1px var(--borderColor);
-                    }
+    .post {
+        margin-bottom: var(--padding);
+        .header {
+            border-bottom: solid 5px var(--borderColor);
+            margin-bottom: var(--paddingSmall);
+            .date {
+                color: var(--textSecondaryColor);
+                font-size: 0.9em;
+                font-style: italic;
+                text-align: right;
+            }
+        }
+        p {
+            margin: var(--paddingSmall) 0;
+        }
+        .embed {
+            background-color: #ffffff;
+            padding: var(--paddingSmall);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--paddingSmall);
+            justify-content: center;
+            .embedImage {
+                width: 100%;
+                &:nth-child(n+2) {
+                    flex: 1;
+                    max-width: 40%;
                 }
             }
         }

@@ -1,8 +1,9 @@
+import { AppBskyFeedGetAuthorFeed } from "@atproto/api";
 import { Index } from "ts-functional/dist/types";
 
 export declare interface IBlueskyFeedProps {
-    theme: Index<string>;
     handle: string;
+    feed: AppBskyFeedGetAuthorFeed.OutputSchema | null;
 }
 
 // What gets passed into the component from the parent as attributes

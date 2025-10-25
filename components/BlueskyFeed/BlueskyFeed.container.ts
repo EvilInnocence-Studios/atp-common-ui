@@ -1,13 +1,48 @@
+import { Agent, AppBskyFeedGetAuthorFeed, RichText } from "@atproto/api";
+import { useSetting } from "@common/lib/setting/services";
+import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
-import {BlueskyFeedComponent} from "./BlueskyFeed.component";
-import {IBlueskyFeedInputProps, BlueskyFeedProps, IBlueskyFeedProps} from "./BlueskyFeed.d";
-import { useSetting, useSettingGroup } from "@common/lib/setting/services";
+import { BlueskyFeedComponent } from "./BlueskyFeed.component";
+import { BlueskyFeedProps, IBlueskyFeedInputProps, IBlueskyFeedProps } from "./BlueskyFeed.d";
+
+const agent = new Agent({service: 'https://public.api.bsky.app'});
+
+export const toMarkdown = async (text: string):Promise<string> => {
+    const richText = new RichText({ text });
+    await richText.detectFacets(agent);
+
+    let markdown = ''
+    for (const segment of richText.segments()) {
+        if (segment.isLink()) {
+            markdown += `[${segment.text}](${segment.link?.uri})`
+        } else if (segment.isMention()) {
+            markdown += `[${segment.text}](https://bsky.app/user/${segment.mention?.did})`
+        } else {
+            markdown += segment.text
+        }
+    }
+    return markdown;
+}
 
 const injectBlueskyFeedProps = createInjector(({}:IBlueskyFeedInputProps):IBlueskyFeedProps => {
     const handle = useSetting("blueSkyHandle");
-    const theme = useSettingGroup("theme");
+    const [feed, setFeed] = useState<AppBskyFeedGetAuthorFeed.OutputSchema | null>(null);
 
-    return {handle, theme};
+    useEffect(() => {
+        if(handle) {
+            const fetchData = async () => {
+                try {
+                    const response:AppBskyFeedGetAuthorFeed.Response = await agent.getAuthorFeed({actor: handle, limit: 20, filter: 'posts_no_replies'});
+                    setFeed(response.data);
+                } catch (error) {
+                    console.error("Error fetching Bluesky profile:", error);
+                }
+            };
+            fetchData();
+        }
+    }, [handle]);
+console.log(feed);
+    return {handle, feed};
 });
 
 const connect = inject<IBlueskyFeedInputProps, BlueskyFeedProps>(mergeProps(
