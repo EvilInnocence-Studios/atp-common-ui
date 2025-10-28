@@ -5,7 +5,7 @@ import remarkDirectiveSugar from "remark-directive-sugar";
 import { toMarkdown } from "./BlueskyFeed.container";
 import { BlueskyFeedProps } from "./BlueskyFeed.d";
 import styles from "./BlueskyFeed.module.scss";
-import { AppBskyEmbedDefs, AppBskyEmbedVideo } from "@atproto/api";
+import { AppBskyEmbedDefs, AppBskyEmbedImages, AppBskyEmbedVideo } from "@atproto/api";
 import { useBlueskyHLS } from "./useBlueSkyHLS";
 
 const RichTextRenderer = ({text}: {text: string}) => {
@@ -77,8 +77,8 @@ export const BlueskyFeedComponent = ({pageSize, feed}:BlueskyFeedProps) => <>
                     <RichTextRenderer text={(item.post.record as any).text || ''} />
                 </div>
 
-                {(item.post.record.embed as any) && <div className={styles.embed}>
-                    {item.post.embed.$type === 'app.bsky.embed.images#view' && (item.post.embed.images as any[]).map((image, index) => <>
+                {item.post.embed && <div className={styles.embed}>
+                    {item.post.embed.$type === 'app.bsky.embed.images#view' && ((item.post.embed as AppBskyEmbedImages.View).images).map((image, index) => <>
                         <img
                             key={index}
                             src={image.thumb}
