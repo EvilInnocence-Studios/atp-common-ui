@@ -1,11 +1,12 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {SettingsManagerComponent} from "./SettingsManager.component";
-import {ISettingsManagerInputProps, SettingsManagerProps, ISettingsManagerProps} from "./SettingsManager.d";
-import { useEffect, useState } from "react";
-import { services } from "@core/lib/api";
-import { Index } from "ts-functional/dist/types";
 import { ISetting } from "@common-shared/setting/types";
+import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
+import { useEffect, useState } from "react";
+import { Index } from "ts-functional/dist/types";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { SettingsManagerComponent } from "./SettingsManager.component";
+import { ISettingsManagerInputProps, ISettingsManagerProps, SettingsManagerProps } from "./SettingsManager.d";
 
 const injectSettingsManagerProps = createInjector(({}:ISettingsManagerInputProps):ISettingsManagerProps => {
     const [settings, setSettings] = useState<Index<ISetting>>({});
@@ -42,4 +43,4 @@ const connect = inject<ISettingsManagerInputProps, SettingsManagerProps>(mergePr
     injectSettingsManagerProps,
 ));
 
-export const SettingsManager = connect(SettingsManagerComponent);
+export const SettingsManager = overridable<ISettingsManagerInputProps>(connect(SettingsManagerComponent));

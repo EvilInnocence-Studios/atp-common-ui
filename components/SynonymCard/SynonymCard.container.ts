@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { SynonymCardComponent } from "./SynonymCard.component";
@@ -13,4 +14,4 @@ const connect = inject<ISynonymCardInputProps, SynonymCardProps>(mergeProps(
     injectSynonymCardProps,
 ));
 
-export const SynonymCard = connect(SynonymCardComponent);
+export const SynonymCard = overridable<ISynonymCardInputProps>(connect(SynonymCardComponent));

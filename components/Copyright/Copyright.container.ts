@@ -1,7 +1,8 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {CopyrightComponent} from "./Copyright.component";
-import {ICopyrightInputProps, CopyrightProps, ICopyrightProps} from "./Copyright.d";
 import { useSetting } from "@common/lib/setting/services";
+import { overridable } from "@core/lib/overridable";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { CopyrightComponent } from "./Copyright.component";
+import { CopyrightProps, ICopyrightInputProps, ICopyrightProps } from "./Copyright.d";
 
 const injectCopyrightProps = createInjector(({}:ICopyrightInputProps):ICopyrightProps => {
     const copyright = useSetting("copyrightStatement");
@@ -13,4 +14,4 @@ const connect = inject<ICopyrightInputProps, CopyrightProps>(mergeProps(
     injectCopyrightProps,
 ));
 
-export const Copyright = connect(CopyrightComponent);
+export const Copyright = overridable<ICopyrightInputProps>(connect(CopyrightComponent));

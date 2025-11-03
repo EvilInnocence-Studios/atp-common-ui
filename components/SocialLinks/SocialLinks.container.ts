@@ -1,7 +1,8 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {SocialLinksComponent} from "./SocialLinks.component";
-import {ISocialLinksInputProps, SocialLinksProps, ISocialLinksProps} from "./SocialLinks.d";
 import { useSetting } from "@common/lib/setting/services";
+import { overridable } from "@core/lib/overridable";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { SocialLinksComponent } from "./SocialLinks.component";
+import { ISocialLinksInputProps, ISocialLinksProps, SocialLinksProps } from "./SocialLinks.d";
 
 const injectSocialLinksProps = createInjector(({}:ISocialLinksInputProps):ISocialLinksProps => {
     const facebook  = useSetting("facebookPage"   );
@@ -20,4 +21,4 @@ const connect = inject<ISocialLinksInputProps, SocialLinksProps>(mergeProps(
     injectSocialLinksProps,
 ));
 
-export const SocialLinks = connect(SocialLinksComponent);
+export const SocialLinks = overridable<ISocialLinksInputProps>(connect(SocialLinksComponent));

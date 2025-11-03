@@ -1,6 +1,7 @@
 import { ITag, ITagGroup } from "@common-shared/tag/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoader } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps, useLocalStorage } from "unstateless";
@@ -57,4 +58,4 @@ const connect = inject<IEntityTagEditorInputProps, EntityTagEditorProps>(mergePr
     injectEntityTagEditorProps,
 ));
 
-export const EntityTagEditor = connect(EntityTagEditorComponent);
+export const EntityTagEditor = overridable<IEntityTagEditorInputProps>(connect(EntityTagEditorComponent));

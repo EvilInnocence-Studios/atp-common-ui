@@ -1,9 +1,10 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ContentEditorComponent} from "./ContentEditor.component";
-import {IContentEditorInputProps, ContentEditorProps, IContentEditorProps} from "./ContentEditor.d";
-import { useUpdater } from "@core/lib/useUpdater";
 import { IContent } from "@common-shared/content/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useUpdater } from "@core/lib/useUpdater";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ContentEditorComponent } from "./ContentEditor.component";
+import { ContentEditorProps, IContentEditorInputProps, IContentEditorProps } from "./ContentEditor.d";
 
 const injectContentEditorProps = createInjector(({content, onUpdate}:IContentEditorInputProps):IContentEditorProps => {
     const updater = useUpdater<IContent>(
@@ -23,4 +24,4 @@ const connect = inject<IContentEditorInputProps, ContentEditorProps>(mergeProps(
     injectContentEditorProps,
 ));
 
-export const ContentEditor = connect(ContentEditorComponent);
+export const ContentEditor = overridable<IContentEditorInputProps>(connect(ContentEditorComponent));

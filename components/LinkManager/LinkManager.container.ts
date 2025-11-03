@@ -1,13 +1,14 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {LinkManagerComponent} from "./LinkManager.component";
-import {ILinkManagerInputProps, LinkManagerProps, ILinkManagerProps} from "./LinkManager.d";
-import { useEffect, useState } from "react";
 import { ILink } from "@common-shared/link/types";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
-import { all, pipe, prop, sort } from "ts-functional";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo, clear } from "@core/lib/util";
+import { useEffect, useState } from "react";
+import { all, pipe, prop, sort } from "ts-functional";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { LinkManagerComponent } from "./LinkManager.component";
+import { ILinkManagerInputProps, ILinkManagerProps, LinkManagerProps } from "./LinkManager.d";
 
 const injectLinkManagerProps = createInjector(({list}:ILinkManagerInputProps):ILinkManagerProps => {
     const [links, setLinks] = useState<ILink[]>([]);
@@ -74,4 +75,4 @@ const connect = inject<ILinkManagerInputProps, LinkManagerProps>(mergeProps(
     injectLinkManagerProps,
 ));
 
-export const LinkManager = connect(LinkManagerComponent);
+export const LinkManager = overridable<ILinkManagerInputProps>(connect(LinkManagerComponent));

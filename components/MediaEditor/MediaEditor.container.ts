@@ -1,6 +1,7 @@
 import { IMedia } from "@common-shared/media/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { useUpdater } from "@core/lib/useUpdater";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -46,4 +47,4 @@ const connect = inject<IMediaEditorInputProps, MediaEditorProps>(mergeProps(
     injectMediaEditorProps,
 ));
 
-export const MediaEditor = connect(MediaEditorComponent);
+export const MediaEditor = overridable<IMediaEditorInputProps>(connect(MediaEditorComponent));

@@ -1,5 +1,6 @@
 import { IContent } from "@common-shared/content/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -42,4 +43,4 @@ const connect = inject<IContentManagerInputProps, ContentManagerProps>(mergeProp
     injectContentManagerProps,
 ));
 
-export const ContentManager = connect(ContentManagerComponent);
+export const ContentManager = overridable<IContentManagerInputProps>(connect(ContentManagerComponent));

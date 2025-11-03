@@ -1,11 +1,12 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {MediaImageComponent} from "./MediaImage.component";
-import {IMediaImageInputProps, MediaImageProps, IMediaImageProps} from "./MediaImage.d";
-import { useEffect, useState } from "react";
 import { IMedia } from "@common-shared/media/types";
 import { useSetting } from "@common/lib/setting/services";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { MediaImageComponent } from "./MediaImage.component";
+import { IMediaImageInputProps, IMediaImageProps, MediaImageProps } from "./MediaImage.d";
 
 export const useFullImageUrl = (folderSetting: string, fileName:string) => {
     const imgHost = useSetting("imageHost");
@@ -38,4 +39,4 @@ const connect = inject<IMediaImageInputProps, MediaImageProps>(mergeProps(
     injectMediaImageProps,
 ));
 
-export const MediaImage = connect(MediaImageComponent);
+export const MediaImage = overridable<IMediaImageInputProps>(connect(MediaImageComponent));

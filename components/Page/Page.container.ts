@@ -1,11 +1,12 @@
 import { IContent } from "@common-shared/content/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
+import { memoizePromise } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { PageComponent } from "./Page.component";
 import { IPageInputProps, IPageProps, PageProps } from "./Page.d";
-import { memoizePromise } from "ts-functional";
 
 const getPage = memoizePromise(async (slug:string):Promise<IContent | null> => {
     const pages = await services().content.search({type: 'page', slug});
@@ -42,4 +43,4 @@ const connect = inject<IPageInputProps, PageProps>(mergeProps(
     injectPageProps,
 ));
 
-export const Page = connect(PageComponent);
+export const Page = overridable<IPageInputProps>(connect(PageComponent));

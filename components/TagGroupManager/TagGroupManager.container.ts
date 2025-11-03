@@ -1,6 +1,7 @@
 import { ITagGroup } from "@common-shared/tag/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo, clear } from "@core/lib/util";
 import { useEffect, useState } from "react";
@@ -69,4 +70,4 @@ const connect = inject<ITagGroupManagerInputProps, TagGroupManagerProps>(mergePr
     injectTagGroupManagerProps,
 ));
 
-export const TagGroupManager = connect(TagGroupManagerComponent);
+export const TagGroupManager = overridable<ITagGroupManagerInputProps>(connect(TagGroupManagerComponent));

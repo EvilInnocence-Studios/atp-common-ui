@@ -1,5 +1,6 @@
 import { Agent, AppBskyFeedGetAuthorFeed, RichText } from "@atproto/api";
 import { useSetting } from "@common/lib/setting/services";
+import { overridable } from "@core/lib/overridable";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { BlueskyFeedComponent } from "./BlueskyFeed.component";
@@ -49,4 +50,4 @@ const connect = inject<IBlueskyFeedInputProps, BlueskyFeedProps>(mergeProps(
     injectBlueskyFeedProps,
 ));
 
-export const BlueskyFeed = connect(BlueskyFeedComponent);
+export const BlueskyFeed = overridable<IBlueskyFeedInputProps>(connect(BlueskyFeedComponent));

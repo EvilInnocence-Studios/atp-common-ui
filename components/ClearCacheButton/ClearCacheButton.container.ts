@@ -1,9 +1,10 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ClearCacheButtonComponent} from "./ClearCacheButton.component";
-import {IClearCacheButtonInputProps, ClearCacheButtonProps, IClearCacheButtonProps} from "./ClearCacheButton.d";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ClearCacheButtonComponent } from "./ClearCacheButton.component";
+import { ClearCacheButtonProps, IClearCacheButtonInputProps, IClearCacheButtonProps } from "./ClearCacheButton.d";
 
 const injectClearCacheButtonProps = createInjector(({cacheType}:IClearCacheButtonInputProps):IClearCacheButtonProps => {
     const loader = useLoaderAsync();
@@ -33,4 +34,4 @@ const connect = inject<IClearCacheButtonInputProps, ClearCacheButtonProps>(merge
     injectClearCacheButtonProps,
 ));
 
-export const ClearCacheButton = connect(ClearCacheButtonComponent);
+export const ClearCacheButton = overridable<IClearCacheButtonInputProps>(connect(ClearCacheButtonComponent));

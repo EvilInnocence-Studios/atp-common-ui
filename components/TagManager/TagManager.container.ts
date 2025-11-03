@@ -1,6 +1,7 @@
 import { ITag } from "@common-shared/tag/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo, clear } from "@core/lib/util";
 import { useEffect, useState } from "react";
@@ -68,4 +69,4 @@ const connect = inject<ITagManagerInputProps, TagManagerProps>(mergeProps(
     injectTagManagerProps,
 ));
 
-export const TagManager = connect(TagManagerComponent);
+export const TagManager = overridable<ITagManagerInputProps>(connect(TagManagerComponent));

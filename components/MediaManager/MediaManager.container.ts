@@ -1,5 +1,6 @@
 import { IMedia } from "@common-shared/media/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -40,4 +41,4 @@ const connect = inject<IMediaManagerInputProps, MediaManagerProps>(mergeProps(
     injectMediaManagerProps,
 ));
 
-export const MediaManager = connect(MediaManagerComponent);
+export const MediaManager = overridable<IMediaManagerInputProps>(connect(MediaManagerComponent));

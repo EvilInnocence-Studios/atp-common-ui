@@ -1,5 +1,6 @@
 import { ILink, ILinkList } from "@common-shared/link/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -24,4 +25,4 @@ const connect = inject<ILinkListInputProps, LinkListProps>(mergeProps(
     injectLinkListProps,
 ));
 
-export const LinkList = connect(LinkListComponent);
+export const LinkList = overridable<ILinkListInputProps>(connect(LinkListComponent));

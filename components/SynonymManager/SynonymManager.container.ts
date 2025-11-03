@@ -1,13 +1,14 @@
 import { ISynonym } from "@common-shared/synonym/types";
 import { services } from "@core/lib/api";
-import { useLoader } from "@core/lib/useLoader";
-import { useEffect, useState } from "react";
-import { createInjector, inject, mergeProps } from "unstateless";
-import {SynonymManagerComponent} from "./SynonymManager.component";
-import {ISynonymManagerInputProps, SynonymManagerProps, ISynonymManagerProps} from "./SynonymManager.d";
-import {partition} from 'ts-functional';
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { useLoader } from "@core/lib/useLoader";
 import { clear } from "@core/lib/util";
+import { useEffect, useState } from "react";
+import { partition } from 'ts-functional';
+import { createInjector, inject, mergeProps } from "unstateless";
+import { SynonymManagerComponent } from "./SynonymManager.component";
+import { ISynonymManagerInputProps, ISynonymManagerProps, SynonymManagerProps } from "./SynonymManager.d";
 
 const injectSynonymManagerProps = createInjector(({}:ISynonymManagerInputProps):ISynonymManagerProps => {
     const [synonyms, setSynonyms] = useState<ISynonym[]>([]);
@@ -55,4 +56,4 @@ const connect = inject<ISynonymManagerInputProps, SynonymManagerProps>(mergeProp
     injectSynonymManagerProps,
 ));
 
-export const SynonymManager = connect(SynonymManagerComponent);
+export const SynonymManager = overridable<ISynonymManagerInputProps>(connect(SynonymManagerComponent));

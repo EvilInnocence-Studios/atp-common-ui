@@ -1,4 +1,5 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { LinkListSelectComponent } from "./LinkListSelect.component";
@@ -20,4 +21,4 @@ const connect = inject<ILinkListSelectInputProps, LinkListSelectProps>(mergeProp
     injectLinkListSelectProps,
 ));
 
-export const LinkListSelect = connect(LinkListSelectComponent);
+export const LinkListSelect = overridable<ILinkListSelectInputProps>(connect(LinkListSelectComponent));

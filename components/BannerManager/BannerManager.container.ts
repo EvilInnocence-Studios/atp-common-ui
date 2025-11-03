@@ -1,5 +1,6 @@
 import { IBanner } from "@common-shared/banner/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoader } from "@core/lib/useLoader";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -32,4 +33,4 @@ const connect = inject<IBannerManagerInputProps, BannerManagerProps>(mergeProps(
     injectBannerManagerProps,
 ));
 
-export const BannerManager = connect(BannerManagerComponent);
+export const BannerManager = overridable<IBannerManagerInputProps>(connect(BannerManagerComponent));

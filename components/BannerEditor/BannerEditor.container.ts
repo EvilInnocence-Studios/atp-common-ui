@@ -1,11 +1,12 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {BannerEditorComponent} from "./BannerEditor.component";
-import {IBannerEditorInputProps, BannerEditorProps, IBannerEditorProps} from "./BannerEditor.d";
-import { useUpdater } from "@core/lib/useUpdater";
 import { IBanner } from "@common-shared/banner/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
+import { useUpdater } from "@core/lib/useUpdater";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { BannerEditorComponent } from "./BannerEditor.component";
+import { BannerEditorProps, IBannerEditorInputProps, IBannerEditorProps } from "./BannerEditor.d";
 
 const injectBannerEditorProps = createInjector(({bannerId, onDelete}:IBannerEditorInputProps):IBannerEditorProps => {
     const loader = useLoaderAsync();
@@ -47,4 +48,4 @@ const connect = inject<IBannerEditorInputProps, BannerEditorProps>(mergeProps(
     injectBannerEditorProps,
 ));
 
-export const BannerEditor = connect(BannerEditorComponent);
+export const BannerEditor = overridable<IBannerEditorInputProps>(connect(BannerEditorComponent));

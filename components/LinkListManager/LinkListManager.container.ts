@@ -1,6 +1,7 @@
 import { ILinkList } from "@common-shared/link/types";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo, clear } from "@core/lib/util";
 import { useEffect, useState } from "react";
@@ -68,4 +69,4 @@ const connect = inject<ILinkListManagerInputProps, LinkListManagerProps>(mergePr
     injectLinkListManagerProps,
 ));
 
-export const LinkListManager = connect(LinkListManagerComponent);
+export const LinkListManager = overridable<ILinkListManagerInputProps>(connect(LinkListManagerComponent));
