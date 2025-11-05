@@ -23,6 +23,7 @@
             flex-wrap: wrap;
             gap: var(--paddingSmall);
             justify-content: center;
+            border-radius: var(--borderRadius);
             .embedImage {
                 width: 100%;
                 &:nth-child(n+2) {
