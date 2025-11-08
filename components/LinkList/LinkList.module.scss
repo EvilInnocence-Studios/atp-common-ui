@@ -8,29 +8,6 @@
     &:hover {
         .subMenu {
             display: block;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            border: solid 3px var(--borderColor);
-            background-color: var(--bgColor);
-            z-index: 20;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            
-            li {
-                padding: 0.5rem;
-            
-                a {
-                color: var(--linkColor);
-                text-decoration: none;
-            
-                &:hover {
-                    text-decoration: underline;
-                }
-                }
-            }
         }
     }
 }
