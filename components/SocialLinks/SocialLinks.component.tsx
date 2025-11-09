@@ -7,7 +7,7 @@ import { SocialLinksProps } from "./SocialLinks.d";
 import styles from './SocialLinks.module.scss';
 
 export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, patreon, youtube, tikTok, kofi}:SocialLinksProps) =>
-    <div className={clsx([styles.socialLinks])}>
+    <div className={clsx([styles.socialLinks, "socialLinks"])}>
         <Link to="/">
             <Setting id="siteName" />
         </Link>
