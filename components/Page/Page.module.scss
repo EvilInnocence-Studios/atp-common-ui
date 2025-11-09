@@ -2,4 +2,5 @@
 
 .page {
     @include globals.cmsPage;
+    padding-bottom: 64px;
 }
