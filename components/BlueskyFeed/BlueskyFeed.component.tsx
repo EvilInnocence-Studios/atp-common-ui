@@ -7,6 +7,7 @@ import { BlueskyFeedProps } from "./BlueskyFeed.d";
 import styles from "./BlueskyFeed.module.scss";
 import { AppBskyEmbedDefs, AppBskyEmbedImages, AppBskyEmbedVideo } from "@atproto/api";
 import { useBlueskyHLS } from "./useBlueSkyHLS";
+import clsx from "clsx";
 
 const RichTextRenderer = ({text}: {text: string}) => {
     const [markdown, setMarkdown] = useState<string>('');
@@ -61,7 +62,7 @@ const BlueskyVideo: FC<{ video: AppBskyEmbedVideo.View }> = ({ video }) => {
 };
 
 export const BlueskyFeedComponent = ({pageSize, feed}:BlueskyFeedProps) => <>
-    {feed && <div className={styles.feed}>
+    {feed && <div className={clsx([styles.feed, "feed"])}>
         {feed.feed.slice(0, pageSize || 10).filter(item => !item.reason).map((item) => (
             <div key={item.post.cid} className={styles.post}>
                 <div className={styles.header}>
