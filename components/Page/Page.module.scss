@@ -2,5 +2,6 @@
 
 .page {
     @include globals.cmsPage;
-    padding-bottom: 64px;
+    @include globals.contentBlock;
+    margin-bottom: 128px !important;
 }
