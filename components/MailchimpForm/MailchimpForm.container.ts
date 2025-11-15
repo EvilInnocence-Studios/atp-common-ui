@@ -13,5 +13,6 @@ const injectMailchimpFormProps = createInjector(({}:IMailchimpFormInputProps):IM
 const connect = inject<IMailchimpFormInputProps, MailchimpFormProps>(mergeProps(
     injectMailchimpFormProps,
 ));
+export const connectMailchimpForm = connect;
 
 export const MailchimpForm = overridable<IMailchimpFormInputProps>(connect(MailchimpFormComponent));

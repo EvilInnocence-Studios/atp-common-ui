@@ -49,5 +49,6 @@ console.log(feed);
 const connect = inject<IBlueskyFeedInputProps, BlueskyFeedProps>(mergeProps(
     injectBlueskyFeedProps,
 ));
+export const connectBlueskyFeed = connect;
 
 export const BlueskyFeed = overridable<IBlueskyFeedInputProps>(connect(BlueskyFeedComponent));

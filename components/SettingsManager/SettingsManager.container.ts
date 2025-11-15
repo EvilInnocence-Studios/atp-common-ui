@@ -42,5 +42,6 @@ const injectSettingsManagerProps = createInjector(({}:ISettingsManagerInputProps
 const connect = inject<ISettingsManagerInputProps, SettingsManagerProps>(mergeProps(
     injectSettingsManagerProps,
 ));
+export const connectSettingsManager = connect;
 
 export const SettingsManager = overridable<ISettingsManagerInputProps>(connect(SettingsManagerComponent));

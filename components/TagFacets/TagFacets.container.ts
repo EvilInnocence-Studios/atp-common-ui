@@ -13,5 +13,6 @@ const injectTagFacetsProps = createInjector(({}:ITagFacetsInputProps):ITagFacets
 const connect = inject<ITagFacetsInputProps, TagFacetsProps>(mergeProps(
     injectTagFacetsProps,
 ));
+export const connectTagFacets = connect;
 
 export const TagFacets = overridable<ITagFacetsInputProps>(connect(TagFacetsComponent));

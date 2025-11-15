@@ -28,5 +28,6 @@ const injectSnippetProps = createInjector(({slug}:ISnippetInputProps):ISnippetPr
 const connect = inject<ISnippetInputProps, SnippetProps>(mergeProps(
     injectSnippetProps,
 ));
+export const connectSnippet = connect;
 
 export const Snippet = overridable<ISnippetInputProps>(connect(SnippetComponent));

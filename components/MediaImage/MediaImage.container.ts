@@ -38,5 +38,6 @@ const injectMediaImageProps = createInjector(({imageId, settingKey}:IMediaImageI
 const connect = inject<IMediaImageInputProps, MediaImageProps>(mergeProps(
     injectMediaImageProps,
 ));
+export const connectMediaImage = connect;
 
 export const MediaImage = overridable<IMediaImageInputProps>(connect(MediaImageComponent));

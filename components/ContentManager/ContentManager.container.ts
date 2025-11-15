@@ -42,5 +42,6 @@ const injectContentManagerProps = createInjector(({type}:IContentManagerInputPro
 const connect = inject<IContentManagerInputProps, ContentManagerProps>(mergeProps(
     injectContentManagerProps,
 ));
+export const connectContentManager = connect;
 
 export const ContentManager = overridable<IContentManagerInputProps>(connect(ContentManagerComponent));

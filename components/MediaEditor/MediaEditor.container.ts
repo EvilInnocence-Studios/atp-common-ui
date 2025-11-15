@@ -46,5 +46,6 @@ const injectMediaEditorProps = createInjector(({imageId, onDelete}:IMediaEditorI
 const connect = inject<IMediaEditorInputProps, MediaEditorProps>(mergeProps(
     injectMediaEditorProps,
 ));
+export const connectMediaEditor = connect;
 
 export const MediaEditor = overridable<IMediaEditorInputProps>(connect(MediaEditorComponent));

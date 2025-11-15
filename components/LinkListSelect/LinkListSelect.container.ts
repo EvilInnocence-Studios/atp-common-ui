@@ -20,5 +20,6 @@ const injectLinkListSelectProps = createInjector(({}:ILinkListSelectInputProps):
 const connect = inject<ILinkListSelectInputProps, LinkListSelectProps>(mergeProps(
     injectLinkListSelectProps,
 ));
+export const connectLinkListSelect = connect;
 
 export const LinkListSelect = overridable<ILinkListSelectInputProps>(connect(LinkListSelectComponent));

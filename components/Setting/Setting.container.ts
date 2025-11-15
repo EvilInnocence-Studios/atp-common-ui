@@ -13,5 +13,6 @@ const injectSettingProps = createInjector(({id}:ISettingInputProps):ISettingProp
 const connect = inject<ISettingInputProps, SettingProps>(mergeProps(
     injectSettingProps,
 ));
+export const connectSetting = connect;
 
 export const Setting = overridable<ISettingInputProps>(connect(SettingComponent));

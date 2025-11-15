@@ -47,5 +47,6 @@ const injectBannerEditorProps = createInjector(({bannerId, onDelete}:IBannerEdit
 const connect = inject<IBannerEditorInputProps, BannerEditorProps>(mergeProps(
     injectBannerEditorProps,
 ));
+export const connectBannerEditor = connect;
 
 export const BannerEditor = overridable<IBannerEditorInputProps>(connect(BannerEditorComponent));

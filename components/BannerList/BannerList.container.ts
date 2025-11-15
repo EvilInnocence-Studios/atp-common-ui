@@ -19,5 +19,6 @@ const injectBannerListProps = createInjector(({tag}:IBannerListInputProps):IBann
 const connect = inject<IBannerListInputProps, BannerListProps>(mergeProps(
     injectBannerListProps,
 ));
+export const connectBannerList = connect;
 
 export const BannerList = overridable<IBannerListInputProps>(connect(BannerListComponent));

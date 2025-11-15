@@ -23,5 +23,6 @@ const injectContentEditorProps = createInjector(({content, onUpdate}:IContentEdi
 const connect = inject<IContentEditorInputProps, ContentEditorProps>(mergeProps(
     injectContentEditorProps,
 ));
+export const connectContentEditor = connect;
 
 export const ContentEditor = overridable<IContentEditorInputProps>(connect(ContentEditorComponent));

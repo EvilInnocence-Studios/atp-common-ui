@@ -13,5 +13,6 @@ const injectCopyrightProps = createInjector(({}:ICopyrightInputProps):ICopyright
 const connect = inject<ICopyrightInputProps, CopyrightProps>(mergeProps(
     injectCopyrightProps,
 ));
+export const connectCopyright = connect;
 
 export const Copyright = overridable<ICopyrightInputProps>(connect(CopyrightComponent));

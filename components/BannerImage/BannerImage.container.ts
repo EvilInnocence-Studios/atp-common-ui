@@ -29,5 +29,6 @@ const injectBannerImageProps = createInjector(({bannerId}:IBannerImageInputProps
 const connect = inject<IBannerImageInputProps, BannerImageProps>(mergeProps(
     injectBannerImageProps,
 ));
+export const connectBannerImage = connect;
 
 export const BannerImage = overridable<IBannerImageInputProps>(connect(BannerImageComponent));

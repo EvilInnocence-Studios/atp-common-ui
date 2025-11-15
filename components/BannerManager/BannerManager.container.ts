@@ -32,5 +32,6 @@ const injectBannerManagerProps = createInjector(({}:IBannerManagerInputProps):IB
 const connect = inject<IBannerManagerInputProps, BannerManagerProps>(mergeProps(
     injectBannerManagerProps,
 ));
+export const connectBannerManager = connect;
 
 export const BannerManager = overridable<IBannerManagerInputProps>(connect(BannerManagerComponent));

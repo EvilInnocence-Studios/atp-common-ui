@@ -69,5 +69,6 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
 const connect = inject<ITagGroupManagerInputProps, TagGroupManagerProps>(mergeProps(
     injectTagGroupManagerProps,
 ));
+export const connectTagGroupManager = connect;
 
 export const TagGroupManager = overridable<ITagGroupManagerInputProps>(connect(TagGroupManagerComponent));

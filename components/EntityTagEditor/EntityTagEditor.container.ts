@@ -57,5 +57,6 @@ const injectEntityTagEditorProps = createInjector(({search, create, remove}:IEnt
 const connect = inject<IEntityTagEditorInputProps, EntityTagEditorProps>(mergeProps(
     injectEntityTagEditorProps,
 ));
+export const connectEntityTagEditor = connect;
 
 export const EntityTagEditor = overridable<IEntityTagEditorInputProps>(connect(EntityTagEditorComponent));

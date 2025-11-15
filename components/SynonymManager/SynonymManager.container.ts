@@ -55,5 +55,6 @@ const injectSynonymManagerProps = createInjector(({}:ISynonymManagerInputProps):
 const connect = inject<ISynonymManagerInputProps, SynonymManagerProps>(mergeProps(
     injectSynonymManagerProps,
 ));
+export const connectSynonymManager = connect;
 
 export const SynonymManager = overridable<ISynonymManagerInputProps>(connect(SynonymManagerComponent));

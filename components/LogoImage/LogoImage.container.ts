@@ -10,5 +10,6 @@ const injectLogoImageProps = createInjector(({}:ILogoImageInputProps):ILogoImage
 const connect = inject<ILogoImageInputProps, LogoImageProps>(mergeProps(
     injectLogoImageProps,
 ));
+export const connectLogoImage = connect;
 
 export const LogoImage = overridable<ILogoImageInputProps>(connect(LogoImageComponent));

@@ -33,5 +33,6 @@ const injectClearCacheButtonProps = createInjector(({cacheType}:IClearCacheButto
 const connect = inject<IClearCacheButtonInputProps, ClearCacheButtonProps>(mergeProps(
     injectClearCacheButtonProps,
 ));
+export const connectClearCacheButton = connect;
 
 export const ClearCacheButton = overridable<IClearCacheButtonInputProps>(connect(ClearCacheButtonComponent));

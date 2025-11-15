@@ -40,5 +40,6 @@ const injectMediaManagerProps = createInjector(({}:IMediaManagerInputProps):IMed
 const connect = inject<IMediaManagerInputProps, MediaManagerProps>(mergeProps(
     injectMediaManagerProps,
 ));
+export const connectMediaManager = connect;
 
 export const MediaManager = overridable<IMediaManagerInputProps>(connect(MediaManagerComponent));

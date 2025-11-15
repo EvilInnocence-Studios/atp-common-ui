@@ -13,5 +13,6 @@ const injectSynonymCardProps = createInjector(({}:ISynonymCardInputProps):ISynon
 const connect = inject<ISynonymCardInputProps, SynonymCardProps>(mergeProps(
     injectSynonymCardProps,
 ));
+export const connectSynonymCard = connect;
 
 export const SynonymCard = overridable<ISynonymCardInputProps>(connect(SynonymCardComponent));

@@ -68,5 +68,6 @@ const injectLinkListManagerProps = createInjector(({}:ILinkListManagerInputProps
 const connect = inject<ILinkListManagerInputProps, LinkListManagerProps>(mergeProps(
     injectLinkListManagerProps,
 ));
+export const connectLinkListManager = connect;
 
 export const LinkListManager = overridable<ILinkListManagerInputProps>(connect(LinkListManagerComponent));

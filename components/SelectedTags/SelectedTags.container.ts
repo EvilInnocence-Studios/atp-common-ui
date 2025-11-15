@@ -9,5 +9,6 @@ const injectSelectedTagsProps = createInjector(useTagGroups);
 const connect = inject<ISelectedTagsInputProps, SelectedTagsProps>(mergeProps(
     injectSelectedTagsProps,
 ));
+export const connectSelectedTags = connect;
 
 export const SelectedTags = overridable<ISelectedTagsInputProps>(connect(SelectedTagsComponent));

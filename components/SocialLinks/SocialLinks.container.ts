@@ -20,5 +20,6 @@ const injectSocialLinksProps = createInjector(({}:ISocialLinksInputProps):ISocia
 const connect = inject<ISocialLinksInputProps, SocialLinksProps>(mergeProps(
     injectSocialLinksProps,
 ));
+export const connectSocialLinks = connect;
 
 export const SocialLinks = overridable<ISocialLinksInputProps>(connect(SocialLinksComponent));
