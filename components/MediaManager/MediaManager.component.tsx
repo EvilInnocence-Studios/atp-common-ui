@@ -6,8 +6,9 @@ import { MediaEditor } from "../MediaEditor";
 import { MediaManagerProps } from "./MediaManager.d";
 import styles from './MediaManager.module.scss';
 import { onInputChange } from "@core/lib/onInputChange";
+import { overridable } from "@core/lib/overridable";
 
-export const MediaManagerComponent = ({images, isLoading, upload, overwrite, setOverwrite, refresh, query, setQuery}:MediaManagerProps) =>
+export const MediaManagerComponent = overridable(({images, isLoading, upload, overwrite, setOverwrite, refresh, query, setQuery}:MediaManagerProps) =>
     <Spin spinning={isLoading}>
         <Row className={styles.mediaManager} gutter={16}>
             <Col xs={3}>
@@ -35,4 +36,5 @@ export const MediaManagerComponent = ({images, isLoading, upload, overwrite, set
                 </Row>                                        
             </Col>
         </Row>
-    </Spin>;
+    </Spin>
+);

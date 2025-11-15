@@ -9,8 +9,9 @@ import { BannerEditorProps } from "./BannerEditor.d";
 import styles from './BannerEditor.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { overridable } from "@core/lib/overridable";
 
-export const BannerEditorComponent = ({bannerId, banner, isLoading, upload, updateString, updateNumber, UpdateButtons, remove}:BannerEditorProps) =>
+export const BannerEditorComponent = overridable(({bannerId, banner, isLoading, upload, updateString, updateNumber, UpdateButtons, remove}:BannerEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.bannerEditor}>
             <div className={styles.updateButtons}><UpdateButtons /></div>
@@ -55,4 +56,5 @@ export const BannerEditorComponent = ({bannerId, banner, isLoading, upload, upda
                 </Tabs.TabPane>
             </Tabs>
         </div>
-    </Spin>;
+    </Spin>
+);

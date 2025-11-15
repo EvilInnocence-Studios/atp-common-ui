@@ -13,6 +13,7 @@ import { Link } from "react-router";
 import { prop } from "ts-functional";
 import { TagManagerProps } from "./TagManager.d";
 import styles from './TagManager.module.scss';
+import { overridable } from "@core/lib/overridable";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -21,7 +22,7 @@ const CanDelete = hasPermission("tag.delete");
 
 const tagId = (tag:ITag,  index:number) => `${tag.id}:${index}`;
 
-const TagItem = ({item: tag, update, remove}:any) => {
+export const TagItem = overridable(({item: tag, update, remove}:any) => {
     return <div className={styles.tag}>
         <CanEdit yes>
             <span className={styles.icon}>
@@ -37,9 +38,9 @@ const TagItem = ({item: tag, update, remove}:any) => {
         <CanEdit no>{tag.name}</CanEdit>
         <CanDelete yes><DeleteBtn entityType="tag" onClick={remove(tag.id)} /></CanDelete>
     </div>;
-}
+});
 
-export const TagManagerComponent = ({tags, isLoading, name, setName, create, update, remove, sort}:TagManagerProps) =>
+export const TagManagerComponent = overridable(({tags, isLoading, name, setName, create, update, remove, sort}:TagManagerProps) =>
     <Spin spinning={isLoading}>
         <CanView yes>
             <SortableList<ITag>
@@ -66,4 +67,5 @@ export const TagManagerComponent = ({tags, isLoading, name, setName, create, upd
         <CanView no>
             <Alert type="warning" message="You don't have permission to view tags." />
         </CanView>
-    </Spin>;
+    </Spin>
+);

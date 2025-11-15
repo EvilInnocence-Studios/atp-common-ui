@@ -3,8 +3,9 @@ import { Checkbox, Collapse, Spin, Tag } from "antd";
 import { intersection, prop, sort } from "ts-functional";
 import { TagFacetsProps } from "./TagFacets.d";
 import styles from './TagFacets.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag, isLoading}:TagFacetsProps) =>
+export const TagFacetsComponent = overridable(({groups, selectedTagIds, removeTag, selectTag, isLoading}:TagFacetsProps) =>
     <div className={styles.tagGroupList}>
         <Spin spinning={isLoading}>
             <Collapse>
@@ -30,4 +31,5 @@ export const TagFacetsComponent = ({groups, selectedTagIds, removeTag, selectTag
                 )}
             </Collapse>
         </Spin>
-    </div>;
+    </div>
+);

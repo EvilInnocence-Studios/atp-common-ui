@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { SettingProps } from "./Setting.d";
 
-export const SettingComponent = ({setting}:SettingProps) =><>{setting}</>;
+export const SettingComponent = overridable(({setting}:SettingProps) =><>{setting}</>);

@@ -1,8 +1,9 @@
 import Mailchimp from 'react-mailchimp-form';
 import { MailchimpFormProps } from "./MailchimpForm.d";
 import { Setting } from '../Setting';
+import { overridable } from '@core/lib/overridable';
 
-export const MailchimpFormComponent = ({action}:MailchimpFormProps) => <>
+export const MailchimpFormComponent = overridable(({action}:MailchimpFormProps) => <>
     <h2><Setting id="mailchimpFormHeader" /></h2>
     <h3><Setting id="mailchimpFormTagline" /></h3>
     <Mailchimp
@@ -14,4 +15,4 @@ export const MailchimpFormComponent = ({action}:MailchimpFormProps) => <>
             required: true
         }]}
     />
-</>
+</>);

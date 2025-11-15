@@ -7,8 +7,9 @@ import { ContentEditor } from "../ContentEditor";
 import { ContentManagerProps } from "./ContentManager.d";
 import styles from './ContentManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
+import { overridable } from "@core/lib/overridable";
 
-export const ContentManagerComponent = ({id, type, pages, isLoading, create, refresh}:ContentManagerProps) =>
+export const ContentManagerComponent = overridable(({id, type, pages, isLoading, create, refresh}:ContentManagerProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.contentManager}>
             <Row gutter={16}>
@@ -43,4 +44,5 @@ export const ContentManagerComponent = ({id, type, pages, isLoading, create, ref
                 </Col>
             </Row>
         </div>
-    </Spin>;
+    </Spin>
+);

@@ -3,8 +3,9 @@ import { Link } from "react-router";
 import { BannerImage } from "../BannerImage";
 import { BannerProps } from "./Banner.d";
 import styles from './Banner.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const BannerComponent = ({banner, className}:BannerProps) => 
+export const BannerComponent = overridable(({banner, className}:BannerProps) => 
     <div className={clsx([styles.banner, className])}>
         <Link to={banner.link}>
             <div className={styles.info}>
@@ -25,4 +26,5 @@ export const BannerComponent = ({banner, className}:BannerProps) =>
         <Link to={banner.link}>
             <BannerImage bannerId={banner.id} />
         </Link>
-    </div>;
+    </div>
+);

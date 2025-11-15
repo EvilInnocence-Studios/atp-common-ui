@@ -5,8 +5,9 @@ import { Link } from "react-router";
 import { Setting } from "../Setting";
 import { SocialLinksProps } from "./SocialLinks.d";
 import styles from './SocialLinks.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, patreon, youtube, tikTok, kofi}:SocialLinksProps) =>
+export const SocialLinksComponent = overridable(({facebook, twitter, blueSky, instagram, patreon, youtube, tikTok, kofi}:SocialLinksProps) =>
     <div className={clsx([styles.socialLinks, "socialLinks"])}>
         <Link to="/">
             <Setting id="siteName" />
@@ -21,4 +22,5 @@ export const SocialLinksComponent = ({facebook, twitter, blueSky, instagram, pat
             {youtube   && <a href={`https://www.youtube.com/${youtube}`}     target="_blank"><FontAwesomeIcon icon={faYoutube}   /></a>}
             {tikTok    && <a href={`https://www.tiktok.com/${tikTok}`}       target="_blank"><FontAwesomeIcon icon={faTiktok}    /></a>}
         </div>
-    </div>;
+    </div>
+);

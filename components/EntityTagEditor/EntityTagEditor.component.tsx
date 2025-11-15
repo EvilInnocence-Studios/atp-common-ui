@@ -1,8 +1,9 @@
 import { Spin, Switch, Tag } from "antd";
 import {EntityTagEditorProps} from "./EntityTagEditor.d";
 import styles from './EntityTagEditor.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const EntityTagEditorComponent = ({allTags, entityTags, onAddTag, onRemoveTag, isLoading, showHiddenTags, setShowHiddenTags}:EntityTagEditorProps) =>
+export const EntityTagEditorComponent = overridable(({allTags, entityTags, onAddTag, onRemoveTag, isLoading, showHiddenTags, setShowHiddenTags}:EntityTagEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.entityTagManager}>
             <div className={styles.controls}>
@@ -28,4 +29,5 @@ export const EntityTagEditorComponent = ({allTags, entityTags, onAddTag, onRemov
                 </div>)}
             </div>
         </div>
-    </Spin>;
+    </Spin>
+);

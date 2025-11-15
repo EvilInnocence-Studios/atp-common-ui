@@ -11,13 +11,14 @@ import { LinkManager } from "../LinkManager";
 import { LinkListManagerProps } from "./LinkListManager.d";
 import styles from './LinkListManager.module.scss';
 import clsx from "clsx";
+import { overridable } from "@core/lib/overridable";
 
 const CanView = hasPermission("links.view");
 const CanEdit = hasPermission("links.update");
 const CanDelete = hasPermission("links.delete");
 const CanCreate = hasPermission("links.create");
 
-export const LinkListManagerComponent = ({
+export const LinkListManagerComponent = overridable(({
     lists, isLoading,
     name, setName, listKey, setListKey,
     create, update, remove,
@@ -64,4 +65,5 @@ export const LinkListManagerComponent = ({
                 </CanView>
             </Col>
         </Row>
-    </Spin>;
+    </Spin>
+);

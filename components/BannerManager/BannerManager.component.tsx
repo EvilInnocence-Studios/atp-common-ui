@@ -5,8 +5,9 @@ import { BannerEditor } from "../BannerEditor";
 import { BannerManagerProps } from "./BannerManager.d";
 import styles from './BannerManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
+import { overridable } from "@core/lib/overridable";
 
-export const BannerManagerComponent = ({banners, isLoading, upload, overwrite, setOverwrite, refresh}:BannerManagerProps) =>
+export const BannerManagerComponent = overridable(({banners, isLoading, upload, overwrite, setOverwrite, refresh}:BannerManagerProps) =>
     <Spin spinning={isLoading}>
         <Row className={styles.bannerManager} gutter={16}>
             <Col xs={3}>
@@ -29,4 +30,5 @@ export const BannerManagerComponent = ({banners, isLoading, upload, overwrite, s
                 </Row>                                        
             </Col>
         </Row>
-    </Spin>;
+    </Spin>
+);

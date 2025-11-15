@@ -11,8 +11,9 @@ import { objMap } from "ts-functional";
 import { SettingsManagerProps } from "./SettingsManager.d";
 import styles from './SettingsManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
+import { overridable } from "@core/lib/overridable";
 
-export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps) =>
+export const SettingsManagerComponent = overridable(({settings, update}:SettingsManagerProps) =>
     <div className={styles.settingsManager}>
         <h1><FontAwesomeIcon icon={faGear} /> Settings</h1>
         <ClearCacheButton entity="settings" cacheType="setting" />
@@ -65,4 +66,5 @@ export const SettingsManagerComponent = ({settings, update}:SettingsManagerProps
                 </Tabs>
             </Tabs.TabPane>)(config().settings))}
         </Tabs>
-    </div>;
+    </div>
+);

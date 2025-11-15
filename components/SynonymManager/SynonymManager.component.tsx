@@ -6,8 +6,9 @@ import { SynonymCard } from "../SynonymCard/SynonymCard.container";
 import { SynonymManagerProps } from "./SynonymManager.d";
 import styles from './SynonymManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
+import { overridable } from "@core/lib/overridable";
 
-export const SynonymManagerComponent = ({
+export const SynonymManagerComponent = overridable(({
     synonyms, isLoading,
     canonical, setCanonical,
     synonym, setSynonym,
@@ -37,4 +38,5 @@ export const SynonymManagerComponent = ({
                 />)}
             </div>
         </div>
-    </Spin>;
+    </Spin>
+);

@@ -7,8 +7,9 @@ import { Card, Input, Tag } from 'antd';
 import { prop } from 'ts-functional';
 import { SynonymCardProps } from "./SynonymCard.d";
 import styles from './SynonymCard.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const SynonymCardComponent = ({canonical, synonyms, synonym, setSynonym, add, remove}:SynonymCardProps) =>
+export const SynonymCardComponent = overridable(({canonical, synonyms, synonym, setSynonym, add, remove}:SynonymCardProps) =>
     <Card
         key={canonical}
         title={<>{canonical} <DeleteBtn entityType="synonym list" onClick={remove(synonyms.map(prop("id")))}/></>}
@@ -27,4 +28,5 @@ export const SynonymCardComponent = ({canonical, synonyms, synonym, setSynonym, 
         {synonyms.map((synonym:ISynonym) => <Tag key={synonym.id} closable onClose={remove([synonym.id])}>
             {synonym.synonym}
         </Tag>)}                    
-    </Card>;
+    </Card>
+);

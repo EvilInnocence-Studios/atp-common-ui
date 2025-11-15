@@ -14,6 +14,7 @@ import { ClearCacheButton } from "../ClearCacheButton";
 import { TagManager } from "../TagManager";
 import { TagGroupManagerProps } from "./TagGroupManager.d";
 import styles from "./TagGroupManager.module.scss";
+import { overridable } from "@core/lib/overridable";
 
 const CanView = hasPermission("tag.view");
 const CanEdit = hasPermission("tag.update");
@@ -22,7 +23,7 @@ const CanCreate = hasPermission("tag.create");
 
 const groupId = (tag:ITagGroup,  index:number) => `${tag.id}:${index}`;
 
-const Group = ({item:group, update, remove, selectedGroup, setSelectedGroup}:any) => {
+export const Group = overridable(({item:group, update, remove, selectedGroup, setSelectedGroup}:any) => {
     return <div
         className={clsx([styles.tagGroup, selectedGroup === group.id && styles.selected])}
     >
@@ -43,9 +44,9 @@ const Group = ({item:group, update, remove, selectedGroup, setSelectedGroup}:any
         <Button type="link" onClick={() => setSelectedGroup(group.id)}>tags <FontAwesomeIcon icon={faArrowRight} /></Button>
         <CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(group.id)} /></CanDelete>
     </div>;
-}
+});
 
-export const TagGroupManagerComponent = ({groups, isLoading, name, setName, create, sortGroups, ...handlers}:TagGroupManagerProps) =>
+export const TagGroupManagerComponent = overridable(({groups, isLoading, name, setName, create, sortGroups, ...handlers}:TagGroupManagerProps) =>
     <Spin spinning={isLoading}>
         <Space.Compact className={styles.cacheBtns}>
             <ClearCacheButton entity="tag group" cacheType="group" />
@@ -87,4 +88,5 @@ export const TagGroupManagerComponent = ({groups, isLoading, name, setName, crea
                 </CanView>
             </Col>
         </Row>
-    </Spin>;
+    </Spin>
+);

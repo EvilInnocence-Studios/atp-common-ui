@@ -7,6 +7,7 @@ import { Banner } from "../Banner/Banner.container";
 import { BannerListProps } from "./BannerList.d";
 import styles from './BannerList.module.scss';
 import clsx from "clsx";
+import { overridable } from "@core/lib/overridable";
 
 // Group banners by order value
 const groupBanners = (banners: IBanner[]):Index<IBanner[]> => banners.reduce(
@@ -27,6 +28,6 @@ const valuesByOrder = (elements:Index<JSX.Element>) => Object.keys(elements).sor
 
 const mapBanners = (lg:number) => pipe(groupBanners, objMap(renderBanners(lg)), valuesByOrder);
 
-export const BannerListComponent = ({banners, columns}:BannerListProps) => <>
+export const BannerListComponent = overridable(({banners, columns}:BannerListProps) => <>
     {mapBanners(24 / columns)(banners)}
-</>;
+</>);

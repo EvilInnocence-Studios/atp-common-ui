@@ -7,7 +7,7 @@ import { PageProps } from "./Page.d";
 import styles from './Page.module.scss';
 import { PageHeader } from "./PageHeader";
 
-export const PageComponent = overridable<PageProps>(({page, isLoading, notFound, notFoundPage}:PageProps) =>
+export const PageComponent = overridable(({page, isLoading, notFound, notFoundPage}:PageProps) =>
     <Spin spinning={isLoading}>
         {notFound && <div className={styles.page}>
             <h1>{notFoundPage.title}</h1>

@@ -6,8 +6,9 @@ import { Card, DatePicker, Switch } from "antd";
 import { Label } from "@core/components/Label";
 import dayjs from "dayjs";
 import { onDateChange } from "@core/lib/onInputChange";
+import { overridable } from "@core/lib/overridable";
 
-export const ContentEditorComponent = ({type, content, updateString, updateToggle, UpdateButtons}:ContentEditorProps) =>
+export const ContentEditorComponent = overridable(({type, content, updateString, updateToggle, UpdateButtons}:ContentEditorProps) =>
     <div className={styles.contentEditor}>
         <h1>Edit {type.charAt(0).toUpperCase() + type.slice(1)}</h1>
         <div className={styles.updateButtons}>
@@ -29,4 +30,5 @@ export const ContentEditorComponent = ({type, content, updateString, updateToggl
         <Card title={type.charAt(0).toUpperCase() + type.slice(1)} className={styles.contentCard} size="small">
             <MarkdownEditor value={content.content || ""} onChange={updateString("content")} />
         </Card>
-    </div>;
+    </div>
+);

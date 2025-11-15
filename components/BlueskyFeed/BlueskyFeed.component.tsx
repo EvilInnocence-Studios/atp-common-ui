@@ -8,6 +8,7 @@ import styles from "./BlueskyFeed.module.scss";
 import { AppBskyEmbedDefs, AppBskyEmbedImages, AppBskyEmbedVideo } from "@atproto/api";
 import { useBlueskyHLS } from "./useBlueSkyHLS";
 import clsx from "clsx";
+import { overridable } from "@core/lib/overridable";
 
 const RichTextRenderer = ({text}: {text: string}) => {
     const [markdown, setMarkdown] = useState<string>('');
@@ -29,7 +30,7 @@ const commonStyles = (
 	aspectRatio: aspect ? `${aspect.width} / ${aspect.height}` : undefined,
 });
 
-const BlueskyVideo: FC<{ video: AppBskyEmbedVideo.View }> = ({ video }) => {
+export const BlueskyVideo: FC<{ video: AppBskyEmbedVideo.View }> = overridable(({ video }) => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [_hasSubtitleTrack, setHasSubtitleTrack] = useState(false);
 	const [_hlsLoading, setHlsLoading] = useState(false);
@@ -59,9 +60,9 @@ const BlueskyVideo: FC<{ video: AppBskyEmbedVideo.View }> = ({ video }) => {
 			controls
 		/>
 	);
-};
+});
 
-export const BlueskyFeedComponent = ({pageSize, feed}:BlueskyFeedProps) => <>
+export const BlueskyFeedComponent = overridable(({pageSize, feed}:BlueskyFeedProps) => <>
     {feed && <div className={clsx([styles.feed, "feed"])}>
         {feed.feed.slice(0, pageSize || 10).filter(item => !item.reason).map((item) => (
             <div key={item.post.cid} className={styles.post}>
@@ -92,4 +93,4 @@ export const BlueskyFeedComponent = ({pageSize, feed}:BlueskyFeedProps) => <>
             </div>
         ))}
     </div>}
-</>;
+</>);

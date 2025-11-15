@@ -7,8 +7,9 @@ import { Spin, Upload } from "antd";
 import { MediaImage } from "../MediaImage";
 import { MediaEditorProps } from "./MediaEditor.d";
 import styles from './MediaEditor.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const MediaEditorComponent = ({image, isLoading, upload, updateString, UpdateButtons, remove}:MediaEditorProps) =>
+export const MediaEditorComponent = overridable(({image, isLoading, upload, updateString, UpdateButtons, remove}:MediaEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.mediaEditor}>
             <div className={styles.updateButtons}>
@@ -23,4 +24,5 @@ export const MediaEditorComponent = ({image, isLoading, upload, updateString, Up
             <Label label="Caption"><Editable value={image.caption || ""} onChange={updateString("caption")}/></Label>
             <Label label="Alt Text"><Editable value={image.altText || ""} onChange={updateString("altText")}/></Label>
         </div>
-    </Spin>;
+    </Spin>
+);

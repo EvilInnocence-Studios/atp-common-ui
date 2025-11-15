@@ -1,7 +1,8 @@
 import { Select } from "antd";
 import { LinkListSelectProps } from "./LinkListSelect.d";
+import { overridable } from "@core/lib/overridable";
 
-export const LinkListSelectComponent = ({listId, onChange, lists, className}:LinkListSelectProps) =>
+export const LinkListSelectComponent = overridable(({listId, onChange, lists, className}:LinkListSelectProps) =>
     <Select
         className={className}
         options={[
@@ -10,4 +11,5 @@ export const LinkListSelectComponent = ({listId, onChange, lists, className}:Lin
         ]}
         onChange={onChange}
         value={listId}
-    />;
+    />
+);

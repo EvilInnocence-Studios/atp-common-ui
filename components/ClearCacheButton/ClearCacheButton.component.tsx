@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dropdown, Spin } from "antd";
 import { ClearCacheButtonProps } from "./ClearCacheButton.d";
 import styles from './ClearCacheButton.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const ClearCacheButtonComponent = ({entity, onClick, isLoading, clearAll}:ClearCacheButtonProps) =>
+export const ClearCacheButtonComponent = overridable(({entity, onClick, isLoading, clearAll}:ClearCacheButtonProps) =>
     <Dropdown.Button
         menu={{
             items: [{key: 'all', label: "Clear all caches"}],
@@ -19,3 +20,4 @@ export const ClearCacheButtonComponent = ({entity, onClick, isLoading, clearAll}
             Clear {entity} cache
         </Spin>
     </Dropdown.Button>
+);
