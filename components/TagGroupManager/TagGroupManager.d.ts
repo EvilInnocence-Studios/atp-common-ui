@@ -8,14 +8,14 @@ export declare interface ITagGroupManagerProps {
     selectedGroup: string | null;
     setSelectedGroup: Setter<string>;
     create: () => void;
-    update: (id:string, field:string) => (value:any) => void;
-    remove: (id:string) => () => void;
+    update: (id: string, field: string) => (value: any) => void;
+    remove: (id: string) => () => void;
     sortGroups: (id: string, newIndex: number) => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface ITagGroupManagerInputProps {
-
+    classes?: any;
 }
 
 export type TagGroupManagerProps = ITagGroupManagerInputProps & ITagGroupManagerProps;

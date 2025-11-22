@@ -21,11 +21,11 @@ const CanEdit = hasPermission("tag.update");
 const CanDelete = hasPermission("tag.delete");
 const CanCreate = hasPermission("tag.create");
 
-const groupId = (tag:ITagGroup,  index:number) => `${tag.id}:${index}`;
+const groupId = (tag: ITagGroup, index: number) => `${tag.id}:${index}`;
 
-export const Group = overridable(({item:group, update, remove, selectedGroup, setSelectedGroup}:any) => {
+export const Group = overridable(({ item: group, update, remove, selectedGroup, setSelectedGroup, classes = styles }: any) => {
     return <div
-        className={clsx([styles.tagGroup, selectedGroup === group.id && styles.selected])}
+        className={clsx([classes.tagGroup, selectedGroup === group.id && classes.selected])}
     >
         <Checkbox
             title="Filterable"
@@ -46,9 +46,9 @@ export const Group = overridable(({item:group, update, remove, selectedGroup, se
     </div>;
 });
 
-export const TagGroupManagerComponent = overridable(({groups, isLoading, name, setName, create, sortGroups, ...handlers}:TagGroupManagerProps) =>
+export const TagGroupManagerComponent = overridable(({ groups, isLoading, name, setName, create, sortGroups, classes = styles, ...handlers }: TagGroupManagerProps) =>
     <Spin spinning={isLoading}>
-        <Space.Compact className={styles.cacheBtns}>
+        <Space.Compact className={classes.cacheBtns}>
             <ClearCacheButton entity="tag group" cacheType="group" />
             <ClearCacheButton entity="tag" cacheType="tag" />
         </Space.Compact>
@@ -57,19 +57,19 @@ export const TagGroupManagerComponent = overridable(({groups, isLoading, name, s
         <Row gutter={8}>
             <Col xs={6}>
                 <SortableList<ITagGroup>
-                    className={styles.tagGroupList}
+                    className={classes.tagGroupList}
                     isActive={(group) => handlers.selectedGroup === group.id}
-                    activeClassName={styles.selected}
+                    activeClassName={classes.selected}
                     items={groups.sort(sort.by(prop<ITagGroup, "order">("order")).asc)}
                     getId={prop<any, any>("id")}
                     getListId={groupId}
                     sort={sortGroups}
                     ItemComponent={Group}
-                    itemProps={handlers}
+                    itemProps={{ ...handlers, classes }}
                 />
                 <CanCreate yes>
                     <Card size="small"
-                        className={styles.newTagGroupForm}
+                        className={classes.newTagGroupForm}
                         title={<>New Tag Group</>}
                         extra={<Button onClick={create} size="small" variant="link"><FontAwesomeIcon icon={faAdd} /> Create</Button>}
                     >

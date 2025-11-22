@@ -10,14 +10,14 @@ export declare interface ILinkListManagerProps {
     selectedList: string | null;
     setSelectedList: Setter<string>;
     create: () => void;
-    update: (id:string, field:string) => (value:any) => void;
-    remove: (id:string) => () => void;
+    update: (id: string, field: string) => (value: any) => void;
+    remove: (id: string) => () => void;
 
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface ILinkListManagerInputProps {
-
+    classes?: any;
 }
 
 export type LinkListManagerProps = ILinkListManagerInputProps & ILinkListManagerProps;

@@ -23,21 +23,22 @@ export const LinkListManagerComponent = overridable(({
     name, setName, listKey, setListKey,
     create, update, remove,
     selectedList, setSelectedList,
-}:LinkListManagerProps) =>
+    classes = styles
+}: LinkListManagerProps) =>
     <Spin spinning={isLoading}>
-        <Space.Compact className={styles.cacheBtns}>
+        <Space.Compact className={classes.cacheBtns}>
             <ClearCacheButton entity="links" cacheType="linkList,link" />
         </Space.Compact>
         <h1><FontAwesomeIcon icon={faLink} /> Link Lists</h1>
 
         <Row gutter={8}>
             <Col xs={6}>
-                <ul className={styles.linkList}>
-                    {lists.map(list => <li className={clsx([styles.linkListItem, selectedList === list.id && styles.selected])} key={list.id}>
+                <ul className={classes.linkList}>
+                    {lists.map(list => <li className={clsx([classes.linkListItem, selectedList === list.id && classes.selected])} key={list.id}>
                         <CanEdit yes><Editable value={list.name} onChange={update(list.id, "name")} /></CanEdit>
                         <CanEdit yes><Editable value={list.key} onChange={update(list.id, "key")} /></CanEdit>
                         <CanEdit no>{list.name}</CanEdit>
-                        <div className={styles.btns}>
+                        <div className={classes.btns}>
                             <Button type="link" onClick={() => setSelectedList(list.id)}>links <FontAwesomeIcon icon={faArrowRight} /></Button>
                             <CanDelete yes><DeleteBtn entityType="link list" onClick={remove(list.id)} /></CanDelete>
                         </div>
@@ -45,7 +46,7 @@ export const LinkListManagerComponent = overridable(({
                 </ul>
                 <CanCreate yes>
                     <Card size="small"
-                        className={styles.newLinkListForm}
+                        className={classes.newLinkListForm}
                         title={<>New Link List</>}
                         extra={<Button onClick={create} size="small" variant="link"><FontAwesomeIcon icon={faAdd} /> Create</Button>}
                     >

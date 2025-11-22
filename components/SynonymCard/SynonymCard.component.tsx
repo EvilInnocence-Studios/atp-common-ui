@@ -9,15 +9,15 @@ import { SynonymCardProps } from "./SynonymCard.d";
 import styles from './SynonymCard.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const SynonymCardComponent = overridable(({canonical, synonyms, synonym, setSynonym, add, remove}:SynonymCardProps) =>
+export const SynonymCardComponent = overridable(({ canonical, synonyms, synonym, setSynonym, add, remove, classes = styles }: SynonymCardProps) =>
     <Card
         key={canonical}
-        title={<>{canonical} <DeleteBtn entityType="synonym list" onClick={remove(synonyms.map(prop("id")))}/></>}
-        className={styles.synonymCard}
+        title={<>{canonical} <DeleteBtn entityType="synonym list" onClick={remove(synonyms.map(prop("id")))} /></>}
+        className={classes.synonymCard}
         size="small"
         extra={<Input.Search
             size="small"
-            className={styles.synonymInput}
+            className={classes.synonymInput}
             placeholder="Add synonym"
             value={synonym}
             onChange={onInputChange(setSynonym)}
@@ -25,8 +25,8 @@ export const SynonymCardComponent = overridable(({canonical, synonyms, synonym, 
             onSearch={add(canonical, synonym)}
         />}
     >
-        {synonyms.map((synonym:ISynonym) => <Tag key={synonym.id} closable onClose={remove([synonym.id])}>
+        {synonyms.map((synonym: ISynonym) => <Tag key={synonym.id} closable onClose={remove([synonym.id])}>
             {synonym.synonym}
-        </Tag>)}                    
+        </Tag>)}
     </Card>
 );

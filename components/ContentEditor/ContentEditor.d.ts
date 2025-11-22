@@ -10,6 +10,7 @@ export declare interface IContentEditorInputProps {
     content: IContent;
     type: "page" | "snippet";
     onUpdate?: (content: IContent) => () => void;
+    classes?: any;
 }
 
 export type ContentEditorProps = IContentEditorInputProps & IContentEditorProps;

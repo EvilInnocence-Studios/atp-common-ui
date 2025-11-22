@@ -10,24 +10,24 @@ import clsx from "clsx";
 import { overridable } from "@core/lib/overridable";
 
 // Group banners by order value
-const groupBanners = (banners: IBanner[]):Index<IBanner[]> => banners.reduce(
-    (acc:Index<IBanner[]>, banner:IBanner) => {
+const groupBanners = (banners: IBanner[]): Index<IBanner[]> => banners.reduce(
+    (acc: Index<IBanner[]>, banner: IBanner) => {
         const key = `${banner.order}`;
-        return {...acc, [key]: [...acc[key] || [], banner]};
+        return { ...acc, [key]: [...acc[key] || [], banner] };
     },
     {}
 );
 
-const renderBanners = (lg:number) => (banners:IBanner[], order:string) => <Col lg={lg} xs={24} key={order} className={clsx([styles.hero, "hero"])}>
+const renderBanners = (lg: number, classes: any) => (banners: IBanner[], order: string) => <Col lg={lg} xs={24} key={order} className={clsx([classes.hero, "hero"])}>
     <Fader interval={5}>
         {banners.map(banner => <Banner key={banner.id} banner={banner} />)}
     </Fader>
 </Col>;
 
-const valuesByOrder = (elements:Index<JSX.Element>) => Object.keys(elements).sort().map(key => elements[key]);
+const valuesByOrder = (elements: Index<JSX.Element>) => Object.keys(elements).sort().map(key => elements[key]);
 
-const mapBanners = (lg:number) => pipe(groupBanners, objMap(renderBanners(lg)), valuesByOrder);
+const mapBanners = (lg: number, classes: any) => pipe(groupBanners, objMap(renderBanners(lg, classes)), valuesByOrder);
 
-export const BannerListComponent = overridable(({banners, columns}:BannerListProps) => <>
-    {mapBanners(24 / columns)(banners)}
+export const BannerListComponent = overridable(({ banners, columns, classes = styles }: BannerListProps) => <>
+    {mapBanners(24 / columns, classes)(banners)}
 </>);

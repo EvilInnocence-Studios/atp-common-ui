@@ -20,16 +20,16 @@ const CanEdit = hasPermission("tag.update");
 const CanCreate = hasPermission("tag.create");
 const CanDelete = hasPermission("tag.delete");
 
-const tagId = (tag:ITag,  index:number) => `${tag.id}:${index}`;
+const tagId = (tag: ITag, index: number) => `${tag.id}:${index}`;
 
-export const TagItem = overridable(({item: tag, update, remove}:any) => {
-    return <div className={styles.tag}>
+export const TagItem = overridable(({ item: tag, update, remove, classes = styles }: any) => {
+    return <div className={classes.tag}>
         <CanEdit yes>
-            <span className={styles.icon}>
-                <Checkbox title="Visible" checked={tag.filterable} {...stopProp} onChange={onCheckboxChange(update(tag.id, "filterable"), true, false)}/>
+            <span className={classes.icon}>
+                <Checkbox title="Visible" checked={tag.filterable} {...stopProp} onChange={onCheckboxChange(update(tag.id, "filterable"), true, false)} />
             </span>
-            <Link className={styles.icon} to={`/queue/${tag.groupId}/${tag.id}`}><FontAwesomeIcon icon={faListCheck} title="Create Queue" /></Link>
-            <FontAwesomeIcon className={styles.icon} icon={faCopy} title="Copy id" onClick={(() => {
+            <Link className={classes.icon} to={`/queue/${tag.groupId}/${tag.id}`}><FontAwesomeIcon icon={faListCheck} title="Create Queue" /></Link>
+            <FontAwesomeIcon className={classes.icon} icon={faCopy} title="Copy id" onClick={(() => {
                 navigator.clipboard.writeText(tag.id);
                 flash.success(`Tag id ${tag.id} copied to clipboard`)();
             })} />
@@ -40,7 +40,7 @@ export const TagItem = overridable(({item: tag, update, remove}:any) => {
     </div>;
 });
 
-export const TagManagerComponent = overridable(({tags, isLoading, name, setName, create, update, remove, sort}:TagManagerProps) =>
+export const TagManagerComponent = overridable(({ tags, isLoading, name, setName, create, update, remove, sort, classes = styles }: TagManagerProps) =>
     <Spin spinning={isLoading}>
         <CanView yes>
             <SortableList<ITag>
@@ -49,15 +49,15 @@ export const TagManagerComponent = overridable(({tags, isLoading, name, setName,
                 getListId={tagId}
                 sort={sort}
                 ItemComponent={TagItem}
-                itemProps={{update, remove}}
+                itemProps={{ update, remove, classes }}
             />
             <CanCreate yes>
-                <Space.Compact style={{width: "100%"}}>
+                <Space.Compact style={{ width: "100%" }}>
                     <Input
                         value={name}
                         onChange={onInputChange(setName)}
                         placeholder="Name"
-                        className={styles.newTagForm}
+                        className={classes.newTagForm}
                         onPressEnter={create}
                     />
                     <Button onClick={create} variant="link"><FontAwesomeIcon icon={faAdd} /></Button>

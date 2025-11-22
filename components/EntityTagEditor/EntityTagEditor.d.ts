@@ -6,18 +6,19 @@ export declare interface IEntityTagEditorProps {
         tags: ITag[];
     }>;
     entityTags: ITag[];
-    onAddTag: (tagId:string) => void;
-    onRemoveTag: (tagId:string) => void;
+    onAddTag: (tagId: string) => void;
+    onRemoveTag: (tagId: string) => void;
     isLoading: boolean;
     showHiddenTags: boolean;
-    setShowHiddenTags: (show:boolean) => void;
+    setShowHiddenTags: (show: boolean) => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface IEntityTagEditorInputProps {
     search: () => Promise<ITag[]>;
-    create: (tagId:string) => Promise<void>;
-    remove: (tagId:string) => Promise<void>;
+    create: (tagId: string) => Promise<void>;
+    remove: (tagId: string) => Promise<void>;
+    classes?: any;
 }
 
 export type EntityTagEditorProps = IEntityTagEditorInputProps & IEntityTagEditorProps;

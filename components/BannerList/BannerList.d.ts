@@ -6,6 +6,7 @@ export declare interface IBannerListProps {
 export declare interface IBannerListInputProps {
     tag: string;
     columns: number;
+    classes?: any;
 }
 
 export type BannerListProps = IBannerListInputProps & IBannerListProps;

@@ -9,6 +9,7 @@ export declare interface IBlueskyFeedProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IBlueskyFeedInputProps {
     pageSize?: number;
+    classes?: any;
 }
 
 export type BlueskyFeedProps = IBlueskyFeedInputProps & IBlueskyFeedProps;

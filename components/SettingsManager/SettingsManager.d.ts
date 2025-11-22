@@ -3,12 +3,12 @@ import { Index } from "ts-functional/dist/types";
 
 export declare interface ISettingsManagerProps {
     settings: Index<ISetting>;
-    update: (key:string) => (value:string) => void;
+    update: (key: string) => (value: string) => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface ISettingsManagerInputProps {
-
+    classes?: any;
 }
 
 export type SettingsManagerProps = ISettingsManagerInputProps & ISettingsManagerProps;

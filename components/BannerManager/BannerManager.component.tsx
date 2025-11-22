@@ -7,27 +7,27 @@ import styles from './BannerManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
 import { overridable } from "@core/lib/overridable";
 
-export const BannerManagerComponent = overridable(({banners, isLoading, upload, overwrite, setOverwrite, refresh}:BannerManagerProps) =>
+export const BannerManagerComponent = overridable(({ banners, isLoading, upload, overwrite, setOverwrite, refresh, classes = styles }: BannerManagerProps) =>
     <Spin spinning={isLoading}>
-        <Row className={styles.bannerManager} gutter={16}>
+        <Row className={classes.bannerManager} gutter={16}>
             <Col xs={3}>
                 <h1><FontAwesomeIcon icon={faImage} /> Banners</h1>
                 <ClearCacheButton entity="banner" cacheType="banner" />
             </Col>
             <Col xs={18}>
-                <Upload.Dragger customRequest={({file}) => upload(file as File)} showUploadList={false}>
+                <Upload.Dragger customRequest={({ file }) => upload(file as File)} showUploadList={false}>
                     <p className="ant-upload-text">
-                        Click or drag file to this area to upload.<br/>
+                        Click or drag file to this area to upload.<br />
                         <Checkbox checked={overwrite} onClick={e => e.stopPropagation()} onChange={(e) => setOverwrite(e.target.checked)}>Overwrite</Checkbox>
-                    </p>                    
+                    </p>
                 </Upload.Dragger>
             </Col>
             <Col xs={24}>
-                <Row gutter={16} className={styles.bannerList}>
+                <Row gutter={16} className={classes.bannerList}>
                     {banners.map(banner => <Col key={banner.id} xs={6}>
                         <BannerEditor bannerId={banner.id} onDelete={refresh} />
                     </Col>)}
-                </Row>                                        
+                </Row>
             </Col>
         </Row>
     </Spin>

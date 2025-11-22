@@ -13,30 +13,30 @@ import styles from './SettingsManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
 import { overridable } from "@core/lib/overridable";
 
-export const SettingsManagerComponent = overridable(({settings, update}:SettingsManagerProps) =>
-    <div className={styles.settingsManager}>
+export const SettingsManagerComponent = overridable(({ settings, update, classes = styles }: SettingsManagerProps) =>
+    <div className={classes.settingsManager}>
         <h1><FontAwesomeIcon icon={faGear} /> Settings</h1>
         <ClearCacheButton entity="settings" cacheType="setting" />
-        <br/><br/>
+        <br /><br />
         <Tabs tabPosition="left" defaultActiveKey="0">
-            {Object.values(objMap((module:ISettingsModule, moduleName:string) => <Tabs.TabPane
+            {Object.values(objMap((module: ISettingsModule, moduleName: string) => <Tabs.TabPane
                 key={moduleName}
                 tab={moduleName}
             >
                 <Tabs>
-                    {Object.values(objMap((screen:ISettingsScreen, screenName:string) => <Tabs.TabPane
+                    {Object.values(objMap((screen: ISettingsScreen, screenName: string) => <Tabs.TabPane
                         key={screenName}
                         tab={screenName}
                     >
-                        {Object.values(objMap((setting:ISettingDescriptor, settingName:string) => {
+                        {Object.values(objMap((setting: ISettingDescriptor, settingName: string) => {
                             const { displayName, type, defaultValue, description, options } = setting;
-                            return <div className={styles.setting} key={settingName} title={settingName}>
+                            return <div className={classes.setting} key={settingName} title={settingName}>
                                 {["string", "integer", "decimal"].includes(type) && <Label label={displayName}><Editable
                                     placeholder={defaultValue}
                                     value={settings[settingName]?.value}
                                     onChange={update(settingName)}
                                 /></Label>}
-                                {type === "color" && <Label className={styles.colorPicker} label={displayName}>
+                                {type === "color" && <Label className={classes.colorPicker} label={displayName}>
                                     <ColorPicker
                                         value={settings[settingName]?.value || defaultValue}
                                         onChange={color => update(settingName)(color.toHexString())}

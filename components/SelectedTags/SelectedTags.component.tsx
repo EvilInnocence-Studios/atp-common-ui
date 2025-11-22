@@ -5,14 +5,14 @@ import { SelectedTagsProps } from "./SelectedTags.d";
 import styles from './SelectedTags.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const SelectedTagsComponent = overridable(({selectedTagIds, clearSearch, q, removeTag, groups, clearAll, isLoading}:SelectedTagsProps) =>
-    <div className={styles.selectedTagList}>
+export const SelectedTagsComponent = overridable(({ selectedTagIds, clearSearch, q, removeTag, groups, clearAll, isLoading, classes = styles }: SelectedTagsProps) =>
+    <div className={classes.selectedTagList}>
         <Spin spinning={isLoading}>
             {!!q && <Tag color="blue" onClick={clearSearch}><FontAwesomeIcon icon={faSearch} /> {q}</Tag>}
             {selectedTagIds.map(tagId =>
                 <Tag key={tagId} color="blue" onClick={() => removeTag(tagId)}>
                     <FontAwesomeIcon icon={faTag} />
-                    {groups.reduce((acc, {tags}) => {
+                    {groups.reduce((acc, { tags }) => {
                         const tag = tags.find(tag => `${tag.id}` === tagId);
                         return tag ? [...acc, tag.name] : acc;
                     }, [] as string[]).join(', ')}

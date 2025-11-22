@@ -8,6 +8,7 @@ export declare interface IClearCacheButtonProps {
 export declare interface IClearCacheButtonInputProps {
     entity: string;
     cacheType: string;
+    classes?: any;
 }
 
 export type ClearCacheButtonProps = IClearCacheButtonInputProps & IClearCacheButtonProps;

@@ -12,6 +12,8 @@ type ImageIdOrSetting =
     | { settingKey: string; imageId?: never };
 
 // What gets passed into the component from the parent as attributes
-export declare type IMediaImageInputProps = ImageIdOrSetting;
+export declare type IMediaImageInputProps = ImageIdOrSetting & {
+    classes?: any;
+};
 
 export type MediaImageProps = IMediaImageInputProps & IMediaImageProps;

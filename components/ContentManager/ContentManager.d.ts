@@ -11,6 +11,7 @@ export declare interface IContentManagerProps {
 export declare interface IContentManagerInputProps {
     type: "page" | "snippet";
     id?: string;
+    classes?: any;
 }
 
 export type ContentManagerProps = IContentManagerInputProps & IContentManagerProps;

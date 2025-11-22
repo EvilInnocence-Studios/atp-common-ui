@@ -1,8 +1,7 @@
 import { ITag, ITagGroup } from "@common-shared/tag/types";
-import { IGroupToggle, IToggle } from "@core/lib/useToggle";
 
 export declare interface ITagFacetsProps {
-    groups: Array<{group: ITagGroup, tags: ITag[]}>;
+    groups: Array<{ group: ITagGroup, tags: ITag[] }>;
     isLoading: boolean;
 }
 
@@ -11,6 +10,7 @@ export declare interface ITagFacetsInputProps {
     selectTag: (tagId: string) => void;
     removeTag: (tagId: string) => void;
     selectedTagIds: string[];
+    classes?: any;
 }
 
 export type TagFacetsProps = ITagFacetsInputProps & ITagFacetsProps;

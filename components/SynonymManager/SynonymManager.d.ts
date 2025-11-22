@@ -10,12 +10,12 @@ export declare interface ISynonymManagerProps {
     synonym: string;
     setSynonym: Setter<string>;
     add: (canonical: string, synonym: string) => () => void;
-    remove: (ids:string[]) => () => void;
+    remove: (ids: string[]) => () => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface ISynonymManagerInputProps {
-
+    classes?: any;
 }
 
 export type SynonymManagerProps = ISynonymManagerInputProps & ISynonymManagerProps;

@@ -9,20 +9,20 @@ import { MediaEditorProps } from "./MediaEditor.d";
 import styles from './MediaEditor.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const MediaEditorComponent = overridable(({image, isLoading, upload, updateString, UpdateButtons, remove}:MediaEditorProps) =>
+export const MediaEditorComponent = overridable(({ image, isLoading, upload, updateString, UpdateButtons, remove, classes = styles }: MediaEditorProps) =>
     <Spin spinning={isLoading}>
-        <div className={styles.mediaEditor}>
-            <div className={styles.updateButtons}>
+        <div className={classes.mediaEditor}>
+            <div className={classes.updateButtons}>
                 <DeleteBtn entityType="banner" onClick={remove} />
                 <UpdateButtons />
             </div>
             <MediaImage imageId={image.id} />
-            <Upload.Dragger customRequest={({file}) => upload(file as File)} showUploadList={false}>
+            <Upload.Dragger customRequest={({ file }) => upload(file as File)} showUploadList={false}>
                 <FontAwesomeIcon icon={faRefresh} /> Replace image
             </Upload.Dragger>
-            <Label label="Title"><Editable value={image.title} onChange={updateString("title")}/></Label>
-            <Label label="Caption"><Editable value={image.caption || ""} onChange={updateString("caption")}/></Label>
-            <Label label="Alt Text"><Editable value={image.altText || ""} onChange={updateString("altText")}/></Label>
+            <Label label="Title"><Editable value={image.title} onChange={updateString("title")} /></Label>
+            <Label label="Caption"><Editable value={image.caption || ""} onChange={updateString("caption")} /></Label>
+            <Label label="Alt Text"><Editable value={image.altText || ""} onChange={updateString("altText")} /></Label>
         </div>
     </Spin>
 );

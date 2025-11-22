@@ -18,19 +18,20 @@ const CanEdit = hasPermission("links.update");
 const CanCreate = hasPermission("links.create");
 const CanDelete = hasPermission("links.delete");
 
-const linkId = (link:ILink,  index:number) => `${link.id}:${index}`;
+const linkId = (link: ILink, index: number) => `${link.id}:${index}`;
 
 interface ILinkItemProps {
     update: (id: string, field: keyof ILink) => (value: string | null) => void;
     remove: (id: string) => () => void;
+    classes?: any;
 }
 
-export const LinkItem = overridable(({item:link, update, remove}:{item:ILink} & ILinkItemProps) => {
-    return <div className={styles.link}>
+export const LinkItem = overridable(({ item: link, update, remove, classes = styles }: { item: ILink } & ILinkItemProps) => {
+    return <div className={classes.link}>
         <Editable value={link.text} onChange={update(link.id, "text")} />
-        <Editable value={link.url } onChange={update(link.id, "url" )} />
+        <Editable value={link.url} onChange={update(link.id, "url")} />
         <LinkListSelect
-            className={styles.listSelect}
+            className={classes.listSelect}
             listId={link.subMenuKey}
             onChange={update(link.id, "subMenuKey")}
         />
@@ -44,7 +45,8 @@ export const LinkManagerComponent = overridable(({
     text, setText,
     url, setUrl,
     create, update, remove, sort,
-}:LinkManagerProps) =>
+    classes = styles
+}: LinkManagerProps) =>
     <Spin spinning={isLoading}>
         <CanView yes>
             <SortableList<ILink, ILinkItemProps>
@@ -53,22 +55,22 @@ export const LinkManagerComponent = overridable(({
                 getListId={linkId}
                 sort={sort}
                 ItemComponent={LinkItem}
-                itemProps={{update, remove}}
+                itemProps={{ update, remove, classes }}
             />
             <CanCreate yes>
-                <Space.Compact style={{width: "100%"}}>
+                <Space.Compact style={{ width: "100%" }}>
                     <Input
                         value={text}
                         onChange={onInputChange(setText)}
                         placeholder="Text"
-                        className={styles.newLinkForm}
+                        className={classes.newLinkForm}
                         onPressEnter={create}
                     />
                     <Input
                         value={url}
                         onChange={onInputChange(setUrl)}
                         placeholder="Url"
-                        className={styles.newLinkForm}
+                        className={classes.newLinkForm}
                         onPressEnter={create}
                     />
                     <Button onClick={create} variant="link"><FontAwesomeIcon icon={faAdd} /></Button>

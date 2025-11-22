@@ -1,5 +1,5 @@
 import { Editable } from "@core/components/Editable";
-import {ContentEditorProps} from "./ContentEditor.d";
+import { ContentEditorProps } from "./ContentEditor.d";
 import styles from './ContentEditor.module.scss';
 import { MarkdownEditor } from "@core/components/MarkdownEditor";
 import { Card, DatePicker, Switch } from "antd";
@@ -8,15 +8,15 @@ import dayjs from "dayjs";
 import { onDateChange } from "@core/lib/onInputChange";
 import { overridable } from "@core/lib/overridable";
 
-export const ContentEditorComponent = overridable(({type, content, updateString, updateToggle, UpdateButtons}:ContentEditorProps) =>
-    <div className={styles.contentEditor}>
+export const ContentEditorComponent = overridable(({ type, content, updateString, updateToggle, UpdateButtons, classes = styles }: ContentEditorProps) =>
+    <div className={classes.contentEditor}>
         <h1>Edit {type.charAt(0).toUpperCase() + type.slice(1)}</h1>
-        <div className={styles.updateButtons}>
+        <div className={classes.updateButtons}>
             <UpdateButtons />
         </div>
-        <DatePicker value={content.publishDate ? dayjs(content.publishDate) : undefined} onChange={onDateChange(updateString("publishDate"))}/>
+        <DatePicker value={content.publishDate ? dayjs(content.publishDate) : undefined} onChange={onDateChange(updateString("publishDate"))} />
         &nbsp;
-        <Switch checked={content.enabled} onChange={updateToggle("enabled")} checkedChildren="Enabled" unCheckedChildren="Disabled"/>
+        <Switch checked={content.enabled} onChange={updateToggle("enabled")} checkedChildren="Enabled" unCheckedChildren="Disabled" />
         <h1>
             <Label label="Title">
                 <Editable value={content.title || ""} onChange={updateString("title")} />
@@ -27,7 +27,7 @@ export const ContentEditorComponent = overridable(({type, content, updateString,
                 <Editable value={content.slug || ""} onChange={updateString("slug")} />
             </Label>
         </h3>
-        <Card title={type.charAt(0).toUpperCase() + type.slice(1)} className={styles.contentCard} size="small">
+        <Card title={type.charAt(0).toUpperCase() + type.slice(1)} className={classes.contentCard} size="small">
             <MarkdownEditor value={content.content || ""} onChange={updateString("content")} />
         </Card>
     </div>

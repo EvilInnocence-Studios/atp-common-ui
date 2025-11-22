@@ -13,13 +13,14 @@ export const SynonymManagerComponent = overridable(({
     canonical, setCanonical,
     synonym, setSynonym,
     add, remove,
-}:SynonymManagerProps) =>
+    classes = styles
+}: SynonymManagerProps) =>
     <Spin spinning={isLoading}>
-        <div className={styles.synonymManager}>
+        <div className={classes.synonymManager}>
             <h1><FontAwesomeIcon icon={faRightLeft} /> Synonyms</h1>
             <ClearCacheButton entity="synonyms" cacheType="synonym" />
-            <br/><br/>
-            <Space.Compact className={styles.newSynonymForm}>
+            <br /><br />
+            <Space.Compact className={classes.newSynonymForm}>
                 <Input placeholder="Canonical" value={canonical} onChange={onInputChange(setCanonical)} />
                 <Input.Search
                     placeholder="Synonym"
@@ -29,7 +30,7 @@ export const SynonymManagerComponent = overridable(({
                     enterButton={<FontAwesomeIcon icon={faPlus} />}
                 />
             </Space.Compact>
-            <div className={styles.synonymList}>
+            <div className={classes.synonymList}>
                 {Object.keys(synonyms).map(canonical => <SynonymCard
                     canonical={canonical}
                     synonyms={synonyms[canonical]}

@@ -10,7 +10,7 @@ import { useBlueskyHLS } from "./useBlueSkyHLS";
 import clsx from "clsx";
 import { overridable } from "@core/lib/overridable";
 
-const RichTextRenderer = ({text}: {text: string}) => {
+const RichTextRenderer = ({ text }: { text: string }) => {
     const [markdown, setMarkdown] = useState<string>('');
     useEffect(() => {
         if (typeof text === 'string') {
@@ -21,53 +21,53 @@ const RichTextRenderer = ({text}: {text: string}) => {
 }
 
 const commonStyles = (
-	borderColor: string,
-	aspect?: AppBskyEmbedDefs.AspectRatio,
+    borderColor: string,
+    aspect?: AppBskyEmbedDefs.AspectRatio,
 ): CSSProperties => ({
-	width: "100%",
-	borderRadius: 10,
-	border: `1px solid ${borderColor}`,
-	aspectRatio: aspect ? `${aspect.width} / ${aspect.height}` : undefined,
+    width: "100%",
+    borderRadius: 10,
+    border: `1px solid ${borderColor}`,
+    aspectRatio: aspect ? `${aspect.width} / ${aspect.height}` : undefined,
 });
 
 export const BlueskyVideo: FC<{ video: AppBskyEmbedVideo.View }> = overridable(({ video }) => {
-	const videoRef = useRef<HTMLVideoElement>(null);
-	const [_hasSubtitleTrack, setHasSubtitleTrack] = useState(false);
-	const [_hlsLoading, setHlsLoading] = useState(false);
-	const [error, setError] = useState<Error | null>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [_hasSubtitleTrack, setHasSubtitleTrack] = useState(false);
+    const [_hlsLoading, setHlsLoading] = useState(false);
+    const [error, setError] = useState<Error | null>(null);
 
-	useBlueskyHLS({
-		playlist: video.playlist,
-		setHasSubtitleTrack,
-		setError,
-		videoRef,
-		setHlsLoading,
-	});
+    useBlueskyHLS({
+        playlist: video.playlist,
+        setHasSubtitleTrack,
+        setError,
+        videoRef,
+        setHlsLoading,
+    });
 
-	if (error) {
-		console.error("Video embed error", error);
-		return null;
-	}
+    if (error) {
+        console.error("Video embed error", error);
+        return null;
+    }
 
-	return (
-		<video
-			ref={videoRef}
-			title={video.alt}
-			poster={video.thumbnail}
+    return (
+        <video
+            ref={videoRef}
+            title={video.alt}
+            poster={video.thumbnail}
             style={commonStyles("#ccc", video.aspectRatio)}
-			preload="none"
-			playsInline
-			controls
-		/>
-	);
+            preload="none"
+            playsInline
+            controls
+        />
+    );
 });
 
-export const BlueskyFeedComponent = overridable(({pageSize, feed}:BlueskyFeedProps) => <>
-    {feed && <div className={clsx([styles.feed, "feed"])}>
+export const BlueskyFeedComponent = overridable(({ pageSize, feed, classes = styles }: BlueskyFeedProps) => <>
+    {feed && <div className={clsx([classes.feed, "feed"])}>
         {feed.feed.slice(0, pageSize || 10).filter(item => !item.reason).map((item) => (
-            <div key={item.post.cid} className={styles.post}>
-                <div className={styles.header}>
-                    <div className={styles.date}>
+            <div key={item.post.cid} className={classes.post}>
+                <div className={classes.header}>
+                    <div className={classes.date}>
                         {new Date(item.post.record.createdAt as string).toLocaleDateString(undefined, {
                             year: 'numeric',
                             month: 'short',
@@ -75,17 +75,17 @@ export const BlueskyFeedComponent = overridable(({pageSize, feed}:BlueskyFeedPro
                         })}
                     </div>
                 </div>
-                <div className={styles.content}>
+                <div className={classes.content}>
                     <RichTextRenderer text={(item.post.record as any).text || ''} />
                 </div>
 
-                {item.post.embed && <div className={styles.embed}>
+                {item.post.embed && <div className={classes.embed}>
                     {item.post.embed.$type === 'app.bsky.embed.images#view' && ((item.post.embed as AppBskyEmbedImages.View).images).map((image, index) => <>
                         <img
                             key={index}
                             src={image.thumb}
                             alt={image.alt || 'Bluesky Image'}
-                            className={styles.embedImage}
+                            className={classes.embedImage}
                         />
                     </>)}
                     {item.post.embed.$type === "app.bsky.embed.video#view" && <BlueskyVideo video={item.post.embed as AppBskyEmbedVideo.View} />}

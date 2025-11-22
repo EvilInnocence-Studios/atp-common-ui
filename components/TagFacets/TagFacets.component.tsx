@@ -5,11 +5,11 @@ import { TagFacetsProps } from "./TagFacets.d";
 import styles from './TagFacets.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const TagFacetsComponent = overridable(({groups, selectedTagIds, removeTag, selectTag, isLoading}:TagFacetsProps) =>
-    <div className={styles.tagGroupList}>
+export const TagFacetsComponent = overridable(({ groups, selectedTagIds, removeTag, selectTag, isLoading, classes = styles }: TagFacetsProps) =>
+    <div className={classes.tagGroupList}>
         <Spin spinning={isLoading}>
             <Collapse>
-                {groups.filter(g => g.group.visible).sort((a, b) => a.group.order - b.group.order).map(({group, tags}) =>
+                {groups.filter(g => g.group.visible).sort((a, b) => a.group.order - b.group.order).map(({ group, tags }) =>
                     <Collapse.Panel
                         header={<>
                             {group.name}
@@ -17,11 +17,11 @@ export const TagFacetsComponent = overridable(({groups, selectedTagIds, removeTa
                         </>}
                         key={group.id}
                     >
-                        <div className={styles.tagList} key={group.id}>
+                        <div className={classes.tagList} key={group.id}>
                             {tags.sort(sort.by(prop<ITag, "order">("order")).asc).map(tag =>
                                 <Checkbox
                                     key={tag.id}
-                                    className={styles.tagCheckbox}
+                                    className={classes.tagCheckbox}
                                     checked={selectedTagIds.includes(`${tag.id}`)}
                                     onChange={() => selectedTagIds.includes(`${tag.id}`) ? removeTag(`${tag.id}`) : selectTag(`${tag.id}`)}
                                 >{tag.name}</Checkbox>

@@ -6,8 +6,9 @@ export declare interface IBannerProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IBannerInputProps {
-    banner:IBanner;
+    banner: IBanner;
     className?: string;
+    classes?: any;
 }
 
 export type BannerProps = IBannerInputProps & IBannerProps;

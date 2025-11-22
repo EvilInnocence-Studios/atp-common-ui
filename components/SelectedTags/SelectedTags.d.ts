@@ -1,5 +1,5 @@
 export declare interface ISelectedTagsProps {
-    groups: Array<{group: ITagGroup, tags: ITag[]}>;
+    groups: Array<{ group: ITagGroup, tags: ITag[] }>;
     isLoading: boolean;
 }
 
@@ -10,6 +10,7 @@ export declare interface ISelectedTagsInputProps {
     clearSearch: () => void;
     q?: string;
     clearAll: () => void;
+    classes?: any;
 }
 
 export type SelectedTagsProps = ISelectedTagsInputProps & ISelectedTagsProps;

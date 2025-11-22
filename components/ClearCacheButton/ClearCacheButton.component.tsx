@@ -5,14 +5,14 @@ import { ClearCacheButtonProps } from "./ClearCacheButton.d";
 import styles from './ClearCacheButton.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const ClearCacheButtonComponent = overridable(({entity, onClick, isLoading, clearAll}:ClearCacheButtonProps) =>
+export const ClearCacheButtonComponent = overridable(({ entity, onClick, isLoading, clearAll, classes = styles }: ClearCacheButtonProps) =>
     <Dropdown.Button
         menu={{
-            items: [{key: 'all', label: "Clear all caches"}],
+            items: [{ key: 'all', label: "Clear all caches" }],
             onClick: clearAll,
         }}
         type="primary"
-        className={styles.clearCacheButton}
+        className={classes.clearCacheButton}
         onClick={onClick}
     >
         <Spin spinning={isLoading}>

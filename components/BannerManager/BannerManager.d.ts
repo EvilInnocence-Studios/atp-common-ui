@@ -12,7 +12,7 @@ export declare interface IBannerManagerProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IBannerManagerInputProps {
-
+    classes?: any;
 }
 
 export type BannerManagerProps = IBannerManagerInputProps & IBannerManagerProps;

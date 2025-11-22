@@ -9,9 +9,9 @@ import styles from './ContentManager.module.scss';
 import { ClearCacheButton } from "../ClearCacheButton";
 import { overridable } from "@core/lib/overridable";
 
-export const ContentManagerComponent = overridable(({id, type, pages, isLoading, create, refresh}:ContentManagerProps) =>
+export const ContentManagerComponent = overridable(({ id, type, pages, isLoading, create, refresh, classes = styles }: ContentManagerProps) =>
     <Spin spinning={isLoading}>
-        <div className={styles.contentManager}>
+        <div className={classes.contentManager}>
             <Row gutter={16}>
                 <Col xs={6}>
                     <h2>
@@ -23,13 +23,13 @@ export const ContentManagerComponent = overridable(({id, type, pages, isLoading,
                         &nbsp;
                         <ClearCacheButton entity="content" cacheType={`content`} />
                     </h2>
-                    <ul className={styles.pageList}>
+                    <ul className={classes.pageList}>
                         {pages.map(page =>
                             <li key={page.id}>
                                 <Link to={`/${type}s/${page.id}`}>
                                     <strong>{page.title}</strong> ({page.slug})
                                     &nbsp;
-                                    <FontAwesomeIcon icon={page.enabled ? faCheck : faTimes} style={{color: page.enabled ? "green" : "red"}} />
+                                    <FontAwesomeIcon icon={page.enabled ? faCheck : faTimes} style={{ color: page.enabled ? "green" : "red" }} />
                                 </Link>
                             </li>
                         )}
