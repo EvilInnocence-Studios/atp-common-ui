@@ -1,27 +1,27 @@
+import { ComponentRegistry } from "@core/lib/layout/componentRegistry";
 import { IModule } from "@core/lib/module";
-import { BannerList } from "./components/BannerList";
+import { BlueskyFeed } from "./components/BlueskyFeed";
+import { Copyright } from "./components/Copyright";
+import { LinkList } from "./components/LinkList";
+import { LogoSpinner } from "./components/LogoSpinner";
+import { MailchimpForm } from "./components/MailchimpForm";
+import { MailchimpPopup } from "./components/MailchimpPopup";
+import { SocialLinks } from "./components/SocialLinks";
 import { commonMenus } from "./lib/menus";
 import { commonRoutes } from "./lib/routes";
-import { useSetting } from "./lib/setting/services";
 import { commonSettings } from "./lib/settings";
-import { rendererPlugins } from "@core/lib/plugins/renderer";
 
-export const module:IModule = {
+export const module: IModule = {
     name: "common",
     menus: commonMenus,
     routes: commonRoutes,
     settings: commonSettings,
 };
 
-export const sitePlugins = {
-    homepage: rendererPlugins(),
-};
-
-sitePlugins.homepage.register(99, () => {
-    const showBanners = useSetting("homepage.showLargeBanners") === "true";
-    return showBanners ? <BannerList tag="homepageLarge" columns={2} /> : null;
-});
-sitePlugins.homepage.register(98, () => {
-    const showBanners = useSetting("homepage.showSmallBanners") === "true";
-    return showBanners ? <BannerList tag="homepageSmall" columns={3} /> : null;
-});
+ComponentRegistry.register("LinkList", LinkList, { category: "Layouts", displayName: "Link List" });
+ComponentRegistry.register("MailchimpForm", MailchimpForm, { category: "Layouts", displayName: "Mailchimp Form" });
+ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Layouts", displayName: "Mailchimp Popup" });
+ComponentRegistry.register("Copyright", Copyright, { category: "Layouts", displayName: "Copyright" });
+ComponentRegistry.register("SocialLinks", SocialLinks, { category: "Layouts", displayName: "Social Links" });
+ComponentRegistry.register("BlueSkyFeed", BlueskyFeed, { category: "Layouts", displayName: "BlueSky Feed" });
+ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Layouts", displayName: "Logo Spinner" });

@@ -7,22 +7,28 @@ import { memoizePromise } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { PageComponent } from "./Page.component";
 import { IPageInputProps, IPageProps, PageProps } from "./Page.d";
+import { useLayoutData } from "@core/lib/useLayoutData";
 
-const getPage = memoizePromise(async (slug:string):Promise<IContent | null> => {
-    const pages = await services().content.search({type: 'page', slug});
-    if( pages.length && pages[0].type === 'page' && pages[0].enabled && pages[0].publishDate && new Date(pages[0].publishDate) <= new Date()) {
+const getPage = memoizePromise(async (slug: string): Promise<IContent | null> => {
+    const pages = await services().content.search({ type: 'page', slug });
+    if (pages.length && pages[0].type === 'page' && pages[0].enabled && pages[0].publishDate && new Date(pages[0].publishDate) <= new Date()) {
         return pages[0];
     }
     return null;
 }, {});
 
-const injectPageProps = createInjector(({slug}:IPageInputProps):IPageProps => {
+const injectPageProps = createInjector(({ slug }: IPageInputProps): IPageProps => {
     const [page, setPage] = useState<IContent | null>(null);
     const [notFoundPage, setNotFoundPage] = useState<Partial<IContent>>({
         title: "404: Page Not Found",
         content: "The page you are looking for does not exist.",
     });
     const loader = useLoaderAsync();
+    const [, setPageTitle] = useLayoutData<string>("pageTitle");
+
+    useEffect(() => {
+        setPageTitle(loader.isLoading ? "Loading..." : (page?.title || ""));
+    }, [page]);
 
     useEffect(() => {
         loader(() => getPage(slug).then(setPage));
@@ -30,13 +36,13 @@ const injectPageProps = createInjector(({slug}:IPageInputProps):IPageProps => {
 
     useEffect(() => {
         loader(() => getPage('404').then((page => {
-            if( page ) {
+            if (page) {
                 setNotFoundPage(page);
             }
         })));
     }, []);
 
-    return {page, isLoading: loader.isLoading, notFound: !loader.isLoading && !page, notFoundPage};
+    return { page, isLoading: loader.isLoading, notFound: !loader.isLoading && !page, notFoundPage };
 });
 
 const connect = inject<IPageInputProps, PageProps>(mergeProps(
