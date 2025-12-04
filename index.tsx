@@ -18,7 +18,7 @@ export const module: IModule = {
     settings: commonSettings,
 };
 
-ComponentRegistry.register("LinkList", LinkList, { category: "Layouts", displayName: "Link List" });
+ComponentRegistry.register(LinkList);
 ComponentRegistry.register("MailchimpForm", MailchimpForm, { category: "Layouts", displayName: "Mailchimp Form" });
 ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Layouts", displayName: "Mailchimp Popup" });
 ComponentRegistry.register("Copyright", Copyright, { category: "Layouts", displayName: "Copyright" });

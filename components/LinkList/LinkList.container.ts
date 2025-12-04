@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { LinkListComponent } from "./LinkList.component";
 import { ILinkListInputProps, ILinkListProps, LinkListProps } from "./LinkList.d";
+import { withLayoutMetadata } from "@core/lib/layout/componentRegistry";
+import icon from './icon.svg';
 
 const injectLinkListProps = createInjector(({id}:ILinkListInputProps):ILinkListProps => {
     const [links, setLinks] = useState<ILink[]>([]);
@@ -26,4 +28,13 @@ const connect = inject<ILinkListInputProps, LinkListProps>(mergeProps(
 ));
 export const connectLinkList = connect;
 
-export const LinkList = overridable<ILinkListInputProps>(connect(LinkListComponent));
+export const LinkList = withLayoutMetadata(
+    overridable<ILinkListInputProps>(connect(LinkListComponent)),
+    {
+        name: 'LinkList',
+        category: 'Common',
+        icon,
+        displayName: 'Link List',
+        description: 'A list of links',
+    }
+);
