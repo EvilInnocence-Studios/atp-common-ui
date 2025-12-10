@@ -10,6 +10,7 @@ export declare interface ILinkListInputProps {
     id: string;
     className?: string;
     classes?: any;
+    css?: string;
 }
 
 export type LinkListProps = ILinkListInputProps & ILinkListProps;

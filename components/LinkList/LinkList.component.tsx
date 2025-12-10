@@ -8,8 +8,9 @@ import { LinkListProps } from "./LinkList.d";
 import styles from "./LinkList.module.scss";
 import { overridable } from "@core/lib/overridable";
 
-export const LinkListComponent = overridable(({ links, isLoading, className, classes = styles }: LinkListProps) =>
+export const LinkListComponent = overridable(({ links, isLoading, className, classes = styles, css }: LinkListProps) =>
     <Spin spinning={isLoading}>
+        {css && <style>{css}</style>}
         <ul className={clsx([`linkList`, className])}>
             {links.sort(sort.by(prop<ILink, "order">("order")).asc).map(link =>
                 <li key={link.id} className={clsx([classes.linkItem, "linkItem"])}>
