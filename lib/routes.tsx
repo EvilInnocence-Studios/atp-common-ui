@@ -1,5 +1,6 @@
 import { BannerManager } from "@common/components/BannerManager";
 import { ContentManager } from "@common/components/ContentManager";
+import { LayoutManager } from "@common/components/LayoutManager";
 import { LinkListManager } from "@common/components/LinkListManager";
 import { MediaManager } from "@common/components/MediaManager";
 import { SettingsManager } from "@common/components/SettingsManager";
@@ -19,5 +20,6 @@ export const commonRoutes = {
         {path: "/snippets",     component: () => <ContentManager type="snippet" />                                    },
         {path: "/snippets/:id", component: withRoute(({id}:{id:string}) => <ContentManager type="snippet" id={id} />) },
         {path: "/media",        component: MediaManager                                                               },
+        {path: "/layout",       component: LayoutManager                                                              },
     ]
 }
