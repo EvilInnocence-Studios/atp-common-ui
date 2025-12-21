@@ -3,7 +3,7 @@ import { services } from "@core/lib/api";
 import { IMethods } from "@core/lib/types";
 import { getResults } from "@core/lib/util";
 import { useEffect } from "react";
-import { memoize, memoizePromise } from "ts-functional";
+import { find, memoize, memoizePromise } from "ts-functional";
 import { Index } from "ts-functional/dist/types";
 import { useSharedState } from "unstateless";
 
@@ -15,6 +15,13 @@ export const settingServices = memoize(({ get, post, put, patch, remove }: IMeth
         searchMemoized: memoizePromise((): Promise<ISetting[]> => get(`setting`).then(getResults)),
         create: (key: string, value: any): Promise<ISetting> => post(`setting`, { key, value }),
         update: (id: string, value: any): Promise<ISetting> => patch(`setting/${id}`, { value }),
+        updateByKey: (key: string, value: any): Promise<ISetting> => get(`setting`)
+            .then(getResults)
+            .then(find((s:ISetting) => s.key === key))
+            .then((setting?:ISetting) => !!setting
+                ? patch(`setting/${setting.id}`, { value })
+                : post(`setting`, { key, value }).then(getResults)
+            ),
         remove: (id: string) => remove(`setting/${id}`),
         get: (key:string):Promise<string> => {
             if (key in useSettingsRaw.getValue()) {

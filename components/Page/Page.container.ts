@@ -7,7 +7,7 @@ import { memoizePromise } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { PageComponent } from "./Page.component";
 import { IPageInputProps, IPageProps, PageProps } from "./Page.d";
-import { useLayoutData } from "@core/lib/useLayoutData";
+import { useLayoutData } from "@theming/lib/useLayoutData";
 
 const getPage = memoizePromise(async (slug: string): Promise<IContent | null> => {
     const pages = await services().content.search({ type: 'page', slug });

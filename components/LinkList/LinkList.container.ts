@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { LinkListComponent } from "./LinkList.component";
 import { ILinkListInputProps, ILinkListProps, LinkListProps } from "./LinkList.d";
-import { withLayoutMetadata } from "@core/lib/layout/componentRegistry";
+import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
 import icon from './icon.svg';
 
 const injectLinkListProps = createInjector(({id}:ILinkListInputProps):ILinkListProps => {

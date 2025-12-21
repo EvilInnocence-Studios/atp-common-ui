@@ -3,8 +3,11 @@ import { useSetting } from "@common/lib/setting/services";
 import { services } from "@core/lib/api";
 import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
+import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
+import icon from './icon.svg';
+import { MediaImageLayoutEditor } from "./MediaImage.layout";
 import { MediaImageComponent } from "./MediaImage.component";
 import { IMediaImageInputProps, IMediaImageProps, MediaImageProps } from "./MediaImage.d";
 
@@ -40,4 +43,14 @@ const connect = inject<IMediaImageInputProps, MediaImageProps>(mergeProps(
 ));
 export const connectMediaImage = connect;
 
-export const MediaImage = overridable<IMediaImageInputProps>(connect(MediaImageComponent));
+export const MediaImage = withLayoutMetadata(
+    overridable<IMediaImageInputProps>(connect(MediaImageComponent)),
+    {
+        name: "Image",
+        category: "Basic",
+        displayName: "Image",
+        icon,
+        description: "An image",
+        layoutEditor: MediaImageLayoutEditor,
+    }
+);

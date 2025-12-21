@@ -1,7 +1,6 @@
 @use "@styles/globals.module.scss";
 
 .mediaImage {
-    width: 100%;
     &.isLoading {
         opacity: 0.05;
     }

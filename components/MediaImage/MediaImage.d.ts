@@ -6,14 +6,13 @@ export declare interface IMediaImageProps {
     fullUrl: string;
 }
 
-// One and only one of imageId or settingKey should be provided
-type ImageIdOrSetting =
-    | { imageId: string; settingKey?: never }
-    | { settingKey: string; imageId?: never };
-
 // What gets passed into the component from the parent as attributes
-export declare type IMediaImageInputProps = ImageIdOrSetting & {
+export declare interface IMediaImageInputProps {
+    imageId?: string;
+    settingKey?: string;
     classes?: any;
+    css?: string;
+    className?: string;
 };
 
 export type MediaImageProps = IMediaImageInputProps & IMediaImageProps;

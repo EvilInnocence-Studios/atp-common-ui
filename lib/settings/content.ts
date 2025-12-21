@@ -9,6 +9,14 @@ export const contentSettings:ISettingsModule = {
             description: "The folder where banner images are stored.",
         },
     },
+    "Theme": {
+        themeThumbnailFolder: {
+            displayName: "Theme Thumbnail Folder",
+            type: "string",
+            defaultValue: "",
+            description: "The folder where theme thumbnail images are stored.",
+        },
+    },
     "Media": {
         mediaImageFolder: {
             displayName: "Media Image Folder",
