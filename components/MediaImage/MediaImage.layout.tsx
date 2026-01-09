@@ -34,7 +34,7 @@ export const MediaImageLayoutEditor = leafLayoutComponent<IMediaImageInputProps 
         return (
             <>
                 {props.imageId ? (
-                    <MediaImageOrig ref={setNode} {...props} />
+                    <MediaImageOrig {...props} />
                 ) : (
                     <div 
                         ref={setNode} 
