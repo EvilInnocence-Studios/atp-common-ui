@@ -13,6 +13,8 @@ export declare interface IMediaImageInputProps {
     classes?: any;
     css?: string;
     className?: string;
+    isBackgroundImage?:boolean;
+    imageUrlVarName?:string;
 };
 
 export type MediaImageProps = IMediaImageInputProps & IMediaImageProps;

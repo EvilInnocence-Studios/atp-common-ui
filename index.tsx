@@ -1,5 +1,5 @@
 import { IModule } from "@core/lib/module";
-import { ComponentRegistry, leafLayoutComponent } from "@theming/lib/layout/componentRegistry";
+import { ComponentRegistry } from "@theming/lib/layout/componentRegistry";
 import { BlueskyFeed } from "./components/BlueskyFeed";
 import { Copyright } from "./components/Copyright";
 import { LinkList } from "./components/LinkList";
@@ -19,11 +19,11 @@ export const module: IModule = {
     settings: commonSettings,
 };
 
-ComponentRegistry.register(leafLayoutComponent(LinkList));
-ComponentRegistry.register("MailchimpForm", leafLayoutComponent(MailchimpForm), { category: "Layouts", displayName: "Mailchimp Form" });
-ComponentRegistry.register("MailchimpPopup", leafLayoutComponent(MailchimpPopup), { category: "Layouts", displayName: "Mailchimp Popup" });
-ComponentRegistry.register("Copyright", leafLayoutComponent(Copyright), { category: "Layouts", displayName: "Copyright" });
-ComponentRegistry.register("SocialLinks", leafLayoutComponent(SocialLinks), { category: "Layouts", displayName: "Social Links" });
-ComponentRegistry.register("BlueSkyFeed", leafLayoutComponent(BlueskyFeed), { category: "Layouts", displayName: "BlueSky Feed" });
-ComponentRegistry.register("LogoSpinner", leafLayoutComponent(LogoSpinner), { category: "Layouts", displayName: "Logo Spinner" });
+ComponentRegistry.register(LinkList);
+ComponentRegistry.register("MailchimpForm", MailchimpForm, { category: "Social", displayName: "Mailchimp Form" });
+ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Social", displayName: "Mailchimp Popup" });
+ComponentRegistry.register("Copyright", Copyright, { category: "Content", displayName: "Copyright" });
+ComponentRegistry.register("SocialLinks", SocialLinks, { category: "Social", displayName: "Social Links" });
+ComponentRegistry.register("BlueSkyFeed", BlueskyFeed, { category: "Social", displayName: "BlueSky Feed" });
+ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Misc", displayName: "Logo Spinner" });
 ComponentRegistry.register(MediaImage);

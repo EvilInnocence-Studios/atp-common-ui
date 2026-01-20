@@ -7,9 +7,10 @@ import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import icon from './icon.svg';
-import { MediaImageLayoutEditor } from "./MediaImage.layout";
 import { MediaImageComponent } from "./MediaImage.component";
 import { IMediaImageInputProps, IMediaImageProps, MediaImageProps } from "./MediaImage.d";
+import { MediaImageLayoutEditor } from "./MediaImage.layout";
+import { MediaImagePropEditor } from "./MediaImage.props";
 
 export const useFullImageUrl = (folderSetting: string, fileName:string) => {
     const imgHost = useSetting("imageHost");
@@ -19,7 +20,7 @@ export const useFullImageUrl = (folderSetting: string, fileName:string) => {
         : "";
 }
 
-const injectMediaImageProps = createInjector(({imageId, settingKey}:IMediaImageInputProps):IMediaImageProps => {
+export const useMediaImage = ({imageId, settingKey}:IMediaImageInputProps) => {
     const [image, setImage] = useState<IMedia | null>(null);
     const fullUrl = useFullImageUrl("mediaImageFolder", image?.url || "");
     const loader = useLoaderAsync();
@@ -36,7 +37,9 @@ const injectMediaImageProps = createInjector(({imageId, settingKey}:IMediaImageI
     }, [imageId, settingValue]);
 
     return {image, isLoading: loader.isLoading, fullUrl};
-});
+}
+
+const injectMediaImageProps = createInjector(({imageId, settingKey}:IMediaImageInputProps):IMediaImageProps => useMediaImage({imageId, settingKey}));
 
 const connect = inject<IMediaImageInputProps, MediaImageProps>(mergeProps(
     injectMediaImageProps,
@@ -52,5 +55,6 @@ export const MediaImage = withLayoutMetadata(
         icon,
         description: "An image",
         layoutEditor: MediaImageLayoutEditor,
+        propEditor: MediaImagePropEditor,
     }
 );
