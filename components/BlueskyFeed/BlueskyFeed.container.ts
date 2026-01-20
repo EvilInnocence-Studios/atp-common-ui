@@ -1,10 +1,13 @@
 import { Agent, AppBskyFeedGetAuthorFeed, RichText } from "@atproto/api";
 import { useSetting } from "@common/lib/setting/services";
 import { overridable } from "@core/lib/overridable";
+import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { BlueskyFeedComponent } from "./BlueskyFeed.component";
 import { BlueskyFeedProps, IBlueskyFeedInputProps, IBlueskyFeedProps } from "./BlueskyFeed.d";
+import { BlueskyFeedPropEditor } from "./BlueskyFeed.props";
+import icon from './icon.svg';
 
 const agent = new Agent({service: 'https://public.api.bsky.app'});
 
@@ -51,4 +54,14 @@ const connect = inject<IBlueskyFeedInputProps, BlueskyFeedProps>(mergeProps(
 ));
 export const connectBlueskyFeed = connect;
 
-export const BlueskyFeed = overridable<IBlueskyFeedInputProps>(connect(BlueskyFeedComponent));
+export const BlueskyFeed = withLayoutMetadata(
+    overridable<IBlueskyFeedInputProps>(connect(BlueskyFeedComponent)),
+    {
+        name: "BlueSkyFeed",
+        displayName: "Bluesky Feed",
+        category: "Social",
+        description: "Bluesky Feed",
+        icon,
+        propEditor: BlueskyFeedPropEditor,
+    }
+);

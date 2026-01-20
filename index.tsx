@@ -24,6 +24,6 @@ ComponentRegistry.register("MailchimpForm", MailchimpForm, { category: "Social",
 ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Social", displayName: "Mailchimp Popup" });
 ComponentRegistry.register("Copyright", Copyright, { category: "Content", displayName: "Copyright" });
 ComponentRegistry.register("SocialLinks", SocialLinks, { category: "Social", displayName: "Social Links" });
-ComponentRegistry.register("BlueSkyFeed", BlueskyFeed, { category: "Social", displayName: "BlueSky Feed" });
+ComponentRegistry.register(BlueskyFeed);
 ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Misc", displayName: "Logo Spinner" });
 ComponentRegistry.register(MediaImage);
