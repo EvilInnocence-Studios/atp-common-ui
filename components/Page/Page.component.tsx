@@ -6,14 +6,15 @@ import remarkDirectiveSugar from 'remark-directive-sugar';
 import { PageProps } from "./Page.d";
 import styles from './Page.module.scss';
 import { PageHeader } from "./PageHeader";
+import clsx from "clsx";
 
-export const PageComponent = overridable(({ page, isLoading, notFound, notFoundPage, classes = styles }: PageProps) =>
+export const PageComponent = overridable(({ page, isLoading, notFound, notFoundPage, classes = styles, className }: PageProps) =>
     <Spin spinning={isLoading}>
         {notFound && <div className={classes.page}>
             <h1>{notFoundPage.title}</h1>
             <Markdown remarkPlugins={[remarkDirective, remarkDirectiveSugar]}>{notFoundPage.content}</Markdown>
         </div>}
-        {!notFound && page && <div className={classes.page}>
+        {!notFound && page && <div className={clsx(classes.page, className)}>
             <PageHeader page={page} />
             <Markdown remarkPlugins={[remarkDirective, remarkDirectiveSugar]}>{page.content}</Markdown>
         </div>}

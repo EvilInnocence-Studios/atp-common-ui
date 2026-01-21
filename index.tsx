@@ -1,5 +1,5 @@
 import { IModule } from "@core/lib/module";
-import { ComponentRegistry } from "@theming/lib/layout/componentRegistry";
+import { ComponentRegistry, LayoutRegistry } from "@theming/lib/layout/componentRegistry";
 import { BlueskyFeed } from "./components/BlueskyFeed";
 import { Copyright } from "./components/Copyright";
 import { LinkList } from "./components/LinkList";
@@ -11,6 +11,7 @@ import { SocialLinks } from "./components/SocialLinks";
 import { commonMenus } from "./lib/menus";
 import { commonRoutes } from "./lib/routes";
 import { commonSettings } from "./lib/settings";
+import { RoutedCMSPage } from "./components/RoutedCMSPage";
 
 export const module: IModule = {
     name: "common",
@@ -27,3 +28,8 @@ ComponentRegistry.register("SocialLinks", SocialLinks, { category: "Social", dis
 ComponentRegistry.register(BlueskyFeed);
 ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Misc", displayName: "Logo Spinner" });
 ComponentRegistry.register(MediaImage);
+ComponentRegistry.register(RoutedCMSPage);
+
+LayoutRegistry.register({name: "cmsPage", displayName: "CMS Page", description: "The CMS page layout and design", defaultLayout: {
+    component: "RoutedCMSPage"
+}});

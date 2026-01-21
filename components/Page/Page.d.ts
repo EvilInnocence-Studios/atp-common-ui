@@ -11,6 +11,7 @@ export declare interface IPageProps {
 export declare interface IPageInputProps {
     slug: string;
     classes?: any;
+    className?: string;
 }
 
 export type PageProps = IPageInputProps & IPageProps;
