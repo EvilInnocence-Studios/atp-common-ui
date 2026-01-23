@@ -29,7 +29,3 @@ ComponentRegistry.register(BlueskyFeed);
 ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Misc", displayName: "Logo Spinner" });
 ComponentRegistry.register(MediaImage);
 ComponentRegistry.register(RoutedCMSPage);
-
-LayoutRegistry.register({name: "cmsPage", displayName: "CMS Page", description: "The CMS page layout and design", defaultLayout: {
-    component: "RoutedCMSPage"
-}});
