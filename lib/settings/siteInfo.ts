@@ -8,12 +8,6 @@ export const siteInfoSettings:ISettingsModule = {
             defaultValue: "My Site Name",
             description: "The name of the site as it appears in emails and other communications.",
         },
-        copyrightStatement: {
-            displayName: "Copyright Statement",
-            type: "string",
-            defaultValue: "© {year} My Company, all rights reserved.",
-            description: "The copyright statement displayed in the footer of the site and in emails. Use {year} to insert the current year.",
-        },
         adminAppName: {
             displayName: "Admin App Name",
             type: "string",
