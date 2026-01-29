@@ -13,6 +13,7 @@ export const MediaImageComponent = overridable(({
         {!isBackgroundImage && <img
             src={fullUrl}
             alt={image?.altText}
+            crossOrigin="anonymous"
             className={clsx([className, classes.mediaImage, isLoading && classes.loading])}
         />}
         {isBackgroundImage && <style>
