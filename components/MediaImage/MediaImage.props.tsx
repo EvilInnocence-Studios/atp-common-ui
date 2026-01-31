@@ -5,7 +5,7 @@ import { Label } from "@core/components/Label";
 import { Editable } from "@core/components/Editable";
 
 export const MediaImagePropEditor = (
-    {imageId, settingKey, isBackgroundImage, imageUrlVarName}: IMediaImageInputProps,
+    {imageId, linkUrl, settingKey, isBackgroundImage, imageUrlVarName}: IMediaImageInputProps,
     _updateProps: (props: any) => void,
     updateProp: (prop: string) => (value: any) => void
 ) => {
@@ -22,14 +22,17 @@ export const MediaImagePropEditor = (
             }}
         />
         <br/>
+        <Label label="Link URL">
+            <Editable value={linkUrl || ""} onChange={updateProp("linkUrl")}/>
+        </Label>
         <Switch
             checked={isBackgroundImage}
             checkedChildren="Background"
             unCheckedChildren="Inline"
-            onChange={(checked) => updateProp("isBackgroundImage")(checked)}
+            onChange={updateProp("isBackgroundImage")}
         />
         <Label label="Image URL var name">
-            <Editable value={imageUrlVarName || ""} onChange={(name) => updateProp("imageUrlVarName")(name)}/>
+            <Editable value={imageUrlVarName || ""} onChange={updateProp("imageUrlVarName")}/>
         </Label>
     </>;
 }

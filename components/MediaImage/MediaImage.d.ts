@@ -9,6 +9,7 @@ export declare interface IMediaImageProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IMediaImageInputProps {
     imageId?: string;
+    linkUrl?: string;
     settingKey?: string;
     classes?: any;
     css?: string;

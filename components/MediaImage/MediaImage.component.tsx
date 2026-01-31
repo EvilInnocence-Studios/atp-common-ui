@@ -4,7 +4,7 @@ import styles from './MediaImage.module.scss';
 import { overridable } from "@core/lib/overridable";
 
 export const MediaImageComponent = overridable(({
-    css, className, image, isLoading, fullUrl, classes = styles,
+    css, className, image, linkUrl, isLoading, fullUrl, classes = styles,
     isBackgroundImage,
     imageUrlVarName,
 }: MediaImageProps) => fullUrl
@@ -15,6 +15,12 @@ export const MediaImageComponent = overridable(({
             alt={image?.altText}
             crossOrigin="anonymous"
             className={clsx([className, classes.mediaImage, isLoading && classes.loading])}
+            onClick={() => {
+                if (linkUrl) {
+                    window.open(linkUrl, '_blank');
+                }
+            }}
+            style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
         />}
         {isBackgroundImage && <style>
             :root {"{"}
