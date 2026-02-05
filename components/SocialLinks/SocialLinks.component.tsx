@@ -1,17 +1,12 @@
+import { overridable } from "@core/lib/overridable";
 import { faBluesky, faFacebook, faInstagram, faPatreon, faTiktok, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
-import { Link } from "react-router";
-import { Setting } from "../Setting";
 import { SocialLinksProps } from "./SocialLinks.d";
 import styles from './SocialLinks.module.scss';
-import { overridable } from "@core/lib/overridable";
 
 export const SocialLinksComponent = overridable(({ facebook, twitter, blueSky, instagram, patreon, youtube, tikTok, kofi, classes = styles }: SocialLinksProps) =>
     <div className={clsx([classes.socialLinks, "socialLinks"])}>
-        <Link to="/">
-            <Setting id="siteName" />
-        </Link>
         <div className={classes.links}>
             {blueSky && <a href={`https://bsky.app/profile/${blueSky}`} target="_blank"><FontAwesomeIcon icon={faBluesky} /></a>}
             {twitter && <a href={`https://twitter.com/${twitter}`} target="_blank"><FontAwesomeIcon icon={faTwitter} /></a>}
