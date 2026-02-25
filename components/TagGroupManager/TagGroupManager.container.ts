@@ -5,7 +5,7 @@ import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo, clear } from "@core/lib/util";
 import { useEffect, useState } from "react";
-import { all } from "ts-functional";
+import { all, prop } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { TagGroupManagerComponent } from "./TagGroupManager.component";
 import { ITagGroupManagerInputProps, ITagGroupManagerProps, TagGroupManagerProps } from "./TagGroupManager.d";
@@ -37,7 +37,12 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
 
     const [name, setName] = useState('');
     const create = () => {
-        loader(() => group.create({name, filterable: true, visible: true, order: 0})
+        loader(() => group.create({
+            name,
+            filterable: true,
+            visible: true,
+            order: Math.max(...groups.map(prop("order"))) + 1,
+        })
             .then(appendTo(groups))
             .then(all(
                 refresh,

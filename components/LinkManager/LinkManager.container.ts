@@ -37,7 +37,11 @@ const injectLinkManagerProps = createInjector(({list}:ILinkManagerInputProps):IL
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
     const create = () => {
-        loader(() => link.create(list.id, {text, url})
+        loader(() => link.create(list.id, {
+            text,
+            url,
+            order: Math.max(...links.map(l => l.order)) + 1,
+        })
             .then(appendTo(links))
             .then(all(
                 refresh,
