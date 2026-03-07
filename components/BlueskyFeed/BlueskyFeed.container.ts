@@ -9,9 +9,9 @@ import { BlueskyFeedProps, IBlueskyFeedInputProps, IBlueskyFeedProps } from "./B
 import { BlueskyFeedPropEditor } from "./BlueskyFeed.props";
 import icon from './icon.svg';
 
-const agent = new Agent({service: 'https://public.api.bsky.app'});
+const agent = new Agent({ service: 'https://public.api.bsky.app' });
 
-export const toMarkdown = async (text: string):Promise<string> => {
+export const toMarkdown = async (text: string): Promise<string> => {
     const richText = new RichText({ text });
     await richText.detectFacets(agent);
 
@@ -28,15 +28,15 @@ export const toMarkdown = async (text: string):Promise<string> => {
     return markdown;
 }
 
-const injectBlueskyFeedProps = createInjector(({}:IBlueskyFeedInputProps):IBlueskyFeedProps => {
+const injectBlueskyFeedProps = createInjector(({ }: IBlueskyFeedInputProps): IBlueskyFeedProps => {
     const handle = useSetting("blueSkyHandle");
     const [feed, setFeed] = useState<AppBskyFeedGetAuthorFeed.OutputSchema | null>(null);
 
     useEffect(() => {
-        if(handle) {
+        if (handle) {
             const fetchData = async () => {
                 try {
-                    const response:AppBskyFeedGetAuthorFeed.Response = await agent.getAuthorFeed({actor: handle, limit: 20, filter: 'posts_no_replies'});
+                    const response: AppBskyFeedGetAuthorFeed.Response = await agent.getAuthorFeed({ actor: handle, limit: 20, filter: 'posts_no_replies' });
                     setFeed(response.data);
                 } catch (error) {
                     console.error("Error fetching Bluesky profile:", error);
@@ -45,8 +45,8 @@ const injectBlueskyFeedProps = createInjector(({}:IBlueskyFeedInputProps):IBlues
             fetchData();
         }
     }, [handle]);
-console.log(feed);
-    return {handle, feed};
+
+    return { handle, feed };
 });
 
 const connect = inject<IBlueskyFeedInputProps, BlueskyFeedProps>(mergeProps(
