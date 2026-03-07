@@ -1,0 +1,57 @@
+@use "@styles/globals.module.scss";
+
+.mediaPicker {
+
+    // Styles inside the component wrapper
+    .imagePreview {
+        max-width: 100%;
+        max-height: 200px;
+        margin-bottom: 10px;
+        margin: auto;
+        border: 1px solid var(--borderColor);
+        border-radius: 4px;
+        padding: 4px;
+        display: block;
+        object-fit: contain;
+        background-color: var(--bgLightColor);
+    }
+}
+
+.selectableImage {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+    border-radius: 4px;
+    background-color: var(--bgLightColor);
+    border: 1px solid var(--borderColor);
+    height: 100%;
+
+    .thumbnailWrapper {
+        width: 100%;
+        padding-top: 100%;
+        /* 1:1 Aspect Ratio */
+        position: relative;
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .imageName {
+        padding: 4px;
+        font-size: 12px;
+        color: #666;
+        text-align: center;
+    }
+
+    &:hover {
+        border-color: #1890ff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+}

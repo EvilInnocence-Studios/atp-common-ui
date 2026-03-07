@@ -8,25 +8,24 @@ export const MediaImageComponent = overridable(({
     isBackgroundImage,
     imageUrlVarName,
 }: MediaImageProps) => fullUrl
-    ? <>
-        {!!css && <style>{css}</style>}
-        {!isBackgroundImage && <img
-            src={fullUrl}
-            alt={image?.altText}
-            crossOrigin="anonymous"
-            className={clsx([className, classes.mediaImage, isLoading && classes.loading])}
-            onClick={() => {
-                if (linkUrl) {
-                    window.open(linkUrl, '_blank');
-                }
-            }}
-            style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
-        />}
-        {isBackgroundImage && <style>
-            :root {"{"}
+        ? <>
+            {!!css && <style>{css}</style>}
+            {!isBackgroundImage && <img
+                src={fullUrl}
+                alt={image?.altText}
+                className={clsx([className, classes.mediaImage, isLoading && classes.loading])}
+                onClick={() => {
+                    if (linkUrl) {
+                        window.open(linkUrl, '_blank');
+                    }
+                }}
+                style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
+            />}
+            {isBackgroundImage && <style>
+                :root {"{"}
                 {imageUrlVarName && `--${imageUrlVarName}:url("${fullUrl}");`}
-            {"}"}
-        </style>}            
-    </>
-    : null
+                {"}"}
+            </style>}
+        </>
+        : null
 );

@@ -3,27 +3,18 @@ import { IMediaImageInputProps } from "./MediaImage";
 import { useMediaImage } from "./MediaImage.container";
 import { Label } from "@core/components/Label";
 import { Editable } from "@core/components/Editable";
+import { MediaPicker } from "../MediaPicker";
 
 export const MediaImagePropEditor = (
-    {imageId, linkUrl, settingKey, isBackgroundImage, imageUrlVarName}: IMediaImageInputProps,
+    { imageId, linkUrl, isBackgroundImage, imageUrlVarName }: IMediaImageInputProps,
     _updateProps: (props: any) => void,
     updateProp: (prop: string) => (value: any) => void
 ) => {
-    const {image, fullUrl} = useMediaImage({imageId, settingKey});
-   
     return <>
-        <img
-            src={fullUrl}
-            alt={image?.altText}
-            style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
-                margin: "auto",
-            }}
-        />
-        <br/>
+        <MediaPicker imageId={imageId} onSelect={updateProp("imageId")} />
+        <br />
         <Label label="Link URL">
-            <Editable value={linkUrl || ""} onChange={updateProp("linkUrl")}/>
+            <Editable value={linkUrl || ""} onChange={updateProp("linkUrl")} />
         </Label>
         <Switch
             checked={isBackgroundImage}
@@ -32,7 +23,7 @@ export const MediaImagePropEditor = (
             onChange={updateProp("isBackgroundImage")}
         />
         <Label label="Image URL var name">
-            <Editable value={imageUrlVarName || ""} onChange={updateProp("imageUrlVarName")}/>
+            <Editable value={imageUrlVarName || ""} onChange={updateProp("imageUrlVarName")} />
         </Label>
     </>;
 }
