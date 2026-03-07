@@ -1,6 +1,5 @@
 import { Switch } from "antd";
 import { IMediaImageInputProps } from "./MediaImage";
-import { useMediaImage } from "./MediaImage.container";
 import { Label } from "@core/components/Label";
 import { Editable } from "@core/components/Editable";
 import { MediaPicker } from "../MediaPicker";

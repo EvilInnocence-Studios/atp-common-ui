@@ -7,7 +7,7 @@ import { IMedia } from "@common-shared/media/types";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
 
-const injectMediaPickerProps = createInjector(({ imageId, onSelect }: IMediaPickerInputProps): IMediaPickerProps => {
+const injectMediaPickerProps = createInjector(({ onSelect }: IMediaPickerInputProps): IMediaPickerProps => {
     const [images, setImages] = useState<IMedia[]>([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [query, setQuery] = useState('');
