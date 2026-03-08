@@ -22,7 +22,7 @@ export const MediaPickerComponent = overridable(({
 }: MediaPickerProps) => {
     return <div className={classes.mediaPicker}>
         <Spin spinning={isLoading}>
-            <MediaImage className={classes.imagePreview} imageId={imageId} settingKey={settingKey} />
+            {imageId && <MediaImage className={classes.imagePreview} imageId={imageId} settingKey={settingKey} />}
             <br />
             <Upload.Dragger customRequest={({ file }) => upload(file as File)} showUploadList={false}>
                 <p className="ant-upload-text">
