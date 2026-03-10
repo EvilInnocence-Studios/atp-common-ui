@@ -18,8 +18,11 @@
             padding: 0;
             display: inline-block;
         }
-        img {
+        .icon {
             width: 24px;
+            path {
+                fill: currentColor;
+            }
         }
     }
 }
