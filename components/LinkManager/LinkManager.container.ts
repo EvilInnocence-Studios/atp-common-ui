@@ -40,7 +40,7 @@ const injectLinkManagerProps = createInjector(({list}:ILinkManagerInputProps):IL
         loader(() => link.create(list.id, {
             text,
             url,
-            order: Math.max(...links.map(l => l.order)) + 1,
+            order: Math.max(...links.map(l => l.order), 0) + 1,
         })
             .then(appendTo(links))
             .then(all(
