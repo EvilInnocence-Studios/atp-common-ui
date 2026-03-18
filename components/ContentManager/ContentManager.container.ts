@@ -32,6 +32,8 @@ const injectContentManagerProps = createInjector(({type}:IContentManagerInputPro
             title: `New ${type.charAt(0).toUpperCase() + type.slice(1)}`,
             slug: `new-${type}-${Date.now()}`,
             content: `This is a new ${type}.`,
+            layout: null,
+            format: 'markdown',
             enabled: false,
         }).then(goToContent));
     }
