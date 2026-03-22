@@ -1,13 +1,13 @@
-import { useSetting } from "@common/lib/setting/services";
-import { overridable } from "@core/lib/overridable";
 import { createInjector, inject, mergeProps } from "unstateless";
-import { MailchimpFormComponent } from "./MailchimpForm.component";
-import { IMailchimpFormInputProps, IMailchimpFormProps, MailchimpFormProps } from "./MailchimpForm.d";
+import {MailchimpFormComponent} from "./MailchimpForm.component";
+import {IMailchimpFormInputProps, MailchimpFormProps, IMailchimpFormProps} from "./MailchimpForm.d";
+import { overridable } from "@core/lib/overridable";
+import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
+import icon from './icon.svg';
+import { MailchimpFormPropEditor } from "./MailchimpForm.props";
 
 const injectMailchimpFormProps = createInjector(({}:IMailchimpFormInputProps):IMailchimpFormProps => {
-    const action = useSetting("mailchimpFormAction");
-
-    return {action};
+    return {};
 });
 
 const connect = inject<IMailchimpFormInputProps, MailchimpFormProps>(mergeProps(
@@ -15,4 +15,15 @@ const connect = inject<IMailchimpFormInputProps, MailchimpFormProps>(mergeProps(
 ));
 export const connectMailchimpForm = connect;
 
-export const MailchimpForm = overridable<IMailchimpFormInputProps>(connect(MailchimpFormComponent));
+export const MailchimpForm = withLayoutMetadata(
+    overridable<IMailchimpFormInputProps>(connect(MailchimpFormComponent)),
+    {
+        name: "MailchimpForm",
+        displayName: "Mailchimp Form",
+        category: "Social",
+        description: "",
+        icon,
+        getSlotDisplayName: (slotName, props) => props[slotName] || slotName,
+        propEditor: MailchimpFormPropEditor,
+    }
+);
