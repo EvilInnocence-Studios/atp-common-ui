@@ -29,7 +29,7 @@ export const module: IModule = {
 };
 
 ComponentRegistry.register(LinkList);
-ComponentRegistry.register("MailchimpForm", MailchimpForm, { category: "Social", displayName: "Mailchimp Form" });
+ComponentRegistry.register(MailchimpForm);
 ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Social", displayName: "Mailchimp Popup" });
 ComponentRegistry.register("Copyright", Copyright, { category: "Content", displayName: "Copyright" });
 ComponentRegistry.register("SocialLinks", SocialLinks, { category: "Social", displayName: "Social Links" });
