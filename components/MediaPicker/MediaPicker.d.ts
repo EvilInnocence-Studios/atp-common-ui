@@ -17,6 +17,7 @@ export declare interface IMediaPickerInputProps {
     imageId?: string;
     settingKey?: string;
     onSelect: (imageId: string) => void;
+    small?: boolean;
 }
 
 export type MediaPickerProps = IMediaPickerInputProps & IMediaPickerProps;

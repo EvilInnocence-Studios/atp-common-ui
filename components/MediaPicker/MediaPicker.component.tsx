@@ -18,21 +18,41 @@ export const MediaPickerComponent = overridable(({
     setQuery,
     upload,
     isLoading,
-    onSelect
+    onSelect,
+    small
 }: MediaPickerProps) => {
     return <div className={classes.mediaPicker}>
         <Spin spinning={isLoading}>
-            {imageId && <MediaImage className={classes.imagePreview} imageId={imageId} settingKey={settingKey} />}
-            <br />
-            <Upload.Dragger customRequest={({ file }) => upload(file as File)} showUploadList={false}>
-                <p className="ant-upload-text">
-                    <FontAwesomeIcon icon={faUpload} /> Click or drag to upload.
-                </p>
-            </Upload.Dragger>
+            {small ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-start' }}>
+                    {imageId && (
+                        <div className={classes.smallImagePreview}>
+                            <MediaImage imageId={imageId} settingKey={settingKey} />
+                        </div>
+                    )}
+                    <div style={{ display: 'flex', gap: '0px' }}>
+                        <Upload customRequest={({ file }) => upload(file as File)} showUploadList={false}>
+                            <Button icon={<FontAwesomeIcon icon={faUpload} />} />
+                        </Upload>
 
-            <Button type="default" style={{ marginTop: 16 }} onClick={() => setIsModalVisible(true)} block>
-                <FontAwesomeIcon icon={faHandPointer} /> Choose Existing Media
-            </Button>
+                        <Button onClick={() => setIsModalVisible(true)} icon={<FontAwesomeIcon icon={faHandPointer} />} />
+                    </div>
+                </div>
+            ) : (
+                <>
+                    {imageId && <MediaImage className={classes.imagePreview} imageId={imageId} settingKey={settingKey} />}
+                    <br />
+                    <Upload.Dragger customRequest={({ file }) => upload(file as File)} showUploadList={false}>
+                        <p className="ant-upload-text">
+                            <FontAwesomeIcon icon={faUpload} /> Click or drag to upload.
+                        </p>
+                    </Upload.Dragger>
+
+                    <Button type="default" style={{ marginTop: 16 }} onClick={() => setIsModalVisible(true)} block>
+                        <FontAwesomeIcon icon={faHandPointer} /> Choose Existing Media
+                    </Button>
+                </>
+            )}
         </Spin>
 
         <Modal
