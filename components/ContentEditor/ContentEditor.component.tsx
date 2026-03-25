@@ -1,14 +1,15 @@
 import { Editable } from "@core/components/Editable";
-import { ContentEditorProps } from "./ContentEditor.d";
-import styles from './ContentEditor.module.scss';
-import { MarkdownEditor } from "@core/components/MarkdownEditor";
-import { Card, DatePicker, Switch } from "antd";
 import { Label } from "@core/components/Label";
-import dayjs from "dayjs";
+import { MarkdownEditor } from "@core/components/MarkdownEditor";
 import { onDateChange } from "@core/lib/onInputChange";
 import { overridable } from "@core/lib/overridable";
+import { LayoutEditor, LayoutEditorProvider } from "@theming/components/LayoutManager/LayoutEditor";
+import { Card, DatePicker, Switch } from "antd";
+import dayjs from "dayjs";
+import { ContentEditorProps } from "./ContentEditor.d";
+import styles from './ContentEditor.module.scss';
 
-export const ContentEditorComponent = overridable(({ type, content, updateString, updateToggle, UpdateButtons, classes = styles }: ContentEditorProps) =>
+export const ContentEditorComponent = overridable(({ type, content, updateString, updateToggle, updateObject, UpdateButtons, classes = styles }: ContentEditorProps) =>
     <div className={classes.contentEditor}>
         <h1>Edit {type.charAt(0).toUpperCase() + type.slice(1)}</h1>
         <div className={classes.updateButtons}>
@@ -27,8 +28,21 @@ export const ContentEditorComponent = overridable(({ type, content, updateString
                 <Editable value={content.slug || ""} onChange={updateString("slug")} />
             </Label>
         </h3>
+        <Switch
+            checked={content.format === "layout"}
+            onChange={(checked) => { updateString("format")(checked ? "layout" : "markdown")}}
+            checkedChildren="Layout"
+            unCheckedChildren="Markdown"
+        />
+        <br/><br/>
         <Card title={type.charAt(0).toUpperCase() + type.slice(1)} className={classes.contentCard} size="small">
-            <MarkdownEditor value={content.content || ""} onChange={updateString("content")} />
+            {(content.format || "markdown") === "markdown" ? (
+                <MarkdownEditor value={content.content || ""} onChange={updateString("content")} />
+            ) : (
+                <LayoutEditorProvider layout={content.layout} onChange={updateObject("layout")}>
+                    <LayoutEditor theme={null} />
+                </LayoutEditorProvider>
+            )}
         </Card>
     </div>
 );
