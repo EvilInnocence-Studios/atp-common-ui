@@ -27,8 +27,8 @@ const injectPageProps = createInjector(({ slug }: IPageInputProps): IPageProps =
     const [, setPageTitle] = useLayoutData<string>("pageTitle");
 
     useEffect(() => {
-        setPageTitle(loader.isLoading ? "Loading..." : (page?.title || ""));
-    }, [page]);
+        setPageTitle(loader.isLoading ? "Loading..." : (page?.title || notFoundPage.title || ""));
+    }, [page, notFoundPage]);
 
     useEffect(() => {
         loader(() => getPage(slug).then(setPage));
