@@ -50,7 +50,7 @@ export const useSetting = (key:string | null):string => {
         }
     }, []);
 
-    return key ? settings[key] : "";
+    return key && key in settings ? settings[key] : "";
 }
 
 export const useSettingGroup = (prefix:string):Index<string> => {
