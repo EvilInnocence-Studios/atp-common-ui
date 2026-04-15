@@ -39,7 +39,6 @@ export const MediaImageComponent = overridable(({
                 }}
                 style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
             />}
-            {fullUrl}
             {!isBackgroundImage && !isFont && isSVG && <div className="test"><SVG
                 src={fullUrl}
                 title={image?.altText || ''}
