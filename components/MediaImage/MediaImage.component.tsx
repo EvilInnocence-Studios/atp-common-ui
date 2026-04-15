@@ -3,6 +3,8 @@ import { MediaImageProps } from "./MediaImage.d";
 import styles from './MediaImage.module.scss';
 import { overridable } from "@core/lib/overridable";
 import { useNavigate } from "react-router";
+import SVG from "react-inlinesvg";
+
 
 export const MediaImageComponent = overridable(({
     css, className, image, linkUrl, isLoading, fullUrl, classes = styles,
@@ -12,6 +14,7 @@ export const MediaImageComponent = overridable(({
     if (!fullUrl) return null;
 
     const isFont = /\.(woff|woff2|ttf|otf|eot)(\?.*)?$/i.test(fullUrl);
+    const isSVG = /\.svg(\?.*)?$/i.test(fullUrl);
     const fontName = `FontPreview_${image?.id || Math.random().toString(36).substring(7)}`;
 
     const navigate = useNavigate();
@@ -25,7 +28,7 @@ export const MediaImageComponent = overridable(({
                     src: url("${fullUrl}");
                 }`}
             </style>}
-            {!isBackgroundImage && !isFont && <img
+            {!isBackgroundImage && !isFont && !isSVG && <img
                 src={fullUrl}
                 alt={image?.altText}
                 className={clsx([className, classes.mediaImage, isLoading && classes.loading])}
@@ -36,6 +39,19 @@ export const MediaImageComponent = overridable(({
                 }}
                 style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
             />}
+            {fullUrl}
+            {!isBackgroundImage && !isFont && isSVG && <div className="test"><SVG
+                src={fullUrl}
+                title={image?.altText || ''}
+                className={clsx([className, classes.mediaImage, isLoading && classes.loading])}
+                onClick={() => {
+                    if (linkUrl) {
+                        navigate(linkUrl);
+                    }
+                }}
+                style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
+                onError={(error) => console.error("Error loading SVG:", error, fullUrl)}
+            /></div>}
             {!isBackgroundImage && isFont && <div
                 className={clsx([className, classes.fontContainer, isLoading && classes.loading])}
                 onClick={() => {
