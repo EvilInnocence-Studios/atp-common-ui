@@ -59,7 +59,8 @@ export const MediaImage = withLayoutMetadata(
     overridable<IMediaImageInputProps>(connect(MediaImageComponent)),
     {
         name: "Image",
-        category: "Media",
+        category: "Content",
+        subCategory: "Media",
         displayName: "Image",
         icon,
         description: "An image",

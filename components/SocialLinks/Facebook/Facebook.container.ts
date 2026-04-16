@@ -21,6 +21,7 @@ export const Facebook = withLayoutMetadata(
         name: "Facebook",
         displayName: "Facebook",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

@@ -21,6 +21,7 @@ export const Patreon = withLayoutMetadata(
         name: "Patreon",
         displayName: "Patreon",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

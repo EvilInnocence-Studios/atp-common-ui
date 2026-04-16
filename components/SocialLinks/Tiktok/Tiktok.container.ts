@@ -21,6 +21,7 @@ export const Tiktok = withLayoutMetadata(
         name: "Tiktok",
         displayName: "Tiktok",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

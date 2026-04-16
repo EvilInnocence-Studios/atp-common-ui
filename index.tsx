@@ -1,14 +1,11 @@
 import { IModule } from "@core/lib/module";
 import { ComponentRegistry } from "@theming/lib/layout/componentRegistry";
 import { BlueskyFeed } from "./components/BlueskyFeed";
-import { Copyright } from "./components/Copyright";
 import { LinkList } from "./components/LinkList";
 import { LogoSpinner } from "./components/LogoSpinner";
 import { MailchimpForm } from "./components/MailchimpForm";
 import { MailchimpPopup } from "./components/MailchimpPopup";
 import { MediaImage } from "./components/MediaImage";
-import { RoutedCMSPage } from "./components/RoutedCMSPage";
-import { SocialLinks } from "./components/SocialLinks";
 import { Bluesky } from "./components/SocialLinks/Bluesky";
 import { Facebook } from "./components/SocialLinks/Facebook";
 import { Instagram } from "./components/SocialLinks/Instagram";
@@ -30,13 +27,10 @@ export const module: IModule = {
 
 ComponentRegistry.register(LinkList);
 ComponentRegistry.register(MailchimpForm);
-ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Social", displayName: "Mailchimp Popup" });
-ComponentRegistry.register("Copyright", Copyright, { category: "Content", displayName: "Copyright" });
-ComponentRegistry.register("SocialLinks", SocialLinks, { category: "Social", displayName: "Social Links" });
+ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Marketing", subCategory: "Email", displayName: "Mailchimp Popup" });
 ComponentRegistry.register(BlueskyFeed);
-ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Misc", displayName: "Logo Spinner" });
+ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Social", subCategory:"Branding", displayName: "Logo Spinner" });
 ComponentRegistry.register(MediaImage);
-ComponentRegistry.register(RoutedCMSPage);
 ComponentRegistry.register(Bluesky);
 ComponentRegistry.register(Twitter);
 ComponentRegistry.register(Facebook);

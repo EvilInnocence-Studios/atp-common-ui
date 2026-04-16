@@ -20,7 +20,8 @@ export const MailchimpForm = withLayoutMetadata(
     {
         name: "MailchimpForm",
         displayName: "Mailchimp Form",
-        category: "Social",
+        category: "Marketing",
+        subCategory: "Email",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

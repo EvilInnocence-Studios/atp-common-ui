@@ -1,24 +1,8 @@
 @use "@styles/globals.module.scss";
 
-.socialLinks {
-    padding: 0;
-    font-size: x-large;
-    font-weight: bold;
-    * {color: var(--primaryColor);}
-    .links {
-        display: inline-block;
-        max-width: 160px;
-        text-align: right;
-        a {
-            margin: var(--paddingSmall);
-            padding: 0;
-            display: inline-block;
-        }
-        .icon {
-            width: 24px;
-            path {
-                fill: currentColor;
-            }
-        }
+.icon {
+    width: 24px;
+    path {
+        fill: currentColor;
     }
 }

@@ -21,6 +21,7 @@ export const Instagram = withLayoutMetadata(
         name: "Instagram",
         displayName: "Instagram",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

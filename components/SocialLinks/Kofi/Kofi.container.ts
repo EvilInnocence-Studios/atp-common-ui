@@ -21,6 +21,7 @@ export const Kofi = withLayoutMetadata(
         name: "Kofi",
         displayName: "Kofi",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

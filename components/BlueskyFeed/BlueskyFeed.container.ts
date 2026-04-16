@@ -60,6 +60,7 @@ export const BlueskyFeed = withLayoutMetadata(
         name: "BlueSkyFeed",
         displayName: "Bluesky Feed",
         category: "Social",
+        subCategory: "Feeds",
         description: "Bluesky Feed",
         icon,
         propEditor: BlueskyFeedPropEditor,

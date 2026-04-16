@@ -21,6 +21,7 @@ export const Twitter = withLayoutMetadata(
         name: "Twitter",
         displayName: "Twitter",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

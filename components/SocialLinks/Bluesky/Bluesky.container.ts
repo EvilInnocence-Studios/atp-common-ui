@@ -21,6 +21,7 @@ export const Bluesky = withLayoutMetadata(
         name: "Bluesky",
         displayName: "Bluesky",
         category: "Social",
+        subCategory: "Links",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

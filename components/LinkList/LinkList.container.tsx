@@ -34,7 +34,8 @@ export const LinkList = withLayoutMetadata(
     overridable<ILinkListInputProps>(connect(LinkListComponent)),
     {
         name: 'LinkList',
-        category: 'Basic',
+        category: 'Content',
+        subCategory: "Text",
         icon,
         displayName: 'Link List',
         description: 'A list of links',
