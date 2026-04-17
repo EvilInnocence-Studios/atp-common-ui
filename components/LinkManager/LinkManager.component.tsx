@@ -11,6 +11,7 @@ import { prop } from "ts-functional";
 import { LinkListSelect } from "../LinkListSelect";
 import { LinkManagerProps } from "./LinkManager.d";
 import styles from './LinkManager.module.scss';
+import clsx from "clsx";
 import { overridable } from "@core/lib/overridable";
 
 const CanView = hasPermission("links.view");
@@ -23,11 +24,12 @@ const linkId = (link: ILink, index: number) => `${link.id}:${index}`;
 interface ILinkItemProps {
     update: (id: string, field: keyof ILink) => (value: string | null) => void;
     remove: (id: string) => () => void;
+    multiLine?: boolean;
     classes?: any;
 }
 
-export const LinkItem = overridable(({ item: link, update, remove, classes = styles }: { item: ILink } & ILinkItemProps) => {
-    return <div className={classes.link}>
+export const LinkItem = overridable(({ item: link, update, remove, multiLine, classes = styles }: { item: ILink } & ILinkItemProps) => {
+    return <div className={clsx([classes.link, multiLine && classes.multiLine])}>
         <Editable value={link.text} onChange={update(link.id, "text")} />
         <Editable value={link.url} onChange={update(link.id, "url")} />
         <LinkListSelect
@@ -36,7 +38,11 @@ export const LinkItem = overridable(({ item: link, update, remove, classes = sty
             onChange={update(link.id, "subMenuKey")}
         />
         <CanEdit no>{link.text} [{link.url}]</CanEdit>
-        <CanDelete yes><DeleteBtn entityType="link" onClick={remove(link.id)} /></CanDelete>
+        <CanDelete yes>
+            <div className={classes.deleteBtnWrap}>
+                <DeleteBtn entityType="link" onClick={remove(link.id)} />
+            </div>
+        </CanDelete>
     </div>;
 });
 
@@ -45,6 +51,7 @@ export const LinkManagerComponent = overridable(({
     text, setText,
     url, setUrl,
     create, update, remove, sort,
+    multiLine,
     classes = styles
 }: LinkManagerProps) =>
     <Spin spinning={isLoading}>
@@ -55,26 +62,36 @@ export const LinkManagerComponent = overridable(({
                 getListId={linkId}
                 sort={sort}
                 ItemComponent={LinkItem}
-                itemProps={{ update, remove, classes }}
+                itemProps={{ update, remove, multiLine, classes }}
             />
             <CanCreate yes>
-                <Space.Compact style={{ width: "100%" }}>
-                    <Input
-                        value={text}
-                        onChange={onInputChange(setText)}
-                        placeholder="Text"
-                        className={classes.newLinkForm}
-                        onPressEnter={create}
-                    />
-                    <Input
-                        value={url}
-                        onChange={onInputChange(setUrl)}
-                        placeholder="Url"
-                        className={classes.newLinkForm}
-                        onPressEnter={create}
-                    />
-                    <Button onClick={create} variant="link"><FontAwesomeIcon icon={faAdd} /></Button>
-                </Space.Compact>
+                <div className={clsx([classes.newLinkWrapper, multiLine && classes.multiLine])}>
+                    {multiLine ? (
+                        <Space direction="vertical" style={{ width: "100%" }} className={classes.newLinkFields}>
+                            <Input value={text} onChange={onInputChange(setText)} placeholder="Text" onPressEnter={create} />
+                            <Input value={url} onChange={onInputChange(setUrl)} placeholder="Url" onPressEnter={create} />
+                            <Button onClick={create} type="dashed" block><FontAwesomeIcon icon={faAdd} /> Add Link</Button>
+                        </Space>
+                    ) : (
+                        <Space.Compact style={{ width: "100%" }} className={classes.newLinkFields}>
+                            <Input
+                                value={text}
+                                onChange={onInputChange(setText)}
+                                placeholder="Text"
+                                className={classes.newLinkForm}
+                                onPressEnter={create}
+                            />
+                            <Input
+                                value={url}
+                                onChange={onInputChange(setUrl)}
+                                placeholder="Url"
+                                className={classes.newLinkForm}
+                                onPressEnter={create}
+                            />
+                            <Button onClick={create} variant="link"><FontAwesomeIcon icon={faAdd} /></Button>
+                        </Space.Compact>
+                    )}
+                </div>
             </CanCreate>
         </CanView>
         <CanView no>

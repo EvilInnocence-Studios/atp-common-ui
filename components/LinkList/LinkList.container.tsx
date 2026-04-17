@@ -10,6 +10,7 @@ import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
 import icon from './icon.svg';
 import { Label } from "@core/components/Label";
 import { Editable } from "@core/components/Editable";
+import { LinkListPropEditor } from "./LinkList.props";
 
 const injectLinkListProps = createInjector(({id}:ILinkListInputProps):ILinkListProps => {
     const [links, setLinks] = useState<ILink[]>([]);
@@ -39,10 +40,6 @@ export const LinkList = withLayoutMetadata(
         icon,
         displayName: 'Link List',
         description: 'A list of links',
-        propEditor: (props: any, updateProps: (props: any) => void) => <>
-            <Label label="Key">
-                <Editable value={props.id} onChange={value => updateProps({ ...props, id: value })} />
-            </Label>
-        </>
+        propEditor: LinkListPropEditor,
     }
 );

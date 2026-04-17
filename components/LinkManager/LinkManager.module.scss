@@ -5,4 +5,35 @@
     > :nth-child(1), > :nth-child(2), > :nth-child(3) {
         width: calc((100% - 3em) / 3);
     }
+
+    &.multiLine {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        position: relative;
+        padding-right: 32px;
+        
+        > :nth-child(1), > :nth-child(2), > :nth-child(3) {
+            width: 100%;
+        }
+
+        .deleteBtnWrap {
+            position: absolute;
+            top: 8px;
+            right: 4px;
+        }
+    }
+
+    .deleteBtnWrap {
+        display: inline-block;
+    }
+}
+
+.newLinkWrapper.multiLine {
+    margin-top: 8px;
 }
