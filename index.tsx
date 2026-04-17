@@ -27,7 +27,7 @@ export const module: IModule = {
 
 ComponentRegistry.register(LinkList);
 ComponentRegistry.register(MailchimpForm);
-ComponentRegistry.register("MailchimpPopup", MailchimpPopup, { category: "Marketing", subCategory: "Email", displayName: "Mailchimp Popup" });
+ComponentRegistry.register(MailchimpPopup);
 ComponentRegistry.register(BlueskyFeed);
 ComponentRegistry.register("LogoSpinner", LogoSpinner, { category: "Social", subCategory:"Branding", displayName: "Logo Spinner" });
 ComponentRegistry.register(MediaImage);

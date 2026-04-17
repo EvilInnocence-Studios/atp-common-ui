@@ -1,13 +1,15 @@
-import { useSetting } from "@common/lib/setting/services";
-import { overridable } from "@core/lib/overridable";
-import { useScript } from "@core/lib/useScript";
 import { createInjector, inject, mergeProps } from "unstateless";
-import { MailchimpPopupComponent } from "./MailchimpPopup.component";
-import { IMailchimpPopupInputProps, IMailchimpPopupProps, MailchimpPopupProps } from "./MailchimpPopup.d";
+import {MailchimpPopupComponent} from "./MailchimpPopup.component";
+import {IMailchimpPopupInputProps, MailchimpPopupProps, IMailchimpPopupProps} from "./MailchimpPopup.d";
+import { overridable } from "@core/lib/overridable";
+import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
+import icon from './icon.svg';
+import { MailchimpPopupLayoutEditor } from "./MailchimpPopup.layout";
+import { MailchimpPopupPropEditor } from "./MailchimpPopup.props";
+import { useScript } from "@core/lib/useScript";
 
-const injectMailchimpPopupProps = createInjector(({}:IMailchimpPopupInputProps):IMailchimpPopupProps => {
-    const mailchimpScript = useSetting("mailchimpPopupScript");
-    useScript(mailchimpScript);
+const injectMailchimpPopupProps = createInjector(({mailchimpScript}:IMailchimpPopupInputProps):IMailchimpPopupProps => {
+    useScript(mailchimpScript!);
 
     return {};
 });
@@ -17,4 +19,17 @@ const connect = inject<IMailchimpPopupInputProps, MailchimpPopupProps>(mergeProp
 ));
 export const connectMailchimpPopup = connect;
 
-export const MailchimpPopup = overridable<IMailchimpPopupInputProps>(connect(MailchimpPopupComponent));
+export const MailchimpPopup = withLayoutMetadata(
+    overridable<IMailchimpPopupInputProps>(connect(MailchimpPopupComponent)),
+    {
+        name: "MailchimpPopup",
+        displayName: "MailchimpPopup",
+        category: "Marketing",
+        subCategory: "Email",
+        description: "",
+        icon,
+        getSlotDisplayName: (slotName, props) => props[slotName] || slotName,
+        layoutEditor: MailchimpPopupLayoutEditor,
+        propEditor: MailchimpPopupPropEditor,
+    }
+);
