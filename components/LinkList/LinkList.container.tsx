@@ -2,14 +2,12 @@ import { ILink, ILinkList } from "@common-shared/link/types";
 import { services } from "@core/lib/api";
 import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
+import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
+import icon from './icon.svg';
 import { LinkListComponent } from "./LinkList.component";
 import { ILinkListInputProps, ILinkListProps, LinkListProps } from "./LinkList.d";
-import { withLayoutMetadata } from "@theming/lib/layout/componentRegistry";
-import icon from './icon.svg';
-import { Label } from "@core/components/Label";
-import { Editable } from "@core/components/Editable";
 import { LinkListPropEditor } from "./LinkList.props";
 
 const injectLinkListProps = createInjector(({id}:ILinkListInputProps):ILinkListProps => {
