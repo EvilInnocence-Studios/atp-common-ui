@@ -1,3 +1,4 @@
+import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
 import { MarkdownEditor } from "@core/components/MarkdownEditor";
@@ -6,13 +7,28 @@ import { overridable } from "@core/lib/overridable";
 import { LayoutEditor, LayoutEditorProvider } from "@theming/components/LayoutManager/LayoutEditor";
 import { Card, DatePicker, Switch } from "antd";
 import dayjs from "dayjs";
+import { Link } from "react-router";
 import { ContentEditorProps } from "./ContentEditor.d";
 import styles from './ContentEditor.module.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-export const ContentEditorComponent = overridable(({ type, content, updateString, updateToggle, updateObject, UpdateButtons, classes = styles }: ContentEditorProps) =>
+export const ContentEditorComponent = overridable(({
+    type, content, dirty,
+    remove, updateString, updateToggle, updateObject, UpdateButtons,
+    classes = styles,
+}: ContentEditorProps) =>
     <div className={classes.contentEditor}>
-        <h1>Edit {type.charAt(0).toUpperCase() + type.slice(1)}</h1>
+        <Link to={`/${type}s`}>
+            <FontAwesomeIcon icon={faArrowLeft} />
+            Back to {type}s
+        </Link>
+        <h1>
+            Edit {type.charAt(0).toUpperCase() + type.slice(1)}
+        </h1>
         <div className={classes.updateButtons}>
+            <DeleteBtn entityType={type} type="default" label={`Delete ${type}`} onClick={remove} />
+            &nbsp;&nbsp;&nbsp;
             <UpdateButtons />
         </div>
         <DatePicker value={content.publishDate ? dayjs(content.publishDate) : undefined} onChange={onDateChange(updateString("publishDate"))} />

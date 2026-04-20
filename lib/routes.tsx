@@ -1,4 +1,5 @@
 import { BannerManager } from "@common/components/BannerManager";
+import { ContentEditor } from "@common/components/ContentEditor";
 import { ContentManager } from "@common/components/ContentManager";
 import { LinkListManager } from "@common/components/LinkListManager";
 import { MediaManager } from "@common/components/MediaManager";
@@ -15,9 +16,9 @@ export const commonRoutes = {
         {path: "/settings",  component: SettingsManager                                                         },
         {path: "/links",     component: LinkListManager                                                         },
         {path: "/pages",     component: () => <ContentManager type="page" />                                    },
-        {path: "/pages/:id", component: withRoute(({id}:{id:string}) => <ContentManager type="page" id={id} />) },
+        {path: "/pages/:id", component: withRoute(({id}:{id:string}) => <ContentEditor type="page" contentId={id} />) },
         {path: "/posts",     component: () => <ContentManager type="post" />                                    },
-        {path: "/posts/:id", component: withRoute(({id}:{id:string}) => <ContentManager type="post" id={id} />) },
+        {path: "/posts/:id", component: withRoute(({id}:{id:string}) => <ContentEditor type="post" contentId={id} />) },
         {path: "/media",     component: MediaManager                                                            },
     ]
 }

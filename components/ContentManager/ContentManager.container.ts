@@ -15,7 +15,20 @@ const injectContentManagerProps = createInjector(({type}:IContentManagerInputPro
 
     const refresh = () => {
         loader(() => services().content.search({ type })
-            .then(setPages)
+            .then(data => {
+                const sorted = [...data].sort((a, b) => {
+                    if (type === 'page') {
+                        return (a.title || '').localeCompare(b.title || '');
+                    } else {
+                        if (!a.enabled && b.enabled) return -1;
+                        if (a.enabled && !b.enabled) return 1;
+                        const dateA = a.publishDate ? new Date(a.publishDate).getTime() : 0;
+                        const dateB = b.publishDate ? new Date(b.publishDate).getTime() : 0;
+                        return dateB - dateA;
+                    }
+                });
+                setPages(sorted);
+            })
         );
     }
 

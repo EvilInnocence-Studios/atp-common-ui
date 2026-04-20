@@ -1,48 +1,70 @@
-import { IContent } from "@common-shared/content/types";
+import { overridable } from "@core/lib/overridable";
 import { faCheck, faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Col, Row, Spin } from "antd";
+import { Button, Spin, Table } from "antd";
 import { Link } from "react-router";
-import { ContentEditor } from "../ContentEditor";
+import { ClearCacheButton } from "../ClearCacheButton";
 import { ContentManagerProps } from "./ContentManager.d";
 import styles from './ContentManager.module.scss';
-import { ClearCacheButton } from "../ClearCacheButton";
-import { overridable } from "@core/lib/overridable";
 
-export const ContentManagerComponent = overridable(({ id, type, pages, isLoading, create, refresh, classes = styles }: ContentManagerProps) =>
-    <Spin spinning={isLoading}>
-        <div className={classes.contentManager}>
-            <Row gutter={16}>
-                <Col xs={6}>
-                    <h2>
-                        {type.charAt(0).toUpperCase() + type.slice(1)}s
-                        &nbsp;
+export const ContentManagerComponent = overridable(({ type, pages, isLoading, create, refresh, classes = styles }: ContentManagerProps) => {
+
+    const renderLink = (record: any, content: React.ReactNode) => (
+        <Link to={`/${type}s/${record.id}`} style={{ display: 'block', color: 'inherit' }}>
+            {content}
+        </Link>
+    );
+
+    const columns = [
+        {
+            title: 'Title',
+            dataIndex: 'title',
+            key: 'title',
+            render: (text: string, record: any) => renderLink(record, <strong>{text}</strong>),
+        },
+        {
+            title: 'Slug',
+            dataIndex: 'slug',
+            key: 'slug',
+            render: (text: string, record: any) => renderLink(record, text),
+        },
+        {
+            title: 'Enabled',
+            dataIndex: 'enabled',
+            key: 'enabled',
+            render: (enabled: boolean, record: any) => renderLink(record, <FontAwesomeIcon icon={enabled ? faCheck : faTimes} style={{ color: enabled ? "green" : "red" }} />)
+        },
+        {
+            title: 'Publish Date',
+            dataIndex: 'publishDate',
+            key: 'publishDate',
+            render: (date: string | Date | undefined, record: any) => renderLink(record, date ? new Date(date).toLocaleString() : 'N/A')
+        }
+    ];
+
+    return (
+        <Spin spinning={isLoading}>
+            <div className={classes.contentManager}>
+                <h2>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}s
+                </h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', width: '100%' }}>
+                    <h2 style={{ margin: 0, flex: 1 }}>
                         <Button onClick={create} type="primary" >
                             <FontAwesomeIcon icon={faPlus} /> Create New {type.charAt(0).toUpperCase() + type.slice(1)}
                         </Button>
-                        &nbsp;
-                        <ClearCacheButton entity="content" cacheType={`content`} />
                     </h2>
-                    <ul className={classes.pageList}>
-                        {pages.map(page =>
-                            <li key={page.id}>
-                                <Link to={`/${type}s/${page.id}`}>
-                                    <strong>{page.title}</strong> ({page.slug})
-                                    &nbsp;
-                                    <FontAwesomeIcon icon={page.enabled ? faCheck : faTimes} style={{ color: page.enabled ? "green" : "red" }} />
-                                </Link>
-                            </li>
-                        )}
-                    </ul>
-                </Col>
-                <Col xs={18}>
-                    {id && pages.length > 0 && pages.find(p => p.id === id) && <ContentEditor
-                        type={type}
-                        content={pages.find(p => p.id === id) as IContent}
-                        onUpdate={() => refresh}
-                    />}
-                </Col>
-            </Row>
-        </div>
-    </Spin>
-);
+                    <div style={{ marginLeft: 'auto' }}>
+                        <ClearCacheButton entity="content" cacheType={`content`} />
+                    </div>
+                </div>
+                <Table 
+                    columns={columns} 
+                    dataSource={pages} 
+                    rowKey="id" 
+                    pagination={{ pageSize: 15 }} 
+                />
+            </div>
+        </Spin>
+    );
+});
