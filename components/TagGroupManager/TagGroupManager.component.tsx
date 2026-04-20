@@ -73,7 +73,12 @@ export const TagGroupManagerComponent = overridable(({ groups, isLoading, name, 
                         title={<>New Tag Group</>}
                         extra={<Button onClick={create} size="small" variant="link"><FontAwesomeIcon icon={faAdd} /> Create</Button>}
                     >
-                        <Input value={name} onChange={onInputChange(setName)} placeholder="Name" />
+                        <Input
+                            placeholder="Name"
+                            value={name}
+                            onChange={onInputChange(setName)}
+                            onPressEnter={create}
+                        />
                     </Card>
                 </CanCreate>
             </Col>
