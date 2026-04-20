@@ -36,9 +36,11 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
     }
 
     const [name, setName] = useState('');
+    const [type, setType] = useState('');
     const create = () => {
         loader(() => group.create({
             name,
+            type: type || null,
             filterable: true,
             visible: true,
             order: Math.max(...groups.map(prop("order"))) + 1,
@@ -47,7 +49,7 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
             .then(all(
                 refresh,
                 flash.success(`Tag group ${name} created`),
-                clear(setName),
+                all(clear(setName), clear(setType)),
             ))
             .catch(flash.error("Failed to create tag group"))
         );
@@ -68,7 +70,7 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
         );
     }
 
-    return {groups, isLoading: loader.isLoading, name, setName, create, update, remove, selectedGroup, setSelectedGroup, sortGroups};
+    return {groups, isLoading: loader.isLoading, name, setName, type, setType, create, update, remove, selectedGroup, setSelectedGroup, sortGroups};
 });
 
 const connect = inject<ITagGroupManagerInputProps, TagGroupManagerProps>(mergeProps(

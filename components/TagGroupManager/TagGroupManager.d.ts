@@ -5,6 +5,8 @@ export declare interface ITagGroupManagerProps {
     isLoading: boolean;
     name: string;
     setName: Setter<string>;
+    type: string;
+    setType: Setter<string>;
     selectedGroup: string | null;
     setSelectedGroup: Setter<string>;
     create: () => void;

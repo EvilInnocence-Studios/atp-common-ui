@@ -41,6 +41,8 @@ export const Group = overridable(({ item: group, update, remove, selectedGroup, 
         />
         <CanEdit yes><Editable value={group.name} onChange={update(group.id, "name")} /></CanEdit>
         <CanEdit no>{group.name}</CanEdit>
+        (<CanEdit yes><Editable value={group.type || ""} onChange={update(group.id, "type")} placeholder="type" /></CanEdit>
+        <CanEdit no>{group.type}</CanEdit>)
         <Button type="link" onClick={() => setSelectedGroup(group.id)}>tags <FontAwesomeIcon icon={faArrowRight} /></Button>
         <CanDelete yes><DeleteBtn entityType="tag group" onClick={remove(group.id)} /></CanDelete>
     </div>;
@@ -77,6 +79,12 @@ export const TagGroupManagerComponent = overridable(({ groups, isLoading, name, 
                             placeholder="Name"
                             value={name}
                             onChange={onInputChange(setName)}
+                            onPressEnter={create}
+                        />
+                        <Input
+                            placeholder="Type"
+                            value={handlers.type}
+                            onChange={onInputChange(handlers.setType)}
                             onPressEnter={create}
                         />
                     </Card>
