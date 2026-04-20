@@ -9,15 +9,15 @@ import { withRoute } from "@core/lib/withRoute";
 
 export const commonRoutes = {
     admin: [
-        {path: "/tags",              component: TagGroupManager                                                            },
-        {path: "/synonyms",          component: SynonymManager                                                             },
-        {path: "/banners",           component: BannerManager                                                              },
-        {path: "/settings",          component: SettingsManager                                                            },
-        {path: "/links",             component: LinkListManager                                                            },
-        {path: "/pages",             component: () => <ContentManager type="page" />                                       },
-        {path: "/pages/:id",         component: withRoute(({id}:{id:string}) => <ContentManager type="page" id={id} />)    },
-        {path: "/snippets",          component: () => <ContentManager type="snippet" />                                    },
-        {path: "/snippets/:id",      component: withRoute(({id}:{id:string}) => <ContentManager type="snippet" id={id} />) },
-        {path: "/media",             component: MediaManager                                                               },
+        {path: "/tags",      component: TagGroupManager                                                         },
+        {path: "/synonyms",  component: SynonymManager                                                          },
+        {path: "/banners",   component: BannerManager                                                           },
+        {path: "/settings",  component: SettingsManager                                                         },
+        {path: "/links",     component: LinkListManager                                                         },
+        {path: "/pages",     component: () => <ContentManager type="page" />                                    },
+        {path: "/pages/:id", component: withRoute(({id}:{id:string}) => <ContentManager type="page" id={id} />) },
+        {path: "/posts",     component: () => <ContentManager type="post" />                                    },
+        {path: "/posts/:id", component: withRoute(({id}:{id:string}) => <ContentManager type="post" id={id} />) },
+        {path: "/media",     component: MediaManager                                                            },
     ]
 }

@@ -1,11 +1,7 @@
-import { Spin } from "antd";
-import Markdown from 'react-markdown';
-import remarkDirective from 'remark-directive';
-import remarkDirectiveSugar from 'remark-directive-sugar';
-import { SnippetProps } from "./Snippet.d";
 import { overridable } from "@core/lib/overridable";
+import {SnippetProps} from "./Snippet.d";
+import styles from './Snippet.module.scss';
 
-export const SnippetComponent = overridable(({snippet, isLoading}:SnippetProps) => <>
-    {isLoading && <Spin spinning={isLoading} />}
-    {!!snippet && <Markdown remarkPlugins={[remarkDirective, remarkDirectiveSugar]}>{snippet.content}</Markdown>}
-</>);
+export const SnippetComponent = overridable(({classes = styles}:SnippetProps) =>
+    <div>Snippet component goes here.</div>
+);

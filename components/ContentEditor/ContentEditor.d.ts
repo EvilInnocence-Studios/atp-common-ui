@@ -8,7 +8,7 @@ export declare interface IContentEditorProps extends IUpdater<IContent> {
 // What gets passed into the component from the parent as attributes
 export declare interface IContentEditorInputProps {
     content: IContent;
-    type: "page" | "snippet";
+    type: "page" | "post";
     onUpdate?: (content: IContent) => () => void;
     classes?: any;
 }

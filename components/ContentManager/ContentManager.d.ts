@@ -9,7 +9,7 @@ export declare interface IContentManagerProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IContentManagerInputProps {
-    type: "page" | "snippet";
+    type: "page" | "post";
     id?: string;
     classes?: any;
 }

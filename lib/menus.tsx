@@ -34,8 +34,8 @@ export const commonMenus:Index<ItemType<MenuItemType>[]> = {
             label: "Pages",
             icon: <FontAwesomeIcon icon={faParagraph} />,
         },{
-            key: "snippets",
-            label: "Snippets",
+            key: "posts",
+            label: "Posts",
             icon: <FontAwesomeIcon icon={faPencil} />,
         },{
             key: "banners",
