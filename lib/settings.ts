@@ -4,7 +4,6 @@ import { contentSettings } from "./settings/content";
 import { ecommerceSettings } from "./settings/ecommerce";
 import { emailSettings } from "./settings/email";
 import { siteInfoSettings } from "./settings/siteInfo";
-import { socialSettings } from "./settings/social";
 
 export const commonSettings:ISettingContainer = {
     "General": {
@@ -14,9 +13,6 @@ export const commonSettings:ISettingContainer = {
     },
     "Content": {
         ...contentSettings,
-    },
-    "Social": {
-        ...socialSettings,
     },
     "Ecommerce": {
         ...ecommerceSettings,
