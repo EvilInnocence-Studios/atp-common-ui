@@ -15,6 +15,7 @@ export declare interface IEntityTagEditorProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IEntityTagEditorInputProps {
+    type?: string;
     search: () => Promise<ITag[]>;
     create: (tagId: string) => Promise<void>;
     remove: (tagId: string) => Promise<void>;

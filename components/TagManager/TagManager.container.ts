@@ -39,7 +39,7 @@ const injectTagManagerProps = createInjector(({group}:ITagManagerInputProps):ITa
         loader(() => tag.create(group.id, {
             name,
             groupId: group.id,
-            order: Math.max(...tags.map(prop("order"))) + 1,
+            order: Math.max(0, ...tags.map(prop("order"))) + 1,
         })
             .then(appendTo(tags))
             .then(all(

@@ -10,7 +10,7 @@ import { EntityTagEditorProps, IEntityTagEditorInputProps, IEntityTagEditorProps
 
 const useShowHiddenTags = useLocalStorage.boolean("showHiddenTagsInEntityEditor", false);
 
-const injectEntityTagEditorProps = createInjector(({search, create, remove}:IEntityTagEditorInputProps):IEntityTagEditorProps => {
+const injectEntityTagEditorProps = createInjector(({type, search, create, remove}:IEntityTagEditorInputProps):IEntityTagEditorProps => {
     const [allTags, setAllTags] = useState<Array<{group: ITagGroup; tags: ITag[]}>>([]);
     const [entityTags, setEntityTags] = useState<ITag[]>([]);
     const [showHiddenTags, setShowHiddenTags] = useShowHiddenTags();
@@ -28,7 +28,9 @@ const injectEntityTagEditorProps = createInjector(({search, create, remove}:IEnt
         loader.start();
         services().tagGroup.search()
             .then(groups => {
-                const promises = groups.map(group => services().tagGroup.tag.search(group.id).then(tags => ({group, tags})));
+                const promises = groups
+                    .filter(group => !type || group.type === type || !group.type)
+                    .map(group => services().tagGroup.tag.search(group.id).then(tags => ({group, tags})));
                 Promise.all(promises).then(setAllTags);
             })
             .catch(flash.error('Failed to load tags'))
