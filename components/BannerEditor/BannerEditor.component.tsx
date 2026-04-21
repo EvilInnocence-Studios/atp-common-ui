@@ -2,7 +2,7 @@ import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
 import { onDateChange } from "@core/lib/onInputChange";
-import { DatePicker, InputNumber, Radio, Spin, Tabs, Upload } from "antd";
+import { Card, DatePicker, InputNumber, Radio, Spin, Tabs, Upload } from "antd";
 import dayjs from "dayjs";
 import { BannerImage } from "../BannerImage";
 import { BannerEditorProps } from "./BannerEditor.d";
@@ -13,7 +13,7 @@ import { overridable } from "@core/lib/overridable";
 
 export const BannerEditorComponent = overridable(({ bannerId, banner, isLoading, upload, updateString, updateNumber, UpdateButtons, remove, classes = styles }: BannerEditorProps) =>
     <Spin spinning={isLoading}>
-        <div className={classes.bannerEditor}>
+        <Card className={classes.bannerEditor}>
             <div className={classes.updateButtons}><UpdateButtons /></div>
             <BannerImage bannerId={bannerId} />
             <Upload.Dragger customRequest={({ file }) => upload(file as File)} showUploadList={false}>
@@ -55,6 +55,6 @@ export const BannerEditorComponent = overridable(({ bannerId, banner, isLoading,
                     </Label>
                 </Tabs.TabPane>
             </Tabs>
-        </div>
+        </Card>
     </Spin>
 );

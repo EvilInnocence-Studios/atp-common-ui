@@ -5,7 +5,7 @@ import { onInputChange } from "@core/lib/onInputChange";
 import { faAdd, faArrowRight, faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
-import { Alert, Button, Card, Col, Input, Row, Space, Spin } from "antd";
+import { Alert, Button, Card, Col, Divider, Input, Row, Space, Spin } from "antd";
 import { ClearCacheButton } from "../ClearCacheButton";
 import { LinkManager } from "../LinkManager";
 import { LinkListManagerProps } from "./LinkListManager.d";

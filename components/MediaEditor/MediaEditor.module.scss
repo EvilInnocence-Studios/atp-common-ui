@@ -1,15 +1,12 @@
 @use "@styles/globals.module.scss";
 
 .mediaEditor {
-    border: solid 2px var(--borderColor);
-    border-radius: var(--borderRadius);
-    padding: var(--padding);
     .updateButtons {
         text-align: right;
-        margin-bottom: var(--padding);
+        margin-bottom: 16px;
     }
     :global(.label) {
-        margin-top: var(--paddingSmall);
+        margin-top: 8px;
     }
     img {
         width: 100%;

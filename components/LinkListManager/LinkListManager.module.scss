@@ -10,7 +10,6 @@
     li {
         padding: 0.5rem 0;
         margin: 0;
-        border-bottom: 1px solid var(--borderColor);
         display: flex;
         align-items: center;
 
@@ -24,7 +23,7 @@
             align-items: center;
         }
         &.selected {
-            background-color: var(--bgLightColor);
+            background-color: #222222;
         }
     }
 }

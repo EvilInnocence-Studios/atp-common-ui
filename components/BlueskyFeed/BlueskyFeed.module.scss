@@ -4,26 +4,23 @@
     .post {
         margin-bottom: 64px;
         .header {
-            border-bottom: solid 5px var(--borderColor);
-            margin-bottom: var(--paddingSmall);
+            margin-bottom: 8px;
             .date {
-                color: var(--textSecondaryColor);
                 font-size: 0.9em;
                 font-style: italic;
                 text-align: right;
             }
         }
         p {
-            margin: var(--paddingSmall) 0;
+            margin: 8px 0;
         }
         .embed {
-            background-color: #ffffff;
-            padding: var(--paddingSmall);
+            padding: 8px;
             display: flex;
             flex-wrap: wrap;
-            gap: var(--paddingSmall);
+            gap: 8px;
             justify-content: center;
-            border-radius: var(--borderRadius);
+            border-radius: 16px;
             .embedImage {
                 width: 100%;
                 &:nth-child(n+2) {

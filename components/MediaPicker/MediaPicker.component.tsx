@@ -1,7 +1,7 @@
 import { overridable } from "@core/lib/overridable";
 import { MediaPickerProps } from "./MediaPicker.d";
 import styles from './MediaPicker.module.scss';
-import { Button, Col, Input, Modal, Row, Spin, Upload } from "antd";
+import { Button, Card, Col, Input, Modal, Row, Spin, Upload } from "antd";
 import { onInputChange } from "@core/lib/onInputChange";
 import { MediaImage } from "../MediaImage/MediaImage.container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -72,7 +72,7 @@ export const MediaPickerComponent = overridable(({
                     <Row gutter={[16, 16]}>
                         {images.map(image => (
                             <Col key={image.id} xs={8} sm={6} md={4}>
-                                <div
+                                <Card
                                     className={classes.selectableImage}
                                     onClick={() => {
                                         onSelect(image.id);
@@ -83,7 +83,7 @@ export const MediaPickerComponent = overridable(({
                                         <MediaImage imageId={image.id} />
                                     </div>
                                     <div className={classes.imageName}>{image.title || image.url}</div>
-                                </div>
+                                </Card>
                             </Col>
                         ))}
                     </Row>

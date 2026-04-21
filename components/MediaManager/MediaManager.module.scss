@@ -5,13 +5,13 @@
         :global(.ant-input-group-wrapper) {
             display: block;
             max-width: 368px;
-            margin: var(--padding) auto;
+            margin: 16px auto;
         }
     }
     .mediaList {
-        margin-top: var(--padding);
+        margin-top: 16px;
         > * {
-            margin-top: var(--padding);
+            margin-top: 16px;
         }
     }
 }

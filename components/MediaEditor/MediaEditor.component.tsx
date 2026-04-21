@@ -3,7 +3,7 @@ import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Spin, Upload } from "antd";
+import { Card, Spin, Upload } from "antd";
 import { MediaImage } from "../MediaImage";
 import { MediaEditorProps } from "./MediaEditor.d";
 import styles from './MediaEditor.module.scss';
@@ -11,7 +11,7 @@ import { overridable } from "@core/lib/overridable";
 
 export const MediaEditorComponent = overridable(({ image, isLoading, upload, updateString, UpdateButtons, remove, classes = styles }: MediaEditorProps) =>
     <Spin spinning={isLoading}>
-        <div className={classes.mediaEditor}>
+        <Card className={classes.mediaEditor}>
             <div className={classes.updateButtons}>
                 <DeleteBtn entityType="banner" onClick={remove} />
                 <UpdateButtons />
@@ -23,6 +23,6 @@ export const MediaEditorComponent = overridable(({ image, isLoading, upload, upd
             <Label label="Title"><Editable value={image.title} onChange={updateString("title")} /></Label>
             <Label label="Caption"><Editable value={image.caption || ""} onChange={updateString("caption")} /></Label>
             <Label label="Alt Text"><Editable value={image.altText || ""} onChange={updateString("altText")} /></Label>
-        </div>
+        </Card>
     </Spin>
 );
