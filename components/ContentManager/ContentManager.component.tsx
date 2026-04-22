@@ -7,7 +7,7 @@ import { ClearCacheButton } from "../ClearCacheButton";
 import { ContentManagerProps } from "./ContentManager.d";
 import styles from './ContentManager.module.scss';
 
-export const ContentManagerComponent = overridable(({ type, pages, isLoading, create, refresh, classes = styles }: ContentManagerProps) => {
+export const ContentManagerComponent = overridable(({ type, pages, isLoading, create, classes = styles }: ContentManagerProps) => {
 
     const renderLink = (record: any, content: React.ReactNode) => (
         <Link to={`/${type}s/${record.id}`} style={{ display: 'block', color: 'inherit' }}>

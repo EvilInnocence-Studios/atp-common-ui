@@ -4,17 +4,17 @@ import { Label } from "@core/components/Label";
 import { MarkdownEditor } from "@core/components/MarkdownEditor";
 import { onDateChange } from "@core/lib/onInputChange";
 import { overridable } from "@core/lib/overridable";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LayoutEditor, LayoutEditorProvider } from "@theming/components/LayoutManager/LayoutEditor";
 import { Card, DatePicker, Switch } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router";
 import { ContentEditorProps } from "./ContentEditor.d";
 import styles from './ContentEditor.module.scss';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export const ContentEditorComponent = overridable(({
-    type, content, dirty,
+    type, content,
     remove, updateString, updateToggle, updateObject, UpdateButtons,
     classes = styles,
 }: ContentEditorProps) =>
