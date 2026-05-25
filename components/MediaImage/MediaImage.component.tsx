@@ -39,7 +39,7 @@ export const MediaImageComponent = overridable(({
                 }}
                 style={{ cursor: linkUrl ? 'pointer' : 'auto' }}
             />}
-            {!isBackgroundImage && !isFont && isSVG && <div className="test"><SVG
+            {!isBackgroundImage && !isFont && isSVG && <div className="media-svg"><SVG
                 src={fullUrl}
                 title={image?.altText || ''}
                 className={clsx([className, classes.mediaImage, isLoading && classes.loading])}

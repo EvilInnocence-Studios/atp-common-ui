@@ -10,5 +10,10 @@
     }
     img {
         width: 100%;
+        height: auto;
+    }
+    :global(.media-svg) svg {
+        width: 100%;
+        height: auto;
     }
 }
