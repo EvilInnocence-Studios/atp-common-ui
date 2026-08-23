@@ -10,23 +10,23 @@ import { createInjector, inject, mergeProps } from "unstateless";
 import { TagGroupManagerComponent } from "./TagGroupManager.component";
 import { ITagGroupManagerInputProps, ITagGroupManagerProps, TagGroupManagerProps } from "./TagGroupManager.d";
 
-const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps):ITagGroupManagerProps => {
+const injectTagGroupManagerProps = createInjector(({ }: ITagGroupManagerInputProps): ITagGroupManagerProps => {
     const [groups, setGroups] = useState<ITagGroup[]>([]);
     const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
-    const loader =  useLoaderAsync();
+    const loader = useLoaderAsync();
 
     const group = services().tagGroup;
 
-    const update = (id:string, field:string) => (value:any) => {
+    const update = (id: string, field: string) => (value: any) => {
         const oldGroups = groups;
-        setGroups(groups.map(g => g.id === id ? {...g, [field]: value} : g));
-        loader(() => group.update(id, {[field]: value})
+        setGroups(groups.map(g => g.id === id ? { ...g, [field]: value } : g));
+        loader(() => group.update(id, { [field]: value })
             .then(flash.success("Tag group updated"))
             .catch(all(() => setGroups(oldGroups), flash.error("Failed to update tag group")))
         );
     }
 
-    const remove = (id:string) => () => {
+    const remove = (id: string) => () => {
         const oldGroups = groups;
         setGroups(groups.filter(g => g.id !== id));
         loader(() => group.remove(id)
@@ -43,7 +43,7 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
             type: type || null,
             filterable: true,
             visible: true,
-            order: Math.max(...groups.map(prop("order"))) + 1,
+            order: Math.max(0, ...groups.map(prop("order"))) + 1,
         })
             .then(appendTo(groups))
             .then(all(
@@ -70,7 +70,7 @@ const injectTagGroupManagerProps = createInjector(({}:ITagGroupManagerInputProps
         );
     }
 
-    return {groups, isLoading: loader.isLoading, name, setName, type, setType, create, update, remove, selectedGroup, setSelectedGroup, sortGroups};
+    return { groups, isLoading: loader.isLoading, name, setName, type, setType, create, update, remove, selectedGroup, setSelectedGroup, sortGroups };
 });
 
 const connect = inject<ITagGroupManagerInputProps, TagGroupManagerProps>(mergeProps(
