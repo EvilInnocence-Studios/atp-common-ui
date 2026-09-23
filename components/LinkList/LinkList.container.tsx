@@ -10,18 +10,21 @@ import { LinkListComponent } from "./LinkList.component";
 import { ILinkListInputProps, ILinkListProps, LinkListProps } from "./LinkList.d";
 import { LinkListPropEditor } from "./LinkList.props";
 
-const injectLinkListProps = createInjector(({id}:ILinkListInputProps):ILinkListProps => {
+const injectLinkListProps = createInjector(({ id }: ILinkListInputProps): ILinkListProps => {
     const [links, setLinks] = useState<ILink[]>([]);
-    const loader =  useLoaderAsync();
+    const loader = useLoaderAsync();
 
     useEffect(() => {
         loader(async () => {
             const lists = await services().linkList.search();
-            const list = lists.find(l => l.key === id) as ILinkList;
-            await services().linkList.link.search(list.id).then(setLinks);
-    });}, [id]);
-    
-    return {links, isLoading: loader.isLoading};
+            const list = lists.find(l => l.key === id);
+            if (list) {
+                await services().linkList.link.search(list.id).then(setLinks);
+            }
+        });
+    }, [id]);
+
+    return { links, isLoading: loader.isLoading };
 });
 
 const connect = inject<ILinkListInputProps, LinkListProps>(mergeProps(
