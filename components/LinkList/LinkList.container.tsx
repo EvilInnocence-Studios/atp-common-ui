@@ -1,4 +1,4 @@
-import { ILink, ILinkList } from "@common-shared/link/types";
+import { ILink } from "@common-shared/link/types";
 import { services } from "@core/lib/api";
 import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
