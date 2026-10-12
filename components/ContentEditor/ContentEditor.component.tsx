@@ -2,13 +2,12 @@ import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
 import { MarkdownEditor } from "@core/components/MarkdownEditor";
-import { onDateChange } from "@core/lib/onInputChange";
+import { DatePicker } from "@core/components/DatePicker";
 import { overridable } from "@core/lib/overridable";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LayoutEditor, LayoutEditorProvider } from "@theming/components/LayoutManager/LayoutEditor";
-import { Card, DatePicker, Switch } from "antd";
-import dayjs from "dayjs";
+import { Card, Switch } from "antd";
 import { Link } from "react-router";
 import { ContentEditorProps } from "./ContentEditor.d";
 import styles from './ContentEditor.module.scss';
@@ -31,7 +30,7 @@ export const ContentEditorComponent = overridable(({
             &nbsp;&nbsp;&nbsp;
             <UpdateButtons />
         </div>
-        <DatePicker value={content.publishDate ? dayjs(content.publishDate) : undefined} onChange={onDateChange(updateString("publishDate"))} />
+        <DatePicker value={content.publishDate} onChange={updateString("publishDate")} />
         &nbsp;
         <Switch checked={content.enabled} onChange={updateToggle("enabled")} checkedChildren="Enabled" unCheckedChildren="Disabled" />
         <h1>

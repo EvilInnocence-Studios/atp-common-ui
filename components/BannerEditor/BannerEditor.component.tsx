@@ -1,9 +1,8 @@
 import { DeleteBtn } from "@core/components/DeleteBtn";
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
-import { onDateChange } from "@core/lib/onInputChange";
-import { Card, DatePicker, InputNumber, Radio, Spin, Tabs, Upload } from "antd";
-import dayjs from "dayjs";
+import { DatePicker } from "@core/components/DatePicker";
+import { Card, InputNumber, Radio, Spin, Tabs, Upload } from "antd";
 import { BannerImage } from "../BannerImage";
 import { BannerEditorProps } from "./BannerEditor.d";
 import styles from './BannerEditor.module.scss';
@@ -48,10 +47,10 @@ export const BannerEditorComponent = overridable(({ bannerId, banner, isLoading,
                 </Tabs.TabPane>
                 <Tabs.TabPane key="4" tab="Active">
                     <Label label="Active From">
-                        <DatePicker value={banner.activeFrom ? dayjs(banner.activeFrom) : undefined} onChange={onDateChange(updateString("activeFrom"))} />
+                        <DatePicker value={banner.activeFrom} onChange={updateString("activeFrom")} />
                     </Label>
                     <Label label="Active To">
-                        <DatePicker value={banner.activeTo ? dayjs(banner.activeTo) : undefined} onChange={onDateChange(updateString("activeTo"))} />
+                        <DatePicker value={banner.activeTo} onChange={updateString("activeTo")} />
                     </Label>
                 </Tabs.TabPane>
             </Tabs>
