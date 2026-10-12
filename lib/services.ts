@@ -4,6 +4,7 @@ import { bannerServices } from "./banner/services";
 import { contentServices } from "./content/services";
 import { linkServices } from "./link/services";
 import { mediaServices } from "./media/services";
+import { scheduledTaskServices } from "./scheduledTask/services";
 import { settingServices } from "./setting/services";
 import { synonymServices } from "./synonym/services";
 import { tagGroupServices } from "./tag/services";
@@ -16,6 +17,7 @@ export const commonServices = (methods:IMethods) => ({
     ...linkServices(methods),
     ...contentServices(methods),
     ...mediaServices(methods),
+    ...scheduledTaskServices(methods),
     cache: {
         clear: (cacheType:string) => methods.post(`cache/${cacheType}`),
     },

@@ -1,4 +1,4 @@
-import { faGear, faImage, faLink, faParagraph, faPencil, faRightLeft, faTag } from "@fortawesome/free-solid-svg-icons";
+import { faClock, faGear, faImage, faLink, faParagraph, faPencil, faRightLeft, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
 import { Index } from "ts-functional/dist/types";
@@ -12,6 +12,10 @@ export const commonMenus:Index<ItemType<MenuItemType>[]> = {
             key: "settings",
             label: "Settings",
             icon: <FontAwesomeIcon icon={faGear} />,
+        }, {
+            key: "scheduled-tasks",
+            label: "Scheduled Tasks",
+            icon: <FontAwesomeIcon icon={faClock} />,
         }, {
             key: "tags",
             label: "Tags",

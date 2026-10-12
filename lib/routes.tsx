@@ -3,6 +3,7 @@ import { ContentEditor } from "@common/components/ContentEditor";
 import { ContentManager } from "@common/components/ContentManager";
 import { LinkListManager } from "@common/components/LinkListManager";
 import { MediaManager } from "@common/components/MediaManager";
+import { ScheduledTaskManager } from "@common/components/ScheduledTaskManager";
 import { SettingsManager } from "@common/components/SettingsManager";
 import { SynonymManager } from "@common/components/SynonymManager/SynonymManager.container";
 import { TagGroupManager } from "@common/components/TagGroupManager";
@@ -10,15 +11,16 @@ import { withRoute } from "@core/lib/withRoute";
 
 export const commonRoutes = {
     admin: [
-        {path: "/tags",      component: TagGroupManager                                                         },
-        {path: "/synonyms",  component: SynonymManager                                                          },
-        {path: "/banners",   component: BannerManager                                                           },
-        {path: "/settings",  component: SettingsManager                                                         },
-        {path: "/links",     component: LinkListManager                                                         },
-        {path: "/pages",     component: () => <ContentManager type="page" />                                    },
-        {path: "/pages/:id", component: withRoute(({id}:{id:string}) => <ContentEditor type="page" contentId={id} />) },
-        {path: "/posts",     component: () => <ContentManager type="post" />                                    },
-        {path: "/posts/:id", component: withRoute(({id}:{id:string}) => <ContentEditor type="post" contentId={id} />) },
-        {path: "/media",     component: MediaManager                                                            },
+        {path: "/tags",            component: TagGroupManager                                                         },
+        {path: "/synonyms",        component: SynonymManager                                                          },
+        {path: "/banners",         component: BannerManager                                                           },
+        {path: "/settings",        component: SettingsManager                                                         },
+        {path: "/scheduled-tasks", component: ScheduledTaskManager                                                     },
+        {path: "/links",           component: LinkListManager                                                         },
+        {path: "/pages",           component: () => <ContentManager type="page" />                                    },
+        {path: "/pages/:id",       component: withRoute(({id}:{id:string}) => <ContentEditor type="page" contentId={id} />) },
+        {path: "/posts",           component: () => <ContentManager type="post" />                                    },
+        {path: "/posts/:id",       component: withRoute(({id}:{id:string}) => <ContentEditor type="post" contentId={id} />) },
+        {path: "/media",           component: MediaManager                                                            },
     ]
 }
